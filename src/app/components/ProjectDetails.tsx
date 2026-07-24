@@ -127,7 +127,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                 className={`font-regular text-[14px] leading-[1.4] text-left transition-colors cursor-pointer ${activeSection === sec.id ? "text-black font-regular" : "text-[#b4b4b4] hover:text-black"
                   }`}
               >
-                {sec.heading}
+                {sec.navTitle || sec.heading}
               </button>
             ))}
           </nav>
@@ -149,7 +149,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
 
               <div className="flex flex-col gap-[16px] mb-4">
                 {sec.paragraphs.map((para, pIdx) => (
-                  <p key={pIdx} className="font-light text-[16px] text-black">
+                  <p key={pIdx} className="font-light text-[16px] text-black text-justify">
                     {formatText(para)}
                   </p>
                 ))}
@@ -195,7 +195,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                 <>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-[24px] pt-[24px] mt-[16px]">
                     <div>
-                      <p className="font-normal text-[12px] leading-[1.4] text-[#8e8e8e] mb-[4px]">
+                      <p className="font-normal text-[14px] leading-[1.4] text-[#8e8e8e] mb-[4px]">
                         Company/Client
                       </p>
                       <p className="font-medium text-[14px] leading-[1.4] text-black">
@@ -203,7 +203,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                       </p>
                     </div>
                     <div>
-                      <p className="font-normal text-[12px] leading-[1.4] text-[#8e8e8e] mb-[4px]">
+                      <p className="font-normal text-[14px] leading-[1.4] text-[#8e8e8e] mb-[4px]">
                         Role
                       </p>
                       <p className="font-medium text-[14px] leading-[1.4] text-black">
@@ -211,7 +211,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                       </p>
                     </div>
                     <div>
-                      <p className="font-normal text-[12px] leading-[1.4] text-[#8e8e8e] mb-[4px]">
+                      <p className="font-normal text-[14px] leading-[1.4] text-[#8e8e8e] mb-[4px]">
                         Timeline
                       </p>
                       <p className="font-medium text-[14px] leading-[1.4] text-black">
@@ -219,7 +219,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                       </p>
                     </div>
                     <div>
-                      <p className="font-normal text-[12px] leading-[1.4] text-[#8e8e8e] mb-[4px]">
+                      <p className="font-normal text-[14px] leading-[1.4] text-[#8e8e8e] mb-[4px]">
                         Platform
                       </p>
                       <p className="font-medium text-[14px] leading-[1.4] text-black">
@@ -238,10 +238,10 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
       {/* Footer */}
       <footer className="w-full border-t border-[#f4f4f4] py-[32px] px-[24px] md:px-[50px] bg-white">
         <div className="max-w-[1000px] mx-auto flex flex-col md:flex-row justify-between items-center gap-[24px] w-full">
-          <p className="font-normal text-[12px] leading-[1.4] text-black whitespace-nowrap">
+          <p className="font-normal text-[14px] leading-[1.4] text-black whitespace-nowrap">
             {portfolioInfo.author} © {portfolioInfo.year}
           </p>
-          <div className="flex gap-[24px] items-center font-normal text-[14px] leading-[1.4] text-black">
+          <div className="flex flex-wrap justify-center md:justify-end gap-[16px] md:gap-[24px] items-center font-normal text-[14px] leading-[1.4] text-black">
             {socialLinks.map((link) => (
               <a
                 key={link.label}

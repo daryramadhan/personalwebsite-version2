@@ -20,6 +20,7 @@ export interface CaseStudySection {
   images?: string[];
   layout?: "1-column" | "2-column";
   captions?: string[];
+  navTitle?: string;
 }
 
 export interface CaseStudy {
@@ -187,7 +188,8 @@ export const projects: Project[] = [
           paragraphs: [
             "Startups and marketing teams struggle to generate high-converting visual ad creatives at scale. DescAd wanted to design a workflow that enables users to input target demographics, define brand colors, and generate optimized banner dimensions in minutes."
           ],
-          image: imgDescAd
+          image: imgDescAd,
+          navTitle: "Overview"
         },
         {
           id: "problem",
@@ -205,7 +207,8 @@ export const projects: Project[] = [
           captions: [
             "",
             "Ini tampilan screenshoot kalau dari aplikasi"
-          ]
+          ],
+          navTitle: "The Problem"
         },
         {
           id: "post-launch",
@@ -225,7 +228,8 @@ export const projects: Project[] = [
             "Tampilan Mobile",
             "Greenflags"
           ],
-          caption: "Tampilan Mobile"
+          caption: "Tampilan Mobile",
+          navTitle: "Impact"
         }
       ]
     }

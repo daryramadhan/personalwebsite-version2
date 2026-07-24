@@ -416,12 +416,26 @@ export default function AdminDashboard() {
                       {/* Heading (Linked directly to left navbar) */}
                       <div className="flex flex-col gap-[6px]">
                         <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
-                          Heading (H2 / Nav Label)
+                          Heading (H2)
                         </label>
                         <input
                           type="text"
                           value={sec.heading}
                           onChange={(e) => updateSectionField(sec.id, "heading", e.target.value)}
+                          className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black bg-white transition-colors"
+                        />
+                      </div>
+
+                      {/* Navigation Title Alias (Optional) */}
+                      <div className="flex flex-col gap-[6px]">
+                        <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                          Navigation Title Alias (Optional Sidebar Alias)
+                        </label>
+                        <input
+                          type="text"
+                          value={sec.navTitle || ""}
+                          onChange={(e) => updateSectionField(sec.id, "navTitle", e.target.value || undefined)}
+                          placeholder="e.g. Problem (falls back to H2 Heading if empty)"
                           className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black bg-white transition-colors"
                         />
                       </div>
