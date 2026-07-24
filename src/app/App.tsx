@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import LeftPanel from "./components/LeftPanel";
 import RightPanel from "./components/RightPanel";
 import ProjectDetails from "./components/ProjectDetails";
+import AdminDashboard from "./components/AdminDashboard";
 import { projects } from "./data/portfolioData";
 
 export default function App() {
@@ -46,10 +47,13 @@ export default function App() {
   const isProjectRoute = activeHash.startsWith(projectPrefix);
   const projectId = isProjectRoute ? activeHash.slice(projectPrefix.length) : null;
   const activeProject = projectId ? projects.find((p) => p.id === projectId && !p.isEmpty) : null;
+  const isAdminRoute = activeHash === "#/admin";
 
   return (
-    <div className="bg-white min-h-screen font-['Manrope',sans-serif] relative overflow-x-hidden">
-      {activeProject ? (
+    <div className={`bg-white min-h-screen font-['Manrope',sans-serif] relative ${activeProject || isAdminRoute ? "" : "overflow-x-hidden"}`}>
+      {isAdminRoute ? (
+        <AdminDashboard />
+      ) : activeProject ? (
         <ProjectDetails project={activeProject} />
       ) : (
         <>

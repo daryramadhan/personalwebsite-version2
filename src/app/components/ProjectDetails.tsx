@@ -1,193 +1,267 @@
-import { Project, projects } from "../data/portfolioData";
+import { useEffect, useState, useMemo } from "react";
+import { Project, projects, socialLinks, portfolioInfo, CaseStudySection } from "../data/portfolioData";
 
 interface ProjectDetailsProps {
   project: Project;
 }
 
 export default function ProjectDetails({ project }: ProjectDetailsProps) {
-  // If the project doesn't have a case study, create a realistic fallback
+  const [activeSection, setActiveSection] = useState("overview");
+
+  // Fallback case study structure if not defined
   const caseStudy = project.caseStudy || {
     challenge: `${project.title || "This project"} was designed to address high-friction user workflows by introducing visual simplicity, clear information hierarchy, and dynamic feedback systems. The key objective was to map user interactions and reduce cognitive load.`,
     solution: `We designed a clean, modular visual interface that leverages core typography grids and micro-interactions. The final product scales seamlessly across form factors and streamlines complex operations into accessible workflows.`,
-    timeline: "3 Months (2025)",
+    timeline: "May - June 2025",
     deliverables: ["UI/UX Design", "Figma Design System", "Interactive Prototype"],
     gallery: project.src ? [project.src] : []
   };
 
-  // Find next project link for navigation loop
-  const currentIndex = projects.findIndex((p) => p.id === project.id);
-  const nextProject = projects.find(
-    (p, index) => index > currentIndex && !p.isEmpty && p.title
-  );
-  const fallbackNextProject = projects.find((p) => !p.isEmpty && p.title);
-  const nextProjectToLink = nextProject || fallbackNextProject;
-  const nextProjectUrl = nextProjectToLink ? `#/project/${nextProjectToLink.id}` : "#/";
+  // Compile section list dynamically, fall back to legacy properties if cs.sections is empty
+  const projectSections = useMemo((): CaseStudySection[] => {
+    if (caseStudy.sections && caseStudy.sections.length > 0) {
+      return caseStudy.sections;
+    }
+
+    const defaultSections: CaseStudySection[] = [];
+
+    // Overview Section
+    defaultSections.push({
+      id: "overview",
+      heading: "Overview",
+      paragraphs: [caseStudy.overviewText || caseStudy.challenge],
+      image: project.src,
+    });
+
+    // Problem Section
+    defaultSections.push({
+      id: "problem",
+      heading: caseStudy.problemHeading || "The Problem Framework",
+      paragraphs: caseStudy.problemText || [caseStudy.challenge, caseStudy.solution],
+      image: caseStudy.gallery && caseStudy.gallery.length > 1 ? caseStudy.gallery[1] : undefined,
+      caption: caseStudy.gallery && caseStudy.gallery.length > 1 ? `A preview of the ${project.title} Dashboard Screen` : undefined,
+    });
+
+    // Post-launch Section
+    defaultSections.push({
+      id: "post-launch",
+      heading: caseStudy.postLaunchHeading || "Post-launch Impact",
+      paragraphs: caseStudy.postLaunchText || [
+        "Following deployment, the platform saw significant user engagement and high phrase generation success rates. The solution delivered robust performance across core templates, resulting in optimized workflow times."
+      ],
+    });
+
+    return defaultSections;
+  }, [project, caseStudy]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 200; // offset to trigger active state earlier
+      for (const section of projectSections) {
+        const el = document.getElementById(section.id);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(section.id);
+            break;
+          }
+        }
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [projectSections]);
+
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      setActiveSection(id);
+    }
+  };
+
+  // Convert url strings like www.domain.com into clickable html anchors
+  const formatText = (text: string) => {
+    const urlRegex = /(www\.[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)/g;
+    if (!urlRegex.test(text)) return text;
+
+    const parts = text.split(urlRegex);
+    return parts.map((part, index) => {
+      if (urlRegex.test(part)) {
+        return (
+          <a
+            key={index}
+            href={`https://${part}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-[#f25c0c] transition-colors"
+          >
+            {part}
+          </a>
+        );
+      }
+      return part;
+    });
+  };
 
   return (
-    <div className="bg-white min-h-screen font-['Manrope',sans-serif] text-black">
-      {/* Top Navbar */}
-      <div className="max-w-[1200px] mx-auto px-[24px] py-[32px] flex justify-between items-center">
-        <a
-          href="#/"
-          className="flex items-center gap-[8px] font-medium text-[14px] hover:text-[#f25c0c] transition-colors"
-        >
-          <svg
-            viewBox="0 0 20 20"
-            fill="none"
-            className="size-[16px]"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <path d="M15.8334 10H4.16669M4.16669 10L9.16669 15M4.16669 10L9.16669 5" />
-          </svg>
-          Back to Portfolio
-        </a>
-        <p className="text-[12px] opacity-60">Dary Ramadhan © 2026</p>
-      </div>
+    <div className="bg-white min-h-screen font-['Manrope',sans-serif] text-black flex flex-col justify-between">
+      {/* Main Column Container */}
+      <div className="max-w-[1000px] mx-auto px-[24px] md:px-[50px] py-[64px] flex flex-col lg:flex-row gap-[48px] lg:gap-[64px] items-start w-full flex-1">
 
-      {/* Hero Section */}
-      <div className="max-w-[1200px] mx-auto px-[24px] pb-[40px]">
-        <div className="flex flex-col gap-[16px] md:gap-[24px] mb-[32px]">
-          <h1 className="text-[40px] md:text-[64px] font-medium leading-[1.1] tracking-[-2px]">
-            {project.title}
-          </h1>
-          <div className="flex flex-wrap gap-[16px] items-center text-[14px] opacity-80">
-            <span className="bg-[#f4f4f4] px-[12px] py-[6px] rounded-[6px] text-black font-medium">
-              {project.category}
-            </span>
-            <span className="text-[#605E59]">•</span>
-            <span>{project.role}</span>
-            <span className="text-[#605E59]">•</span>
-            <span>{project.year}</span>
-          </div>
-        </div>
-
-        {/* Large Cover Image */}
-        {project.src && (
-          <div className="w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-[8px] bg-[#f4f4f4] relative shadow-sm">
-            <img
-              src={project.src}
-              alt={project.title}
-              className="absolute inset-0 size-full object-cover"
-              style={{ objectPosition: project.fit === "top" ? "top center" : "center" }}
-            />
-          </div>
-        )}
-      </div>
-
-      {/* Narrative Section & Metadata */}
-      <div className="max-w-[1200px] mx-auto px-[24px] py-[40px] border-t border-[#f4f4f4]">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-[48px] items-start">
-          {/* Main Case Study */}
-          <div className="lg:col-span-2 flex flex-col gap-[36px]">
-            <div className="flex flex-col gap-[12px]">
-              <h2 className="text-[20px] font-semibold tracking-[-0.5px]">The Challenge</h2>
-              <p className="text-[15px] leading-[1.6] opacity-80 text-justify">
-                {caseStudy.challenge}
-              </p>
-            </div>
-            <div className="flex flex-col gap-[12px]">
-              <h2 className="text-[20px] font-semibold tracking-[-0.5px]">The Solution</h2>
-              <p className="text-[15px] leading-[1.6] opacity-80 text-justify">
-                {caseStudy.solution}
-              </p>
-            </div>
-          </div>
-
-          {/* Sidebar Metadata */}
-          <div className="bg-[#f4f4f4] p-[20px] md:p-[24px] rounded-[8px] grid grid-cols-2 md:flex md:flex-col gap-[20px] md:gap-[24px] w-full">
-            {caseStudy.timeline && (
-              <div className="flex flex-col gap-[6px]">
-                <p className="text-[11px] font-semibold text-[#605E59] uppercase tracking-[1px]">
-                  Timeline
-                </p>
-                <p className="text-[13px] md:text-[14px] font-medium">{caseStudy.timeline}</p>
-              </div>
-            )}
-
-            <div className="flex flex-col gap-[6px]">
-              <p className="text-[11px] font-semibold text-[#605E59] uppercase tracking-[1px]">
-                Role
-              </p>
-              <p className="text-[13px] md:text-[14px] font-medium">{project.role}</p>
-            </div>
-
-            {caseStudy.deliverables && (
-              <div className="flex flex-col gap-[8px] col-span-2 md:col-span-1">
-                <p className="text-[11px] font-semibold text-[#605E59] uppercase tracking-[1px]">
-                  Deliverables
-                </p>
-                <div className="flex flex-wrap gap-[6px]">
-                  {caseStudy.deliverables.map((deliv, index) => (
-                    <span
-                      key={index}
-                      className="bg-white text-[11px] md:text-[12px] px-[10px] py-[4px] rounded-[4px] font-medium border border-black/5"
-                    >
-                      {deliv}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* Image Gallery */}
-      {caseStudy.gallery && caseStudy.gallery.length > 0 && (
-        <div className="max-w-[1200px] mx-auto px-[24px] py-[40px] border-t border-[#f4f4f4]">
-          <h2 className="text-[20px] font-semibold tracking-[-0.5px] mb-[24px]">Project Gallery</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-[16px]">
-            {caseStudy.gallery.map((image, index) => (
-              <div
-                key={index}
-                className="w-full aspect-[4/3] rounded-[8px] overflow-hidden bg-[#f4f4f4] relative shadow-sm"
-              >
-                <img src={image} alt={`Gallery ${index}`} className="absolute inset-0 size-full object-cover" />
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Bottom Footer Navigation */}
-      <div className="border-t border-[#f4f4f4] bg-[#fdfdfd] py-[64px] px-[24px]">
-        <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-[24px]">
+        {/* Left Sticky Sidebar */}
+        <div className="w-full lg:w-[100px] shrink-0 lg:sticky lg:top-[64px] lg:self-start flex flex-col items-start gap-[40px] h-fit">
           <a
             href="#/"
-            className="flex items-center gap-[8px] font-medium text-[15px] hover:text-[#f25c0c] transition-colors"
+            className="bg-[#f25c0c] hover:bg-[#e0540b] text-white font-regular text-[14px] leading-[1.4] px-[20px] py-[8px] rounded-full inline-flex items-center gap-[6px] transition-colors cursor-pointer"
           >
-            <svg
-              viewBox="0 0 20 20"
-              fill="none"
-              className="size-[16px]"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path d="M15.8334 10H4.16669M4.16669 10L9.16669 15M4.16669 10L9.16669 5" />
-            </svg>
-            Back to Portfolio
+            <span className="text-[14px]">←</span> Back
           </a>
 
-          {nextProjectToLink && (
-            <a
-              href={nextProjectUrl}
-              className="flex items-center gap-[8px] font-medium text-[15px] bg-black text-white px-[20px] py-[10px] rounded-[8px] hover:bg-[#f25c0c] hover:text-white transition-all shadow-sm w-full justify-center md:w-auto md:justify-start"
-            >
-              Next Project: {nextProjectToLink.title}
-              <svg
-                viewBox="0 0 20 20"
-                fill="none"
-                className="size-[16px]"
-                stroke="currentColor"
-                strokeWidth="2"
+          <nav className="hidden lg:flex flex-col gap-[16px] w-full">
+            {projectSections.map((sec) => (
+              <button
+                key={sec.id}
+                onClick={() => scrollToSection(sec.id)}
+                className={`font-regular text-[14px] leading-[1.4] text-left transition-colors cursor-pointer ${activeSection === sec.id ? "text-black font-regular" : "text-[#b4b4b4] hover:text-black"
+                  }`}
               >
-                <path d="M4.16663 10H15.8333M15.8333 10L10.8333 5M15.8333 10L10.8333 15" />
-              </svg>
-            </a>
-          )}
+                {sec.heading}
+              </button>
+            ))}
+          </nav>
+        </div>
+
+        {/* Right Content Stream */}
+        <div className="flex-1 flex flex-col gap-[48px] w-full">
+          {projectSections.map((sec, idx) => (
+            <section key={sec.id} id={sec.id} className="flex flex-col gap-[16px] scroll-mt-[64px]">
+              {idx === 0 ? (
+                <h1 className="font-medium text-[36px] leading-[1.1] tracking-[-1px] text-black">
+                  {project.title}
+                </h1>
+              ) : (
+                <h2 className="font-medium text-[24px] leading-[1.2] tracking-[-0.5px] text-black">
+                  {sec.heading}
+                </h2>
+              )}
+
+              <div className="flex flex-col gap-[16px] mb-4">
+                {sec.paragraphs.map((para, pIdx) => (
+                  <p key={pIdx} className="font-light text-[16px] text-black">
+                    {formatText(para)}
+                  </p>
+                ))}
+              </div>
+
+              {(() => {
+                const secImages = sec.images && sec.images.length > 0
+                  ? sec.images
+                  : (sec.image ? [sec.image] : []);
+                const isTwoColumn = sec.layout === "2-column";
+
+                if (secImages.length === 0) return null;
+
+                return (
+                  <div className="flex flex-col gap-[8px] w-full">
+                    <div className={`grid gap-[8px] w-full ${isTwoColumn ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"}`}>
+                      {secImages.map((imgSrc, imgIdx) => {
+                        const specificCaption = sec.captions?.[imgIdx] || (imgIdx === 0 ? sec.caption : undefined);
+                        return (
+                          <div key={imgIdx} className="flex flex-col gap-[8px] w-full animate-fade-in">
+                            <div className="w-full rounded-[8px] bg-[#f9f9f9] flex items-center justify-center p-[16px] md:p-[24px]">
+                              <img
+                                src={imgSrc}
+                                alt={`${sec.heading} mockup ${imgIdx + 1}`}
+                                className="max-h-[380px] w-auto object-contain rounded-[8px]"
+                              />
+                            </div>
+                            {specificCaption && (
+                              <p className="font-light text-[14px] leading-[1.4] text-[#b4b4b4] mt-[4px] text-center">
+                                {specificCaption}
+                              </p>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })()}
+
+              {/* Render metadata row inside the first section (Overview) */}
+              {idx === 0 && (
+                <>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-[24px] pt-[24px] mt-[16px]">
+                    <div>
+                      <p className="font-normal text-[12px] leading-[1.4] text-[#8e8e8e] mb-[4px]">
+                        Company/Client
+                      </p>
+                      <p className="font-medium text-[14px] leading-[1.4] text-black">
+                        {project.title}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="font-normal text-[12px] leading-[1.4] text-[#8e8e8e] mb-[4px]">
+                        Role
+                      </p>
+                      <p className="font-medium text-[14px] leading-[1.4] text-black">
+                        {project.role || "Product Designer"}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="font-normal text-[12px] leading-[1.4] text-[#8e8e8e] mb-[4px]">
+                        Timeline
+                      </p>
+                      <p className="font-medium text-[14px] leading-[1.4] text-black">
+                        {caseStudy.timeline || "May - June 2025"}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="font-normal text-[12px] leading-[1.4] text-[#8e8e8e] mb-[4px]">
+                        Platform
+                      </p>
+                      <p className="font-medium text-[14px] leading-[1.4] text-black">
+                        {project.category || "Responsive"}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="h-[1px] w-full bg-[#f4f4f4] mt-[20px]" />
+                </>
+              )}
+            </section>
+          ))}
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="w-full border-t border-[#f4f4f4] py-[32px] px-[24px] md:px-[50px] bg-white">
+        <div className="max-w-[1000px] mx-auto flex flex-col md:flex-row justify-between items-center gap-[24px] w-full">
+          <p className="font-normal text-[12px] leading-[1.4] text-black whitespace-nowrap">
+            {portfolioInfo.author} © {portfolioInfo.year}
+          </p>
+          <div className="flex gap-[24px] items-center font-normal text-[14px] leading-[1.4] text-black">
+            {socialLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                {link.label}
+              </a>
+            ))}
+            <a
+              href="#resume"
+              className="hover:underline"
+            >
+              Download Resume
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

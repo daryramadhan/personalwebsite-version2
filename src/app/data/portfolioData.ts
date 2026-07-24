@@ -7,6 +7,20 @@ import imgGreenflags from "@/imports/LandingPage/579e9c294839243bee44945fca3afc9
 import imgResumify1 from "@/imports/LandingPage/9b58d35197ef572fea64e5197c8fb4ef92b8de69.png";
 import imgTehcHouse from "@/imports/LandingPage/307243d1da3b1f8d0bcdf44fc9fc608548569fd5.png";
 import imgMobileApp from "@/imports/LandingPage/0d1cd1e47f2caf439d1cbe66dad3c5b8de657fbf.png";
+import imgUploaded_1784916922864 from "@/imports/LandingPage/uploaded_1784916922864.webp";
+import imgUploaded_1784917102408 from "@/imports/LandingPage/uploaded_1784917102408.webp";
+import imgUploaded_1784917109510 from "@/imports/LandingPage/uploaded_1784917109510.webp";
+
+export interface CaseStudySection {
+  id: string;
+  heading: string;
+  paragraphs: string[];
+  image?: string;
+  caption?: string;
+  images?: string[];
+  layout?: "1-column" | "2-column";
+  captions?: string[];
+}
 
 export interface CaseStudy {
   challenge: string;
@@ -14,6 +28,12 @@ export interface CaseStudy {
   timeline?: string;
   deliverables?: string[];
   gallery?: string[];
+  overviewText?: string;
+  problemHeading?: string;
+  problemText?: string[];
+  postLaunchHeading?: string;
+  postLaunchText?: string[];
+  sections?: CaseStudySection[];
 }
 
 export interface Project {
@@ -70,33 +90,74 @@ export const portfolioInfo: PortfolioInfo = {
   description: "Product designer based in Jakarta, helping startups and enterprise teams turn complex requirements into clear, scalable product experiences.",
   ctas: {
     primary: {
-      label: "Start a Project",
-      url: "#contact",
+      label: "Book a Call",
+      url: "#book"
     },
     secondary: {
       label: "Download Resume",
-      url: "#resume",
-    },
-  },
+      url: "#resume"
+    }
+  }
 };
 
 export const socialLinks: SocialLink[] = [
-  { label: "LinkedIn", url: "https://linkedin.com" },
-  { label: "Behance", url: "https://behance.net" },
-  { label: "Dribbble", url: "https://dribbble.com" },
+  {
+    label: "LinkedIn",
+    url: "https://linkedin.com"
+  },
+  {
+    label: "Behance",
+    url: "https://behance.net"
+  },
+  {
+    label: "Dribbble",
+    url: "https://dribbble.com"
+  },
+  {
+    label: "Fastwork",
+    url: "https://fastwork.com"
+  }
 ];
 
 export const clients: Client[] = [
-  { id: 1, logo: imgImage1, name: "Client 1" },
-  { id: 2, logo: imgImage2, name: "Client 2", opacity: 20 },
-  { id: 3, logo: imgImage2, name: "Client 3", opacity: 20 },
-  { id: 4, logo: imgImage2, name: "Client 4", opacity: 20 },
-  { id: 5, logo: imgImage2, name: "Client 5", opacity: 20 },
-  { id: 6, logo: imgImage2, name: "Client 6", opacity: 20 },
+  {
+    id: 1,
+    logo: imgImage1,
+    name: "Client 1"
+  },
+  {
+    id: 2,
+    logo: imgImage2,
+    name: "Client 2",
+    opacity: 20
+  },
+  {
+    id: 3,
+    logo: imgImage2,
+    name: "Client 3",
+    opacity: 20
+  },
+  {
+    id: 4,
+    logo: imgImage2,
+    name: "Client 4",
+    opacity: 20
+  },
+  {
+    id: 5,
+    logo: imgImage2,
+    name: "Client 5",
+    opacity: 20
+  },
+  {
+    id: 6,
+    logo: imgImage2,
+    name: "Client 6",
+    opacity: 20
+  }
 ];
 
 export const projects: Project[] = [
-  // Row 1 — with Case Study badges
   {
     id: "p1",
     src: imgDescAd,
@@ -110,8 +171,63 @@ export const projects: Project[] = [
       challenge: "Startups and marketing teams struggle to generate high-converting visual ad creatives at scale. DescAd wanted to design a workflow that enables users to input target demographics, define brand colors, and generate optimized banner dimensions in minutes.",
       solution: "Designed a streamlined template generator with live sidebar preview panels. Developed interactive branding color sliders and layout controls that allow non-designers to produce high-performing commercial ad layouts rapidly and consistently.",
       timeline: "2 Months (Q4 2025)",
-      deliverables: ["Product Strategy", "Figma Design System", "Interactive Prototype"],
-      gallery: [imgDescAd, imgTehcHouse]
+      deliverables: [
+        "Product Strategy",
+        "Figma Design System",
+        "Interactive Prototype"
+      ],
+      gallery: [
+        imgDescAd,
+        imgTehcHouse
+      ],
+      sections: [
+        {
+          id: "overview",
+          heading: "Overview",
+          paragraphs: [
+            "Startups and marketing teams struggle to generate high-converting visual ad creatives at scale. DescAd wanted to design a workflow that enables users to input target demographics, define brand colors, and generate optimized banner dimensions in minutes."
+          ],
+          image: imgDescAd
+        },
+        {
+          id: "problem",
+          heading: "The Problem Framework",
+          paragraphs: [
+            "Startups and marketing teams struggle to generate high-converting visual ad creatives at scale. DescAd wanted to design a workflow that enables users to input target demographics, define brand colors, and generate optimized banner dimensions in minutes.",
+            "Designed a streamlined template generator with live sidebar preview panels. Developed interactive branding color sliders and layout controls that allow non-designers to produce high-performing commercial ad layouts rapidly and consistently."
+          ],
+          caption: "Ini preiview",
+          images: [
+            "/uploads/uploaded_1784917336948.webp",
+            "/uploads/uploaded_1784917423892.webp"
+          ],
+          image: "/uploads/uploaded_1784917336948.webp",
+          captions: [
+            "",
+            "Ini tampilan screenshoot kalau dari aplikasi"
+          ]
+        },
+        {
+          id: "post-launch",
+          heading: "Post-launch Impact",
+          paragraphs: [
+            "Following deployment, the platform saw significant user engagement and high phrase generation success rates. The solution delivered robust performance across core templates, resulting in optimized workflow times.",
+            "Following deployment, the platform saw significant user engagement and high phrase generation success rates. The solution delivered robust performance across core templates, resulting in optimized workflow times.",
+            "Following deployment, the platform saw significant user engagement and high phrase generation success rates. The solution delivered robust performance across core templates, resulting in optimized workflow times."
+          ],
+          layout: "2-column",
+          images: [
+            "/uploads/uploaded_1784917514463.webp",
+            "/uploads/uploaded_1784917529329.webp"
+          ],
+          image: "/uploads/uploaded_1784917514463.webp",
+          captions: [
+            "Tampilan Mobile",
+            "Greenflags"
+          ],
+          caption: "Tampilan Mobile"
+        }
+      ]
     }
   },
   {
@@ -127,8 +243,15 @@ export const projects: Project[] = [
       challenge: "Enterprise managers waste significant hours booking corporate travel and auditing manual expense approvals. The client needed a consolidated dashboard checking flight options against company policies, keeping approvals automated, and tracking travel logs.",
       solution: "Created an intuitive policy-compliance workflow with clear color-coded statuses. Designed modular travel logs and visual expense progress indicators that simplify corporate booking and reduce managers' approval times to a single tap.",
       timeline: "4 Months (Q2 2026)",
-      deliverables: ["User Research", "Mobile Dashboard UI", "Web Dashboard Design"],
-      gallery: [imgBusinessTravel, imgMobileApp]
+      deliverables: [
+        "User Research",
+        "Mobile Dashboard UI",
+        "Web Dashboard Design"
+      ],
+      gallery: [
+        imgBusinessTravel,
+        imgMobileApp
+      ]
     }
   },
   {
@@ -136,36 +259,129 @@ export const projects: Project[] = [
     src: imgResumify3,
     badge: true,
     title: "Resumify",
-    category: "AI SaaS",
-    role: "Brand & UI/UX Designer",
-    year: "2026",
+    category: "Responsive",
+    role: "Product Designer",
+    year: "2025",
     url: "#/project/p3",
     caseStudy: {
       challenge: "Writing professional resumes is daunting for job seekers. Resumify needed an workspace leveraging generative AI to recommend phrasing, optimize resumes for ATS parsing, and provide guidance without distracting the user's focus.",
       solution: "Designed a dual-pane editor split: a distraction-free live document area on the left, paired with a contextual AI suggestion panel on the right. Added real-time score indicators that update dynamically as users refine their copy.",
-      timeline: "3 Months (Q1 2026)",
-      deliverables: ["UI/UX Design", "ATS Parser UI", "Interactive Prototypes"],
-      gallery: [imgResumify3, imgResumify1]
+      timeline: "May - June 2025",
+      deliverables: [
+        "UI/UX Design",
+        "ATS Parser UI",
+        "Interactive Prototypes"
+      ],
+      gallery: [
+        imgResumify3,
+        imgResumify1
+      ],
+      overviewText: "\"AI-powered resume builder with 1,000+ resumes created in its first month - fast, intuitive, and built for job seekers aiming high.\" www.resumify.id This project started after observing how many fresh graduates struggle to create a strong resume.",
+      problemHeading: "The Problem Framework",
+      problemText: [
+        "\"AI-powered resume builder with 1,000+ resumes created in its first month - fast, intuitive, and built for job seekers aiming high.\" www.resumify.id This project started after observing how many fresh graduates struggle to create a strong resume. Most resumes are text-heavy, unstructured, and fail ATS checks. Job seekers often don't know how to phrase achievements, quantify impact, or highlight strengths.",
+        "I built Resumify to solve this: a simple tool that transforms messy resume text into a clean, structured, and professional format in seconds."
+      ],
+      postLaunchHeading: "Post-launch Impact",
+      postLaunchText: [
+        "\"AI-powered resume builder with 1,000+ resumes created in its first month - fast, intuitive, and built for job seekers aiming high.\" www.resumify.id This project started after observing how many fresh graduates struggle to create a strong resume. Most resumes are text-heavy, unstructured, and fail ATS checks. Job seekers often don't know how to phrase achievements, quantify impact, or highlight strengths.",
+        "I built Resumify to solve this: a simple tool that transforms messy resume text into a clean, structured, and professional format in seconds."
+      ]
     }
   },
-
-  // Row 2
-  { id: "p4", src: imgResumify3, title: "Resumify Web", category: "AI SaaS", role: "Brand & UI/UX Designer", year: "2026", url: "#/project/p4" },
-  { id: "p5", src: imgGreenflags, fit: "top", title: "Greenflags", category: "Mobile App", role: "Lead Product Designer", year: "2025", url: "#/project/p5" },
-  { id: "p6", src: imgResumify1, title: "Resumify Mobile", category: "iOS App", role: "Product Designer", year: "2025", url: "#/project/p6" },
-
-  // Row 3
-  { id: "p7", src: imgTehcHouse, title: "Tehc House", category: "Web Design", role: "UI Designer", year: "2025", url: "#/project/p7" },
-  { id: "p8", src: imgMobileApp, title: "FinTech App", category: "FinTech", role: "UI/UX Designer", year: "2026", url: "#/project/p8" },
-  { id: "p9", src: imgBusinessTravel, title: "Business Travel Plus", category: "Enterprise", role: "UI/UX Designer", year: "2026", url: "#/project/p9" },
-
-  // Row 4
-  { id: "p10", src: imgResumify3, title: "Resumify Dashboard", category: "AI SaaS", role: "Brand & UI/UX Designer", year: "2026", url: "#/project/p10" },
-  { id: "p11", src: imgResumify1, title: "Resumify iOS", category: "iOS App", role: "Product Designer", year: "2025", url: "#/project/p11" },
-  { id: "p12", src: imgGreenflags, fit: "top", title: "Greenflags Web", category: "Mobile App", role: "Lead Product Designer", year: "2025", url: "#/project/p12" },
-
-  // Row 5 — empty placeholders
-  { id: "e1", isEmpty: true },
-  { id: "e2", isEmpty: true },
-  { id: "e3", isEmpty: true },
+  {
+    id: "p4",
+    src: imgResumify3,
+    title: "Resumify Web",
+    category: "AI SaaS",
+    role: "Brand & UI/UX Designer",
+    year: "2026",
+    url: "#/project/p4"
+  },
+  {
+    id: "p5",
+    src: imgGreenflags,
+    fit: "top",
+    title: "Greenflags",
+    category: "Mobile App",
+    role: "Lead Product Designer",
+    year: "2025",
+    url: "#/project/p5"
+  },
+  {
+    id: "p6",
+    src: imgResumify1,
+    title: "Resumify Mobile",
+    category: "iOS App",
+    role: "Product Designer",
+    year: "2025",
+    url: "#/project/p6"
+  },
+  {
+    id: "p7",
+    src: imgTehcHouse,
+    title: "Tehc House",
+    category: "Web Design",
+    role: "UI Designer",
+    year: "2025",
+    url: "#/project/p7"
+  },
+  {
+    id: "p8",
+    src: imgMobileApp,
+    title: "FinTech App",
+    category: "FinTech",
+    role: "UI/UX Designer",
+    year: "2026",
+    url: "#/project/p8"
+  },
+  {
+    id: "p9",
+    src: imgBusinessTravel,
+    title: "Business Travel Plus",
+    category: "Enterprise",
+    role: "UI/UX Designer",
+    year: "2026",
+    url: "#/project/p9"
+  },
+  {
+    id: "p10",
+    src: imgResumify3,
+    title: "Resumify Dashboard",
+    category: "AI SaaS",
+    role: "Brand & UI/UX Designer",
+    year: "2026",
+    url: "#/project/p10"
+  },
+  {
+    id: "p11",
+    src: imgResumify1,
+    title: "Resumify iOS",
+    category: "iOS App",
+    role: "Product Designer",
+    year: "2025",
+    url: "#/project/p11"
+  },
+  {
+    id: "p12",
+    src: imgGreenflags,
+    fit: "top",
+    title: "Greenflags Web",
+    category: "Mobile App",
+    role: "Lead Product Designer",
+    year: "2025",
+    url: "#/project/p12"
+  },
+  {
+    id: "e1",
+    isEmpty: true
+  },
+  {
+    id: "e2",
+    isEmpty: true
+  },
+  {
+    id: "e3",
+    isEmpty: true
+  }
 ];
