@@ -1,14 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import LeftPanel from "./components/LeftPanel";
 import RightPanel from "./components/RightPanel";
 import ProjectDetails from "./components/ProjectDetails";
-import AdminDashboard from "./components/AdminDashboard";
 import { projects } from "./data/portfolioData";
+
+// Lazy load AdminDashboard to keep production bundle light and tree-shaken
+const AdminDashboard = lazy(() => import("./components/AdminDashboard"));
 
 export default function App() {
   const [browserHash, setBrowserHash] = useState(window.location.hash);
   const [activeHash, setActiveHash] = useState(window.location.hash);
   const [curtainState, setCurtainState] = useState<"idle" | "sliding-in" | "sliding-out">("idle");
+
+  // Check if hash matches project details page route format: #/project/:id
+  const projectPrefix = "#/project/";
+  const isProjectRoute = activeHash.startsWith(projectPrefix);
+  const projectId = isProjectRoute ? activeHash.slice(projectPrefix.length) : null;
+  const activeProject = projectId ? projects.find((p) => p.id === projectId && !p.isEmpty) : null;
+  const isAdminRoute = activeHash === "#/admin" && import.meta.env.DEV;
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -79,17 +88,12 @@ export default function App() {
     }
   }, [activeHash, activeProject, isAdminRoute]);
 
-  // Check if hash matches project details page route format: #/project/:id
-  const projectPrefix = "#/project/";
-  const isProjectRoute = activeHash.startsWith(projectPrefix);
-  const projectId = isProjectRoute ? activeHash.slice(projectPrefix.length) : null;
-  const activeProject = projectId ? projects.find((p) => p.id === projectId && !p.isEmpty) : null;
-  const isAdminRoute = activeHash === "#/admin" && import.meta.env.DEV;
-
   return (
     <div className={`bg-white min-h-screen font-['Manrope',sans-serif] relative ${activeProject || isAdminRoute ? "" : "overflow-x-hidden"}`}>
       {isAdminRoute ? (
-        <AdminDashboard />
+        <Suspense fallback={null}>
+          <AdminDashboard />
+        </Suspense>
       ) : activeProject ? (
         <ProjectDetails project={activeProject} />
       ) : (
