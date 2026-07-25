@@ -42,6 +42,43 @@ export default function App() {
     }
   }, [curtainState]);
 
+  // Dynamic SEO Document Title & Description Meta tags
+  useEffect(() => {
+    let title = "Dary Ramadhan — Product Designer";
+    let desc = "Product designer based in Jakarta, helping startups and enterprise teams turn complex requirements into clear, scalable product experiences.";
+
+    if (isAdminRoute) {
+      title = "Admin CMS Dashboard | Dary Ramadhan";
+      desc = "Secure content management editor.";
+    } else if (activeProject) {
+      title = `${activeProject.title} — Case Study by Dary Ramadhan`;
+      if (activeProject.caseStudy?.challenge) {
+        desc = activeProject.caseStudy.challenge;
+      }
+    }
+
+    // Set document title
+    document.title = title;
+
+    // Set meta description
+    const descMeta = document.querySelector('meta[name="description"]');
+    if (descMeta) {
+      descMeta.setAttribute("content", desc);
+    }
+    
+    // Set Open Graph description
+    const ogDescMeta = document.querySelector('meta[property="og:description"]');
+    if (ogDescMeta) {
+      ogDescMeta.setAttribute("content", desc);
+    }
+
+    // Set Open Graph title
+    const ogTitleMeta = document.querySelector('meta[property="og:title"]');
+    if (ogTitleMeta) {
+      ogTitleMeta.setAttribute("content", title);
+    }
+  }, [activeHash, activeProject, isAdminRoute]);
+
   // Check if hash matches project details page route format: #/project/:id
   const projectPrefix = "#/project/";
   const isProjectRoute = activeHash.startsWith(projectPrefix);
