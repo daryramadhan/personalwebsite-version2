@@ -160,274 +160,553 @@ export const clients: Client[] = [
 
 export const projects: Project[] = [
   {
-    id: "indonesia-raya",
-    title: "Indonesia Raya",
-    category: "Mobile UI Design",
+    id: "resumify-ai-powered-resume-builder",
+    title: "Resumify | AI-Powered Resume Builder",
+    category: "AI SaaS",
     role: "Brand & Product Designer",
     year: "2026",
-    url: "#/project/indonesia-raya",
-    src: "/uploads/uploaded_1784961358405.webp",
+    url: "#/project/resumify-ai-powered-resume-builder",
+    src: "/uploads/uploaded_1784983523166.webp",
+    badge: true,
+    fit: "center",
+    isEmpty: false,
+    caseStudy: {
+      challenge: "",
+      solution: "",
+      timeline: "2 Months (Q4 2025)",
+      sections: [
+        {
+          id: "overview",
+          heading: "Overview",
+          paragraphs: [
+            "An AI-powered web tool that helps job seekers rewrite their resume into a more structured, professional, and recruiter-friendly format using modern UX patterns."
+          ],
+          images: [
+            "/uploads/uploaded_1784983863127.webp"
+          ],
+          image: "/uploads/uploaded_1784983863127.webp",
+          captions: [
+            ""
+          ]
+        },
+        {
+          id: "section-1784983569648",
+          heading: "Project Background",
+          paragraphs: [
+            "This project started after observing how many fresh graduates struggle to create a strong resume. Most resumes are text-heavy, unstructured, and fail ATS checks. Job seekers often don't know how to phrase achievements, quantify impact, or highlight strengths.\n\nI built Resumify to solve this: a simple tool that transforms messy resume text into a clean, structured, and professional format in seconds."
+          ],
+          navTitle: "Background"
+        },
+        {
+          id: "section-1784983602130",
+          heading: "Problem Statement",
+          paragraphs: [
+            "Job seekers often submit resumes that lack structure, clarity, and measurable impact. Many don't understand how to highlight achievements or tailor content. This leads to low interview conversion rates and frustration."
+          ],
+          navTitle: "Problem"
+        },
+        {
+          id: "section-1784983879048",
+          heading: "Target Users",
+          paragraphs: [
+            "- Fresh graduates\n- Career switchers\n- Junior professionals"
+          ],
+          navTitle: "Target Users"
+        },
+        {
+          id: "section-1784983617446",
+          heading: " Brand Design",
+          paragraphs: [
+            "A strategic brand design system that translates Resumify’s positioning into a distinctive and recognizable visual language."
+          ],
+          navTitle: "Brand Design",
+          images: [
+            "/uploads/uploaded_1784983651242.webp"
+          ],
+          image: "/uploads/uploaded_1784983651242.webp",
+          captions: [
+            ""
+          ]
+        },
+        {
+          id: "section-1784983655509",
+          heading: " Side Bar Interaction",
+          paragraphs: [
+            "Users need to be encouraged their discovery skills, we learn that showing sneakpeek increase the willingness of the users for trying the new features."
+          ],
+          navTitle: "Feature #1"
+        },
+        {
+          id: "section-1784983687420",
+          heading: "Resume Editor Main Page",
+          paragraphs: [
+            "Users need to be encouraged their discovery skills, we learn that showing sneakpeek increase the willingness of the users for trying the new features."
+          ],
+          navTitle: "Feature #2",
+          images: [
+            "/uploads/uploaded_1784983715301.webp"
+          ],
+          image: "/uploads/uploaded_1784983715301.webp",
+          captions: [
+            ""
+          ]
+        },
+        {
+          id: "section-1784983688014",
+          heading: "Tailor Your Resume",
+          paragraphs: [
+            "Before getting into the features, the least familiar features will have an quick onboarding to explain how and why this features exist."
+          ],
+          navTitle: "Feature #3",
+          images: [
+            "/uploads/uploaded_1784983767093.webp"
+          ],
+          image: "/uploads/uploaded_1784983767093.webp",
+          captions: [
+            ""
+          ]
+        },
+        {
+          id: "section-1784983783387",
+          heading: "What I Learned",
+          paragraphs: [
+            "In this section, I’ll walk you through how I organize Figma files to ensure developers can easily follow the flow and translate the design into code."
+          ],
+          navTitle: "Learning",
+          images: [
+            "/uploads/uploaded_1784983828383.webp",
+            "/uploads/uploaded_1784983842453.webp"
+          ],
+          image: "/uploads/uploaded_1784983828383.webp",
+          captions: [
+            "Figma Files Organization",
+            "Component Foundations"
+          ],
+          caption: "Figma Files Organization"
+        }
+      ]
+    }
+  },
+  {
+    id: "pos-system-mobile",
+    title: "POS System Mobile",
+    category: "Mobile POS ",
+    role: "Product Designer",
+    year: "2026",
+    url: "#/project/pos-system-mobile",
+    src: "/uploads/uploaded_1784977551659.webp",
     badge: true,
     fit: "top",
     isEmpty: false,
     caseStudy: {
       challenge: "",
       solution: "",
-      timeline: "2 Months (Q2 2026)",
+      timeline: "1 week",
       sections: [
         {
           id: "overview",
           heading: "Overview",
           paragraphs: [
-            "This is example of project PT Madhani Talatah Nusantara manages hundreds of employee business trips per month through an internal HR platform called ESS (Employee Self-Service). The Business Travel Request (BTR) feature allows employees to submit and manage travel needs — from flight bookings to hotel accommodations.",
-            "However, the existing submission experience had accumulated significant friction over time. Employees were abandoning submissions midway and HR admins were flooded with back-and-forth corrections. Something needed to change."
+            "In this project, I was challenged to optimize the cashier’s experience while serving buyers. I designed this POS flow to make the cashier process more effective and efficient."
           ],
           navTitle: "Overview",
           images: [
-            "/uploads/uploaded_1784961492821.webp"
+            "/uploads/uploaded_1784978093187.webp"
           ],
-          image: "/uploads/uploaded_1784961492821.webp",
+          image: "/uploads/uploaded_1784978093187.webp",
           captions: [
-            "Dashboard Screenshot App"
-          ],
-          caption: "Dashboard Screenshot App"
+            ""
+          ]
         },
         {
-          id: "section-1784961429728",
-          heading: "Problem Approach",
+          id: "section-1784977613766",
+          heading: "Project Background",
           paragraphs: [
-            "However, the existing submission experience had accumulated significant friction over time. Employees were abandoning submissions midway and HR admins were flooded with back-and-forth corrections. Something needed to change.",
-            "However, the existing submission experience had accumulated significant friction over time. Employees were abandoning submissions midway and HR admins were flooded with back-and-forth corrections. Something needed to change."
+            "In this design, the POS mobile flow was optimized to minimize effort and speed up transactions for cashiers. The focus was on reducing unnecessary taps and providing instant clarity of what’s happening in the cart."
           ],
-          navTitle: "Our Approach",
+          navTitle: "Background",
           images: [
-            "/uploads/uploaded_1784961450602.webp"
+            "/uploads/uploaded_1784978311063.webp"
           ],
-          image: "/uploads/uploaded_1784961450602.webp",
+          image: "/uploads/uploaded_1784978311063.webp",
           captions: [
-            "Logo Details"
+            ""
+          ]
+        },
+        {
+          id: "section-1784977705906",
+          heading: "Quick Item Selection",
+          paragraphs: [
+            "Instead of requiring cashiers to tap “+” repeatedly, they can simply tap directly on the product image. Each tap instantly adds the item to the cart, which feels more natural and saves precious seconds during peak hours."
           ],
-          caption: "Logo Details"
+          navTitle: "Quick Item",
+          images: [
+            "/uploads/uploaded_1784978227780.webp"
+          ],
+          image: "/uploads/uploaded_1784978227780.webp",
+          captions: [
+            "Quick Item Selection"
+          ],
+          caption: "Quick Item Selection"
+        },
+        {
+          id: "section-1784977730064",
+          heading: "Recent Item Drawer",
+          paragraphs: [
+            "A small, collapsible drawer just above the checkout button shows the most recently added items. This allows cashiers to instantly confirm what they’ve just scanned/selected without breaking their flow or switching screens."
+          ],
+          navTitle: "Recent Item",
+          images: [
+            "/uploads/uploaded_1784978209275.webp"
+          ],
+          image: "/uploads/uploaded_1784978209275.webp",
+          captions: [
+            "Recent Item Drawer"
+          ],
+          caption: "Recent Item Drawer"
+        },
+        {
+          id: "section-1784977776628",
+          heading: "Error Handling with Empathy",
+          paragraphs: [
+            "Even in cases like unstable internet, the design provides a clear retry flow. This reduces stress for cashiers who are often under pressure to keep the line moving."
+          ],
+          navTitle: "Error Handling",
+          images: [
+            "/uploads/uploaded_1784978254760.webp"
+          ],
+          image: "/uploads/uploaded_1784978254760.webp",
+          captions: [
+            "Error Handling with Empathy"
+          ],
+          caption: "Error Handling with Empathy"
+        },
+        {
+          id: "section-1784977814762",
+          heading: "Streamlined Checkout",
+          paragraphs: [
+            "Payment screens are simplified with minimal steps, giving cashiers confidence that transactions are moving smoothly and consistently."
+          ],
+          navTitle: "Checkout",
+          images: [
+            "/uploads/uploaded_1784978280746.webp"
+          ],
+          image: "/uploads/uploaded_1784978280746.webp",
+          captions: [
+            "Streamlined Checkout"
+          ],
+          caption: "Streamlined Checkout"
+        },
+        {
+          id: "section-1784977833909",
+          heading: "Highlighted POS Mobile Screen Pages",
+          paragraphs: [
+            ""
+          ],
+          navTitle: "Highlight",
+          images: [
+            "/uploads/uploaded_1784978297417.webp"
+          ],
+          image: "/uploads/uploaded_1784978297417.webp",
+          captions: [
+            "Highlighted POS Mobile Screen Pages"
+          ],
+          caption: "Highlighted POS Mobile Screen Pages"
         }
       ]
     }
   },
   {
-    id: "p7",
-    src: imgTehcHouse,
-    title: "Tehc House",
-    category: "Web Design",
-    role: "UI Designer",
-    year: "2025",
-    url: "#/project/p7",
-    badge: true
-  },
-  {
-    id: "p2",
-    src: imgBusinessTravel,
-    badge: true,
-    title: "Business Travel",
-    category: "Enterprise",
+    id: "surveillance-system",
+    title: "Surveillance System",
+    category: "Exploration Design",
     role: "UI/UX Designer",
     year: "2026",
-    url: "#/project/p2",
+    url: "#/project/surveillance-system",
+    src: "/uploads/uploaded_1784982660340.webp",
+    badge: false,
+    fit: "top",
+    isEmpty: false,
     caseStudy: {
-      challenge: "Enterprise managers waste significant hours booking corporate travel and auditing manual expense approvals. The client needed a consolidated dashboard checking flight options against company policies, keeping approvals automated, and tracking travel logs.",
-      solution: "Created an intuitive policy-compliance workflow with clear color-coded statuses. Designed modular travel logs and visual expense progress indicators that simplify corporate booking and reduce managers' approval times to a single tap.",
-      timeline: "4 Months (Q2 2026)",
-      deliverables: [
-        "User Research",
-        "Mobile Dashboard UI",
-        "Web Dashboard Design"
-      ],
-      gallery: [
-        imgBusinessTravel,
-        imgMobileApp
-      ]
-    }
-  },
-  {
-    id: "p1",
-    src: imgDescAd,
-    badge: true,
-    title: "DescAd",
-    category: "AI SaaS",
-    role: "Product Designer",
-    year: "2026",
-    url: "#/project/p1",
-    caseStudy: {
-      challenge: "Startups and marketing teams struggle to generate high-converting visual ad creatives at scale. DescAd wanted to design a workflow that enables users to input target demographics, define brand colors, and generate optimized banner dimensions in minutes.",
-      solution: "Designed a streamlined template generator with live sidebar preview panels. Developed interactive branding color sliders and layout controls that allow non-designers to produce high-performing commercial ad layouts rapidly and consistently.",
-      timeline: "2 Months (Q4 2025)",
-      deliverables: [
-        "Product Strategy",
-        "Figma Design System",
-        "Interactive Prototype"
-      ],
-      gallery: [
-        imgDescAd,
-        imgTehcHouse
-      ],
+      challenge: "",
+      solution: "",
+      timeline: "1 week",
       sections: [
         {
           id: "overview",
           heading: "Overview",
           paragraphs: [
-            "Startups and marketing teams struggle to generate high-converting visual ad creatives at scale. DescAd wanted to design a workflow that enables users to input target demographics, define brand colors, and generate optimized banner dimensions in minutes."
+            "An overview of the design challenges and results for the Surveillance System project."
           ],
-          image: imgDescAd,
-          navTitle: "Overview"
+          images: [
+            "/uploads/uploaded_1784982825613.webp"
+          ],
+          image: "/uploads/uploaded_1784982825613.webp",
+          captions: [
+            ""
+          ]
         },
         {
-          id: "problem",
-          heading: "The Problem Framework",
+          id: "section-1784982728048",
+          heading: "Project Responsibility",
           paragraphs: [
-            "Startups and marketing teams struggle to generate high-converting visual ad creatives at scale. DescAd wanted to design a workflow that enables users to input target demographics, define brand colors, and generate optimized banner dimensions in minutes.",
-            "Designed a streamlined template generator with live sidebar preview panels. Developed interactive branding color sliders and layout controls that allow non-designers to produce high-performing commercial ad layouts rapidly and consistently."
+            "Main Responsibility – In this opportunity, I was given task to help founder to define the brand and designing the end-to-end platform and make sure seamless deliverables for the developers"
           ],
-          caption: "Ini preiview",
+          navTitle: "Responsibility"
+        },
+        {
+          id: "section-1784982781770",
+          heading: "Project Highlight",
+          paragraphs: [
+            ""
+          ],
+          navTitle: "Gallery",
           images: [
-            "/uploads/uploaded_1784917336948.webp",
-            "/uploads/uploaded_1784917423892.webp"
+            "/uploads/uploaded_1784982798918.webp",
+            "/uploads/uploaded_1784982799090.webp",
+            "/uploads/uploaded_1784982799208.webp"
           ],
-          image: "/uploads/uploaded_1784917336948.webp",
+          image: "/uploads/uploaded_1784982798918.webp",
           captions: [
             "",
-            "Ini tampilan screenshoot kalau dari aplikasi"
-          ],
-          navTitle: "The Problem"
-        },
-        {
-          id: "post-launch",
-          heading: "Post-launch Impact",
-          paragraphs: [
-            "Following deployment, the platform saw significant user engagement and high phrase generation success rates. The solution delivered robust performance across core templates, resulting in optimized workflow times.",
-            "Following deployment, the platform saw significant user engagement and high phrase generation success rates. The solution delivered robust performance across core templates, resulting in optimized workflow times.",
-            "Following deployment, the platform saw significant user engagement and high phrase generation success rates. The solution delivered robust performance across core templates, resulting in optimized workflow times."
-          ],
-          layout: "2-column",
-          images: [
-            "/uploads/uploaded_1784917514463.webp",
-            "/uploads/uploaded_1784917529329.webp"
-          ],
-          image: "/uploads/uploaded_1784917514463.webp",
-          captions: [
-            "Tampilan Mobile",
-            "Greenflags"
-          ],
-          caption: "Tampilan Mobile",
-          navTitle: "Impact"
+            "",
+            ""
+          ]
         }
       ]
     }
   },
   {
-    id: "p4",
-    src: imgResumify3,
-    title: "Resumify Web",
-    category: "AI SaaS",
-    role: "Brand & UI/UX Designer",
-    year: "2026",
-    url: "#/project/p4"
-  },
-  {
-    id: "p5",
-    src: imgGreenflags,
-    fit: "top",
+    id: "greenflags",
     title: "Greenflags",
-    category: "Mobile App",
-    role: "Lead Product Designer",
-    year: "2025",
-    url: "#/project/p5"
-  },
-  {
-    id: "p3",
-    src: imgResumify3,
-    badge: true,
-    title: "Resumify",
-    category: "Responsive",
-    role: "Product Designer",
-    year: "2025",
-    url: "#/project/p3",
+    category: "Landing Page",
+    role: "UI/UX Designer",
+    year: "2026",
+    url: "#/project/greenflags",
+    src: "/uploads/uploaded_1784975965661.webp",
+    badge: false,
+    fit: "top",
+    isEmpty: false,
     caseStudy: {
-      challenge: "Writing professional resumes is daunting for job seekers. Resumify needed an workspace leveraging generative AI to recommend phrasing, optimize resumes for ATS parsing, and provide guidance without distracting the user's focus.",
-      solution: "Designed a dual-pane editor split: a distraction-free live document area on the left, paired with a contextual AI suggestion panel on the right. Added real-time score indicators that update dynamically as users refine their copy.",
-      timeline: "May - June 2025",
-      deliverables: [
-        "UI/UX Design",
-        "ATS Parser UI",
-        "Interactive Prototypes"
-      ],
-      gallery: [
-        imgResumify3,
-        imgResumify1
-      ],
-      overviewText: "\"AI-powered resume builder with 1,000+ resumes created in its first month - fast, intuitive, and built for job seekers aiming high.\" www.resumify.id This project started after observing how many fresh graduates struggle to create a strong resume.",
-      problemHeading: "The Problem Framework",
-      problemText: [
-        "\"AI-powered resume builder with 1,000+ resumes created in its first month - fast, intuitive, and built for job seekers aiming high.\" www.resumify.id This project started after observing how many fresh graduates struggle to create a strong resume. Most resumes are text-heavy, unstructured, and fail ATS checks. Job seekers often don't know how to phrase achievements, quantify impact, or highlight strengths.",
-        "I built Resumify to solve this: a simple tool that transforms messy resume text into a clean, structured, and professional format in seconds."
-      ],
-      postLaunchHeading: "Post-launch Impact",
-      postLaunchText: [
-        "\"AI-powered resume builder with 1,000+ resumes created in its first month - fast, intuitive, and built for job seekers aiming high.\" www.resumify.id This project started after observing how many fresh graduates struggle to create a strong resume. Most resumes are text-heavy, unstructured, and fail ATS checks. Job seekers often don't know how to phrase achievements, quantify impact, or highlight strengths.",
-        "I built Resumify to solve this: a simple tool that transforms messy resume text into a clean, structured, and professional format in seconds."
+      challenge: "",
+      solution: "",
+      timeline: "3 weeks",
+      sections: [
+        {
+          id: "overview",
+          heading: "Overview",
+          paragraphs: [
+            "Greenflags — Your journey to finding love with us is simple and meaningful, in just three steps: apply for access, receive curated matches, and build real connections."
+          ],
+          navTitle: "Overview",
+          images: [
+            "/uploads/uploaded_1784976111723.webp"
+          ],
+          image: "/uploads/uploaded_1784976111723.webp",
+          captions: [
+            "Showcase Greenflags Landing Page"
+          ],
+          caption: "Showcase Greenflags Landing Page"
+        },
+        {
+          id: "section-1784976045166",
+          heading: "Project Background",
+          paragraphs: [
+            "The brand needs to be optimized for stronger positioning. We helped Greenflags define their brand position: Greenflags — Your journey to finding love with us is simple and meaningful, in just three steps: apply for access, receive curated matches, and build real connections."
+          ],
+          navTitle: "Background",
+          images: [
+            "/uploads/uploaded_1784976159218.webp",
+            "/uploads/uploaded_1784976248267.webp",
+            "/uploads/uploaded_1784976248320.webp",
+            "/uploads/uploaded_1784983210728.webp",
+            "/uploads/uploaded_1784983245244.webp"
+          ],
+          image: "/uploads/uploaded_1784976159218.webp",
+          captions: [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          id: "section-1784983278143",
+          heading: "Gallery",
+          paragraphs: [
+            ""
+          ],
+          images: [
+            "/uploads/uploaded_1784983367353.webp",
+            "/uploads/uploaded_1784983299931.webp"
+          ],
+          image: "/uploads/uploaded_1784983367353.webp",
+          captions: [
+            "",
+            "Landing page for Greenflags"
+          ],
+          caption: ""
+        }
       ]
     }
   },
   {
-    id: "p6",
-    src: imgResumify1,
-    title: "Resumify Mobile",
-    category: "iOS App",
+    id: "techhouse-software-house-ai-solutions-for-your-small-biz-until-enterprises",
+    title: "TechHouse | Software house & AI solutions for your small biz until enterprises",
+    category: "Software",
+    role: "Brand Designer",
+    year: "2026",
+    url: "#/project/techhouse-software-house-ai-solutions-for-your-small-biz-until-enterprises",
+    src: "/uploads/uploaded_1784985969372.webp",
+    badge: false,
+    fit: "center",
+    isEmpty: false,
+    caseStudy: {
+      challenge: "",
+      solution: "",
+      timeline: "1 month",
+      sections: [
+        {
+          id: "overview",
+          heading: "Overview",
+          paragraphs: [
+            "We’ve been quietly building something with purpose.  Not just software, but solutions designed with care,  crafted by people who believe in excellence through detail. This is TEHC House. A collective built to redefine how technology feels."
+          ],
+          images: [
+            "/uploads/uploaded_1784986102013.webp"
+          ],
+          image: "/uploads/uploaded_1784986102013.webp",
+          captions: [
+            ""
+          ]
+        },
+        {
+          id: "section-1784985868160",
+          heading: "Why This Project Exists",
+          paragraphs: [
+            "This project exists to create a brand identity that reflects the client’s vision of empowering enterprises through AI-driven innovation."
+          ],
+          navTitle: "Background",
+          images: [
+            "/uploads/uploaded_1784985916413.webp",
+            "/uploads/uploaded_1784986042624.webp",
+            "/uploads/uploaded_1784986042673.webp"
+          ],
+          image: "/uploads/uploaded_1784985916413.webp",
+          captions: [
+            "",
+            "",
+            ""
+          ]
+        }
+      ]
+    }
+  },
+  {
+    id: "e-recruitment-minimalits-end-to-end-hiring-pipeline-saas-web-app",
+    title: "E-Recruitment | Minimalits End-to-End Hiring Pipeline SaaS Web App",
+    category: "Web App",
     role: "Product Designer",
-    year: "2025",
-    url: "#/project/p6"
-  },
-  {
-    id: "p8",
-    src: imgMobileApp,
-    title: "FinTech App",
-    category: "FinTech",
-    role: "UI/UX Designer",
     year: "2026",
-    url: "#/project/p8"
-  },
-  {
-    id: "p9",
-    src: imgBusinessTravel,
-    title: "Business Travel Plus",
-    category: "Enterprise",
-    role: "UI/UX Designer",
-    year: "2026",
-    url: "#/project/p9"
-  },
-  {
-    id: "p10",
-    src: imgResumify3,
-    title: "Resumify Dashboard",
-    category: "AI SaaS",
-    role: "Brand & UI/UX Designer",
-    year: "2026",
-    url: "#/project/p10"
-  },
-  {
-    id: "p11",
-    src: imgResumify1,
-    title: "Resumify iOS",
-    category: "iOS App",
-    role: "Product Designer",
-    year: "2025",
-    url: "#/project/p11"
-  },
-  {
-    id: "p12",
-    src: imgGreenflags,
+    url: "#/project/e-recruitment-minimalits-end-to-end-hiring-pipeline-saas-web-app",
+    src: "/uploads/uploaded_1784984227911.webp",
+    badge: false,
     fit: "top",
-    title: "Greenflags Web",
-    category: "Mobile App",
-    role: "Lead Product Designer",
-    year: "2025",
-    url: "#/project/p12"
+    isEmpty: false,
+    caseStudy: {
+      challenge: "",
+      solution: "",
+      timeline: "2 Months (Q4 2025)",
+      sections: [
+        {
+          id: "overview",
+          heading: "Overview",
+          paragraphs: [
+            "In this project, I need to cover the end-to-end flow from Recruiter, Candidate and Head Office to make sure the hiring pipeline works really seamless."
+          ],
+          images: [
+            "/uploads/uploaded_1784984348460.webp"
+          ],
+          image: "/uploads/uploaded_1784984348460.webp",
+          captions: [
+            ""
+          ]
+        },
+        {
+          id: "section-1784984259580",
+          heading: "Recruiter Workspace — From Post to Offer",
+          paragraphs: [
+            "Own the pipeline: post roles, screen at speed, schedule interviews, and issue offers with clear audit trails."
+          ],
+          navTitle: "Recruiter Flow",
+          images: [
+            "/uploads/uploaded_1784984338258.webp",
+            "/uploads/uploaded_1784984338420.webp",
+            "/uploads/uploaded_1784984338544.webp"
+          ],
+          image: "/uploads/uploaded_1784984338258.webp",
+          captions: [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          id: "section-1784984412750",
+          heading: "Candidate Portal — Apply, Track, Accept",
+          paragraphs: [
+            "A clear step-by-step path from application to offer with real-time status, messaging, and document upload."
+          ],
+          navTitle: "Candidate Flow",
+          images: [
+            "/uploads/uploaded_1784984483396.webp",
+            "/uploads/uploaded_1784984483505.webp",
+            "/uploads/uploaded_1784984503994.webp",
+            "/uploads/uploaded_1784984483188.webp"
+          ],
+          image: "/uploads/uploaded_1784984483396.webp",
+          captions: [
+            "",
+            "",
+            "",
+            ""
+          ]
+        }
+      ]
+    }
+  },
+  {
+    id: "illustration",
+    title: "Illustration",
+    category: "AI SaaS",
+    role: "Product Designer",
+    year: "2026",
+    url: "#/project/illustration",
+    src: "/uploads/uploaded_1784986270100.webp",
+    badge: false,
+    fit: "center",
+    isEmpty: false,
+    caseStudy: {
+      challenge: "",
+      solution: "",
+      timeline: "2 Months (Q4 2025)",
+      sections: [
+        {
+          id: "overview",
+          heading: "Overview",
+          paragraphs: [
+            "This project started after observing how many fresh graduates struggle to create a strong resume. Most resumes are text-heavy, unstructured, and fail ATS checks. Job seekers often don't know how to phrase achievements, quantify impact, or highlight strengths."
+          ],
+          images: [
+            "/uploads/uploaded_1784986322779.webp"
+          ],
+          image: "/uploads/uploaded_1784986322779.webp",
+          captions: [
+            ""
+          ]
+        }
+      ]
+    }
   }
 ];
