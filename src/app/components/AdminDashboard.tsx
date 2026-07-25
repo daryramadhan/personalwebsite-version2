@@ -86,6 +86,24 @@ export default function AdminDashboard() {
   const [errorMessage, setErrorMessage] = useState("");
   const [adminTab, setAdminTab] = useState<"case-studies" | "home-layout">("case-studies");
 
+  // Password Authentication State
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    return sessionStorage.getItem("admin_auth") === "true";
+  });
+  const [passwordInput, setPasswordInput] = useState("");
+  const [authError, setAuthError] = useState(false);
+
+  const handleAuthSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (passwordInput === "bismillah!") {
+      sessionStorage.setItem("admin_auth", "true");
+      setIsAuthenticated(true);
+      setAuthError(false);
+    } else {
+      setAuthError(true);
+    }
+  };
+
   // Create Project Modal state
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [newProjTitle, setNewProjTitle] = useState("");
@@ -323,6 +341,61 @@ export default function AdminDashboard() {
     );
     handleUpdateSections(sections);
   };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-[#fafafa] flex items-center justify-center p-[24px] font-['Manrope',sans-serif]">
+        <div className="bg-white border border-[#e8e8e8] rounded-[16px] max-w-[360px] w-full p-[32px] shadow-2xl flex flex-col gap-[24px]">
+          <div className="flex flex-col gap-[8px] text-center">
+            <h1 className="text-[20px] font-bold tracking-tight text-black">Admin Access Lock</h1>
+            <p className="text-[12px] text-gray-400">Please enter the security password to unlock the CMS editor.</p>
+          </div>
+
+          <form onSubmit={handleAuthSubmit} className="flex flex-col gap-[16px]">
+            <div className="flex flex-col gap-[6px]">
+              <label className="text-[10px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                Password
+              </label>
+              <input
+                type="password"
+                required
+                placeholder="Enter password..."
+                value={passwordInput}
+                onChange={(e) => {
+                  setPasswordInput(e.target.value);
+                  if (authError) setAuthError(false);
+                }}
+                className={`border rounded-[8px] px-[12px] py-[10px] text-[13px] outline-none bg-white transition-all ${
+                  authError 
+                    ? "border-red-500 focus:border-red-500" 
+                    : "border-[#e0e0e0] focus:border-black"
+                }`}
+              />
+              {authError && (
+                <p className="text-[11px] text-red-500 font-medium mt-[2px]">
+                  Incorrect password. Please try again.
+                </p>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              className="bg-[#f25c0c] hover:bg-[#e0540b] text-white font-semibold text-[13px] py-[10px] rounded-[8px] transition-colors cursor-pointer text-center mt-[4px]"
+            >
+              Unlock Dashboard
+            </button>
+          </form>
+
+          <a
+            href="#/"
+            className="text-[12px] text-gray-400 hover:text-black transition-colors text-center font-medium mt-[8px]"
+          >
+            ← Back to Portfolio
+          </a>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-[#fafafa] min-h-screen text-black flex flex-col font-['Manrope',sans-serif]">

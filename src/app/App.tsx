@@ -47,7 +47,7 @@ export default function App() {
   const isProjectRoute = activeHash.startsWith(projectPrefix);
   const projectId = isProjectRoute ? activeHash.slice(projectPrefix.length) : null;
   const activeProject = projectId ? projects.find((p) => p.id === projectId && !p.isEmpty) : null;
-  const isAdminRoute = activeHash === "#/admin";
+  const isAdminRoute = activeHash === "#/admin" && import.meta.env.DEV;
 
   return (
     <div className={`bg-white min-h-screen font-['Manrope',sans-serif] relative ${activeProject || isAdminRoute ? "" : "overflow-x-hidden"}`}>
