@@ -84,6 +84,109 @@ export default function AdminDashboard() {
   );
   const [saveStatus, setSaveStatus] = useState<"idle" | "saving" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [adminTab, setAdminTab] = useState<"case-studies" | "home-layout">("case-studies");
+
+  // Create Project Modal state
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [newProjTitle, setNewProjTitle] = useState("");
+  const [newProjRole, setNewProjRole] = useState("Product Designer");
+  const [newProjCategory, setNewProjCategory] = useState("AI SaaS");
+  const [newProjTimeline, setNewProjTimeline] = useState("2 Months (Q4 2025)");
+  const [newProjFit, setNewProjFit] = useState<"center" | "top">("center");
+  const [newProjCoverFile, setNewProjCoverFile] = useState<File | null>(null);
+  const [newProjCoverPreview, setNewProjCoverPreview] = useState("");
+  const [isCreating, setIsCreating] = useState(false);
+
+  const slugify = (text: string): string => {
+    return text
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "");
+  };
+
+  const handleCreateProject = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newProjTitle.trim()) {
+      alert("Project Title is required");
+      return;
+    }
+
+    setIsCreating(true);
+    try {
+      let coverPath = "";
+      if (newProjCoverFile) {
+        coverPath = await optimizeAndUploadImage(newProjCoverFile);
+      }
+
+      const generatedId = slugify(newProjTitle);
+      let finalId = generatedId;
+      let counter = 1;
+      while (projectsList.some(p => p.id === finalId)) {
+        finalId = `${generatedId}-${counter}`;
+        counter++;
+      }
+
+      const newProject: Project = {
+        id: finalId,
+        title: newProjTitle,
+        category: newProjCategory,
+        role: newProjRole,
+        year: new Date().getFullYear().toString(),
+        url: `#/project/${finalId}`,
+        src: coverPath || undefined,
+        badge: false,
+        fit: newProjFit,
+        isEmpty: false,
+        caseStudy: {
+          challenge: "",
+          solution: "",
+          timeline: newProjTimeline,
+          sections: [
+            {
+              id: "overview",
+              heading: "Overview",
+              paragraphs: [
+                `An overview of the design challenges and results for the ${newProjTitle} project.`
+              ]
+            }
+          ]
+        }
+      };
+
+      setProjectsList(prev => [...prev, newProject]);
+      setSelectedProjectId(finalId);
+      setIsCreateModalOpen(false);
+
+      setNewProjTitle("");
+      setNewProjRole("Product Designer");
+      setNewProjCategory("AI SaaS");
+      setNewProjTimeline("2 Months (Q4 2025)");
+      setNewProjFit("center");
+      setNewProjCoverFile(null);
+      setNewProjCoverPreview("");
+    } catch (err: any) {
+      alert(`Failed to create project: ${err.message}`);
+    } finally {
+      setIsCreating(false);
+    }
+  };
+
+  const handleDeleteProject = () => {
+    if (!activeProject) return;
+    const confirmDelete = window.confirm(
+      `Are you sure you want to delete the project "${activeProject.title}"? This cannot be undone.`
+    );
+    if (!confirmDelete) return;
+
+    const remaining = projectsList.filter(p => p.id !== selectedProjectId);
+    setProjectsList(remaining);
+
+    if (remaining.length > 0) {
+      setSelectedProjectId(remaining[0].id);
+    } else {
+      setSelectedProjectId("");
+    }
+  };
 
   const activeProject = projectsList.find(p => p.id === selectedProjectId);
 
@@ -236,6 +339,29 @@ export default function AdminDashboard() {
           <h1 className="text-[16px] font-semibold tracking-[-0.2px]">Admin CMS Dashboard</h1>
         </div>
 
+        <div className="flex bg-[#f5f5f5] p-[3px] rounded-[8px] border border-[#e8e8e8]">
+          <button
+            onClick={() => setAdminTab("case-studies")}
+            className={`text-[12px] font-semibold px-[16px] py-[6px] rounded-[6px] transition-all cursor-pointer ${
+              adminTab === "case-studies"
+                ? "bg-white text-black shadow-sm"
+                : "text-gray-500 hover:text-black"
+            }`}
+          >
+            Case Study Editor
+          </button>
+          <button
+            onClick={() => setAdminTab("home-layout")}
+            className={`text-[12px] font-semibold px-[16px] py-[6px] rounded-[6px] transition-all cursor-pointer ${
+              adminTab === "home-layout"
+                ? "bg-white text-black shadow-sm"
+                : "text-gray-500 hover:text-black"
+            }`}
+          >
+            Home Layout Manager
+          </button>
+        </div>
+
         <div className="flex items-center gap-[12px]">
           {saveStatus === "success" && (
             <span className="text-[12px] text-green-600 font-medium animate-fade-in">
@@ -260,8 +386,10 @@ export default function AdminDashboard() {
       {/* Main Workspace Layout */}
       <div className="flex flex-1 overflow-hidden h-[calc(100vh-69px)]">
         
-        {/* Left Side: CMS Form controls */}
-        <aside className="w-[45%] bg-white border-r border-[#f0f0f0] overflow-y-auto p-[32px] flex flex-col gap-[36px]">
+        {adminTab === "case-studies" ? (
+          <>
+            {/* Left Side: CMS Form controls */}
+            <aside className="w-[45%] bg-white border-r border-[#f0f0f0] overflow-y-auto p-[32px] flex flex-col gap-[36px]">
           
           {/* Select Project to Edit */}
           <div className="flex flex-col gap-[8px]">
@@ -273,6 +401,7 @@ export default function AdminDashboard() {
               onChange={(e) => setSelectedProjectId(e.target.value)}
               className="w-full bg-white border border-[#e0e0e0] rounded-[8px] px-[12px] py-[10px] text-[14px] outline-none focus:border-black transition-colors"
             >
+              <option value="" disabled>-- Select a Project --</option>
               {projectsList
                 .filter(p => !p.isEmpty)
                 .map(p => (
@@ -281,6 +410,61 @@ export default function AdminDashboard() {
                   </option>
                 ))}
             </select>
+
+            <div className="flex gap-[8px] mt-[4px]">
+              <button
+                onClick={() => setIsCreateModalOpen(true)}
+                className="flex-1 bg-[#f25c0c] hover:bg-[#e0540b] text-white font-semibold text-[12px] py-[8px] px-[12px] rounded-[6px] transition-colors cursor-pointer text-center"
+              >
+                + Create Project
+              </button>
+              {activeProject && (
+                <button
+                  onClick={handleDeleteProject}
+                  className="bg-white hover:bg-red-50 text-red-600 border border-red-200 font-semibold text-[12px] py-[8px] px-[12px] rounded-[6px] transition-colors cursor-pointer"
+                >
+                  Delete Project
+                </button>
+              )}
+            </div>
+
+            {activeProject && (
+              <div className="flex items-center gap-[8px] mt-[8px] border-t border-[#f0f0f0] pt-[8px]">
+                <span className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px] mr-auto">Home Page Layout:</span>
+                <button
+                  onClick={() => {
+                    const idx = projectsList.findIndex(p => p.id === selectedProjectId);
+                    if (idx <= 0) return;
+                    const next = [...projectsList];
+                    const temp = next[idx];
+                    next[idx] = next[idx - 1];
+                    next[idx - 1] = temp;
+                    setProjectsList(next);
+                  }}
+                  disabled={projectsList.findIndex(p => p.id === selectedProjectId) === 0}
+                  className="bg-white border border-[#e0e0e0] hover:bg-gray-50 text-black text-[12px] font-medium py-[4px] px-[10px] rounded-[4px] disabled:opacity-30 cursor-pointer"
+                  title="Move Up on Home Page"
+                >
+                  ▲ Move Up
+                </button>
+                <button
+                  onClick={() => {
+                    const idx = projectsList.findIndex(p => p.id === selectedProjectId);
+                    if (idx < 0 || idx === projectsList.length - 1) return;
+                    const next = [...projectsList];
+                    const temp = next[idx];
+                    next[idx] = next[idx + 1];
+                    next[idx + 1] = temp;
+                    setProjectsList(next);
+                  }}
+                  disabled={projectsList.findIndex(p => p.id === selectedProjectId) === projectsList.length - 1}
+                  className="bg-white border border-[#e0e0e0] hover:bg-gray-50 text-black text-[12px] font-medium py-[4px] px-[10px] rounded-[4px] disabled:opacity-30 cursor-pointer"
+                  title="Move Down on Home Page"
+                >
+                  ▼ Move Down
+                </button>
+              </div>
+            )}
           </div>
 
           <hr className="border-[#f0f0f0]" />
@@ -363,6 +547,37 @@ export default function AdminDashboard() {
                     }}
                     className="text-[13px] file:bg-[#f25c0c] file:text-white file:border-none file:px-[12px] file:py-[6px] file:rounded-[6px] file:cursor-pointer file:hover:bg-[#e0540b] file:transition-colors cursor-pointer"
                   />
+                </div>
+              </div>
+
+              {/* Cover Aspect Fit & Show Case Study Tag */}
+              <div className="grid grid-cols-2 gap-[16px]">
+                <div className="flex flex-col gap-[6px]">
+                  <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                    Cover Fit Aspect
+                  </label>
+                  <select
+                    value={activeProject.fit || "center"}
+                    onChange={(e) => updateProjectField("fit", e.target.value)}
+                    className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black bg-white cursor-pointer transition-colors"
+                  >
+                    <option value="center">Center (Fill)</option>
+                    <option value="top">Top (Aligned)</option>
+                  </select>
+                </div>
+                <div className="flex flex-col gap-[6px]">
+                  <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                    Case Study Tag Badge
+                  </label>
+                  <label className="flex items-center gap-[8px] text-[13px] font-medium cursor-pointer h-[38px]">
+                    <input
+                      type="checkbox"
+                      checked={!!activeProject.badge}
+                      onChange={(e) => updateProjectField("badge", e.target.checked)}
+                      className="size-[16px] rounded-[4px] border-[#e0e0e0] checked:bg-[#f25c0c] checked:border-transparent accent-[#f25c0c] cursor-pointer"
+                    />
+                    Show "Case Study" Badge
+                  </label>
                 </div>
               </div>
 
@@ -710,8 +925,301 @@ export default function AdminDashboard() {
             </div>
           )}
         </main>
+      </>
+    ) : (
+      /* Visual Home Page Mock */
+      <div className="flex-1 flex overflow-hidden">
+        {/* Left branding panel preview */}
+        <aside className="w-[320px] bg-white border-r border-[#f0f0f0] p-[24px] flex flex-col justify-between shrink-0 select-none pointer-events-none opacity-60">
+          <div className="text-[12px] text-gray-400 font-semibold uppercase">Branding Panel Preview</div>
+          <div className="flex flex-col gap-[16px] my-auto">
+            <div className="size-[12px] rounded-full bg-green-500 mb-[4px]" />
+            <h2 className="text-[24px] font-bold tracking-tight text-black">{info.headline || "Dary Ramadhan"}</h2>
+            <p className="text-[12px] text-gray-500 leading-relaxed">{info.description}</p>
+          </div>
+          <div className="text-[11px] text-gray-400">© {info.year} {info.author}</div>
+        </aside>
 
+        {/* Right project cards grid preview with inline layout arrangement tools */}
+        <main className="flex-1 overflow-y-auto p-[32px] bg-[#fafafa]">
+          <div className="max-w-[1000px] mx-auto flex flex-col gap-[24px]">
+            <div className="flex justify-between items-center border-b border-[#e0e0e0] pb-[12px]">
+              <div>
+                <h2 className="text-[20px] font-bold text-black tracking-[-0.3px]">Home Page Layout Grid</h2>
+                <p className="text-[12px] text-gray-400 mt-[2px]">Rearrange project card positioning by shifting them left or right.</p>
+              </div>
+              <button
+                onClick={() => setIsCreateModalOpen(true)}
+                className="bg-[#f25c0c] hover:bg-[#e0540b] text-white font-semibold text-[13px] px-[16px] py-[8px] rounded-[6px] transition-colors cursor-pointer"
+              >
+                + Create Project
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]">
+              {projectsList
+                .filter(p => !p.isEmpty)
+                .map((project, index) => {
+                  return (
+                    <div
+                      key={project.id}
+                      className="relative group border border-[#e8e8e8] rounded-[10px] overflow-hidden bg-white shadow-sm flex flex-col aspect-[4/3] transition-all hover:shadow-md"
+                    >
+                      {/* Project card preview */}
+                      {project.src ? (
+                        <img
+                          src={project.src}
+                          alt={project.title}
+                          className="size-full object-cover bg-gray-50 flex-1"
+                          style={{ objectPosition: project.fit === "top" ? "top center" : "center" }}
+                        />
+                      ) : (
+                        <div className="flex-1 bg-[#fafafa] flex items-center justify-center text-gray-300 text-[12px]">
+                          No Cover Image
+                        </div>
+                      )}
+
+                      {/* Card Footer Detail */}
+                      <div className="bg-[#fafafa] border-t border-[#f0f0f0] p-[12px] flex justify-between items-center z-20">
+                        <div className="min-w-0 flex-1 mr-[8px]">
+                          <p className="text-[13px] font-bold text-black line-clamp-1">{project.title}</p>
+                          <p className="text-[11px] text-gray-400 mt-[2px]">{project.category || "AI SaaS"}</p>
+                        </div>
+                        {project.badge && (
+                          <span className="bg-[#f25c0c] text-white text-[9px] font-bold px-[6px] py-[2px] rounded whitespace-nowrap shrink-0">
+                            Case Study
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Hover Arrangement Controls Bar */}
+                      <div className="absolute inset-0 bg-black/75 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col justify-center items-center gap-[12px] p-[16px] z-10 text-white">
+                        <span className="text-[13px] font-bold tracking-tight text-center px-[8px] line-clamp-1">{project.title}</span>
+                        
+                        <div className="flex gap-[6px]">
+                          <button
+                            onClick={() => {
+                              if (index === 0) return;
+                              const next = [...projectsList];
+                              const temp = next[index];
+                              next[index] = next[index - 1];
+                              next[index - 1] = temp;
+                              setProjectsList(next);
+                            }}
+                            disabled={index === 0}
+                            className="bg-white hover:bg-gray-100 text-black font-semibold text-[10px] py-[4px] px-[8px] rounded-[4px] transition-colors disabled:opacity-40 cursor-pointer"
+                            title="Move Left / Up"
+                          >
+                            ◀ Move Left
+                          </button>
+                          <button
+                            onClick={() => {
+                              const activeProjects = projectsList.filter(p => !p.isEmpty);
+                              if (index === activeProjects.length - 1) return;
+                              const next = [...projectsList];
+                              const temp = next[index];
+                              next[index] = next[index + 1];
+                              next[index + 1] = temp;
+                              setProjectsList(next);
+                            }}
+                            disabled={index === projectsList.filter(p => !p.isEmpty).length - 1}
+                            className="bg-white hover:bg-gray-100 text-black font-semibold text-[10px] py-[4px] px-[8px] rounded-[4px] transition-colors disabled:opacity-40 cursor-pointer"
+                            title="Move Right / Down"
+                          >
+                            Move Right ▶
+                          </button>
+                        </div>
+
+                        <div className="flex gap-[6px]">
+                          <button
+                            onClick={() => {
+                              setSelectedProjectId(project.id);
+                              setAdminTab("case-studies");
+                            }}
+                            className="bg-white/20 hover:bg-white/30 text-white border border-white/30 font-semibold text-[10px] py-[4px] px-[8px] rounded-[4px] transition-colors cursor-pointer"
+                          >
+                            Edit Case Study
+                          </button>
+                          <button
+                            onClick={() => {
+                              const confirmDelete = window.confirm(`Delete project "${project.title}"?`);
+                              if (!confirmDelete) return;
+                              setProjectsList(prev => prev.filter(p => p.id !== project.id));
+                            }}
+                            className="bg-red-600 hover:bg-red-700 text-white font-semibold text-[10px] py-[4px] px-[8px] rounded-[4px] transition-colors cursor-pointer"
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+        </main>
       </div>
+    )}
+  </div>
+
+      {/* Create Project Modal */}
+      {isCreateModalOpen && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-[16px]">
+          <div className="bg-white border border-[#e0e0e0] rounded-[16px] max-w-[480px] w-full shadow-2xl overflow-hidden flex flex-col font-['Manrope',sans-serif]">
+            {/* Modal Header */}
+            <div className="bg-white border-b border-[#f0f0f0] px-[24px] py-[16px] flex justify-between items-center">
+              <h3 className="text-[16px] font-bold tracking-[-0.2px] text-black">Create New Project</h3>
+              <button
+                type="button"
+                onClick={() => setIsCreateModalOpen(false)}
+                className="text-gray-400 hover:text-black text-[18px] cursor-pointer"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Modal Form */}
+            <form onSubmit={handleCreateProject} className="p-[24px] flex flex-col gap-[16px] overflow-y-auto max-h-[80vh]">
+              <div className="flex flex-col gap-[6px]">
+                <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                  Project Title *
+                </label>
+                <input
+                  type="text"
+                  required
+                  placeholder="e.g. Resumify, DescAd"
+                  value={newProjTitle}
+                  onChange={(e) => setNewProjTitle(e.target.value)}
+                  className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black bg-white transition-colors"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-[12px]">
+                <div className="flex flex-col gap-[6px]">
+                  <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                    Role
+                  </label>
+                  <input
+                    type="text"
+                    value={newProjRole}
+                    onChange={(e) => setNewProjRole(e.target.value)}
+                    className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black bg-white transition-colors"
+                  />
+                </div>
+                <div className="flex flex-col gap-[6px]">
+                  <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                    Platform / Category
+                  </label>
+                  <input
+                    type="text"
+                    value={newProjCategory}
+                    onChange={(e) => setNewProjCategory(e.target.value)}
+                    className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black bg-white transition-colors"
+                  />
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-[6px]">
+                <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                  Case Study Timeline
+                </label>
+                <input
+                  type="text"
+                  value={newProjTimeline}
+                  onChange={(e) => setNewProjTimeline(e.target.value)}
+                  className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black bg-white transition-colors"
+                />
+              </div>
+
+              {/* Cover Image Upload */}
+              <div className="flex flex-col gap-[6px]">
+                <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                  Card Cover Image (WebP Auto-Optimized)
+                </label>
+                {newProjCoverPreview ? (
+                  <div className="relative group h-[120px] w-full border border-[#e0e0e0] rounded-[8px] overflow-hidden bg-[#fafafa]">
+                    <img src={newProjCoverPreview} alt="Cover Preview" className="size-full object-cover" />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setNewProjCoverFile(null);
+                        setNewProjCoverPreview("");
+                      }}
+                      className="absolute inset-0 bg-black/50 text-white text-[11px] font-semibold flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
+                    >
+                      Remove Cover
+                    </button>
+                  </div>
+                ) : (
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (!file) return;
+                      setNewProjCoverFile(file);
+                      
+                      const reader = new FileReader();
+                      reader.onload = (event) => {
+                        setNewProjCoverPreview(event.target?.result as string);
+                      };
+                      reader.readAsDataURL(file);
+                    }}
+                    className="text-[12px] w-full cursor-pointer file:mr-[8px] file:py-[4px] file:px-[8px] file:rounded-[4px] file:border-0 file:text-[11px] file:font-semibold file:bg-[#f25c0c] file:text-white file:hover:bg-[#e0540b]"
+                  />
+                )}
+              </div>
+
+              {/* Fit Option */}
+              <div className="flex flex-col gap-[6px]">
+                <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                  Cover Image Aspect Fit
+                </label>
+                <div className="flex gap-[16px]">
+                  <label className="flex items-center gap-[6px] text-[13px] font-medium cursor-pointer">
+                    <input
+                      type="radio"
+                      name="fit"
+                      checked={newProjFit === "center"}
+                      onChange={() => setNewProjFit("center")}
+                      className="cursor-pointer accent-[#f25c0c]"
+                    />
+                    Center (Fill)
+                  </label>
+                  <label className="flex items-center gap-[6px] text-[13px] font-medium cursor-pointer">
+                    <input
+                      type="radio"
+                      name="fit"
+                      checked={newProjFit === "top"}
+                      onChange={() => setNewProjFit("top")}
+                      className="cursor-pointer accent-[#f25c0c]"
+                    />
+                    Top (Aligned)
+                  </label>
+                </div>
+              </div>
+
+              {/* Actions */}
+              <div className="flex gap-[12px] border-t border-[#f0f0f0] pt-[16px] mt-[8px]">
+                <button
+                  type="button"
+                  onClick={() => setIsCreateModalOpen(false)}
+                  className="flex-1 bg-white border border-[#e0e0e0] hover:bg-gray-50 text-black font-semibold text-[13px] py-[10px] rounded-[8px] transition-colors cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={isCreating}
+                  className="flex-1 bg-[#f25c0c] hover:bg-[#e0540b] text-white font-semibold text-[13px] py-[10px] rounded-[8px] transition-colors cursor-pointer disabled:opacity-50 text-center"
+                >
+                  {isCreating ? "Creating..." : "Create Project"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

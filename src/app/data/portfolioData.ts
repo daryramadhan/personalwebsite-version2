@@ -160,6 +160,93 @@ export const clients: Client[] = [
 
 export const projects: Project[] = [
   {
+    id: "indonesia-raya",
+    title: "Indonesia Raya",
+    category: "Mobile UI Design",
+    role: "Brand & Product Designer",
+    year: "2026",
+    url: "#/project/indonesia-raya",
+    src: "/uploads/uploaded_1784961358405.webp",
+    badge: true,
+    fit: "top",
+    isEmpty: false,
+    caseStudy: {
+      challenge: "",
+      solution: "",
+      timeline: "2 Months (Q2 2026)",
+      sections: [
+        {
+          id: "overview",
+          heading: "Overview",
+          paragraphs: [
+            "This is example of project PT Madhani Talatah Nusantara manages hundreds of employee business trips per month through an internal HR platform called ESS (Employee Self-Service). The Business Travel Request (BTR) feature allows employees to submit and manage travel needs — from flight bookings to hotel accommodations.",
+            "However, the existing submission experience had accumulated significant friction over time. Employees were abandoning submissions midway and HR admins were flooded with back-and-forth corrections. Something needed to change."
+          ],
+          navTitle: "Overview",
+          images: [
+            "/uploads/uploaded_1784961492821.webp"
+          ],
+          image: "/uploads/uploaded_1784961492821.webp",
+          captions: [
+            "Dashboard Screenshot App"
+          ],
+          caption: "Dashboard Screenshot App"
+        },
+        {
+          id: "section-1784961429728",
+          heading: "Problem Approach",
+          paragraphs: [
+            "However, the existing submission experience had accumulated significant friction over time. Employees were abandoning submissions midway and HR admins were flooded with back-and-forth corrections. Something needed to change.",
+            "However, the existing submission experience had accumulated significant friction over time. Employees were abandoning submissions midway and HR admins were flooded with back-and-forth corrections. Something needed to change."
+          ],
+          navTitle: "Our Approach",
+          images: [
+            "/uploads/uploaded_1784961450602.webp"
+          ],
+          image: "/uploads/uploaded_1784961450602.webp",
+          captions: [
+            "Logo Details"
+          ],
+          caption: "Logo Details"
+        }
+      ]
+    }
+  },
+  {
+    id: "p7",
+    src: imgTehcHouse,
+    title: "Tehc House",
+    category: "Web Design",
+    role: "UI Designer",
+    year: "2025",
+    url: "#/project/p7",
+    badge: true
+  },
+  {
+    id: "p2",
+    src: imgBusinessTravel,
+    badge: true,
+    title: "Business Travel",
+    category: "Enterprise",
+    role: "UI/UX Designer",
+    year: "2026",
+    url: "#/project/p2",
+    caseStudy: {
+      challenge: "Enterprise managers waste significant hours booking corporate travel and auditing manual expense approvals. The client needed a consolidated dashboard checking flight options against company policies, keeping approvals automated, and tracking travel logs.",
+      solution: "Created an intuitive policy-compliance workflow with clear color-coded statuses. Designed modular travel logs and visual expense progress indicators that simplify corporate booking and reduce managers' approval times to a single tap.",
+      timeline: "4 Months (Q2 2026)",
+      deliverables: [
+        "User Research",
+        "Mobile Dashboard UI",
+        "Web Dashboard Design"
+      ],
+      gallery: [
+        imgBusinessTravel,
+        imgMobileApp
+      ]
+    }
+  },
+  {
     id: "p1",
     src: imgDescAd,
     badge: true,
@@ -235,28 +322,23 @@ export const projects: Project[] = [
     }
   },
   {
-    id: "p2",
-    src: imgBusinessTravel,
-    badge: true,
-    title: "Business Travel",
-    category: "Enterprise",
-    role: "UI/UX Designer",
+    id: "p4",
+    src: imgResumify3,
+    title: "Resumify Web",
+    category: "AI SaaS",
+    role: "Brand & UI/UX Designer",
     year: "2026",
-    url: "#/project/p2",
-    caseStudy: {
-      challenge: "Enterprise managers waste significant hours booking corporate travel and auditing manual expense approvals. The client needed a consolidated dashboard checking flight options against company policies, keeping approvals automated, and tracking travel logs.",
-      solution: "Created an intuitive policy-compliance workflow with clear color-coded statuses. Designed modular travel logs and visual expense progress indicators that simplify corporate booking and reduce managers' approval times to a single tap.",
-      timeline: "4 Months (Q2 2026)",
-      deliverables: [
-        "User Research",
-        "Mobile Dashboard UI",
-        "Web Dashboard Design"
-      ],
-      gallery: [
-        imgBusinessTravel,
-        imgMobileApp
-      ]
-    }
+    url: "#/project/p4"
+  },
+  {
+    id: "p5",
+    src: imgGreenflags,
+    fit: "top",
+    title: "Greenflags",
+    category: "Mobile App",
+    role: "Lead Product Designer",
+    year: "2025",
+    url: "#/project/p5"
   },
   {
     id: "p3",
@@ -294,25 +376,6 @@ export const projects: Project[] = [
     }
   },
   {
-    id: "p4",
-    src: imgResumify3,
-    title: "Resumify Web",
-    category: "AI SaaS",
-    role: "Brand & UI/UX Designer",
-    year: "2026",
-    url: "#/project/p4"
-  },
-  {
-    id: "p5",
-    src: imgGreenflags,
-    fit: "top",
-    title: "Greenflags",
-    category: "Mobile App",
-    role: "Lead Product Designer",
-    year: "2025",
-    url: "#/project/p5"
-  },
-  {
     id: "p6",
     src: imgResumify1,
     title: "Resumify Mobile",
@@ -320,15 +383,6 @@ export const projects: Project[] = [
     role: "Product Designer",
     year: "2025",
     url: "#/project/p6"
-  },
-  {
-    id: "p7",
-    src: imgTehcHouse,
-    title: "Tehc House",
-    category: "Web Design",
-    role: "UI Designer",
-    year: "2025",
-    url: "#/project/p7"
   },
   {
     id: "p8",
@@ -375,17 +429,5 @@ export const projects: Project[] = [
     role: "Lead Product Designer",
     year: "2025",
     url: "#/project/p12"
-  },
-  {
-    id: "e1",
-    isEmpty: true
-  },
-  {
-    id: "e2",
-    isEmpty: true
-  },
-  {
-    id: "e3",
-    isEmpty: true
   }
 ];
