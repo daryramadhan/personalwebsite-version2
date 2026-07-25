@@ -10,6 +10,32 @@ import {
 import ProjectDetails from "./ProjectDetails";
 
 const optimizeAndUploadImage = (file: File): Promise<string> => {
+  const isGif = file.type === "image/gif" || file.name.toLowerCase().endsWith(".gif");
+  
+  if (isGif) {
+    return new Promise(async (resolve, reject) => {
+      const extension = file.name.split(".").pop() || "gif";
+      const filename = `uploaded_${Date.now()}.${extension}`;
+      try {
+        const response = await fetch(`/api/upload-image?filename=${filename}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": file.type || "image/gif"
+          },
+          body: file
+        });
+        const result = await response.json();
+        if (result.success && result.filePath) {
+          resolve(result.filePath);
+        } else {
+          reject(new Error(result.error || "Upload failed"));
+        }
+      } catch (err) {
+        reject(err);
+      }
+    });
+  }
+
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = (event) => {
