@@ -60,10 +60,10 @@ export default function AboutPage() {
   return (
     <div className="bg-white min-h-screen font-['Manrope',sans-serif] text-black flex flex-col justify-between">
       {/* Main Content Column */}
-      <div className="max-w-[1000px] mx-auto px-[24px] md:px-[50px] py-[64px] flex flex-col lg:flex-row gap-[48px] lg:gap-[64px] items-start w-full flex-1">
+      <div className="max-w-[1000px] mx-auto px-[24px] md:px-[50px] py-[32px] md:py-[64px] flex flex-col lg:flex-row gap-[40px] lg:gap-[64px] items-start w-full flex-1">
 
         {/* Left Sticky Column */}
-        <div className="w-full lg:w-[220px] shrink-0 lg:sticky lg:top-[64px] lg:self-start flex flex-col gap-[16px] h-fit">
+        <div className="w-full lg:w-[220px] shrink-0 lg:sticky lg:top-[64px] lg:self-start flex flex-col gap-[24px] lg:gap-[16px] h-fit">
           <a
             href="#/"
             className="bg-[#f25c0c] hover:bg-[#e0540b] text-white font-regular text-[14px] leading-[1.4] px-[20px] py-[8px] rounded-full inline-flex items-center gap-[6px] transition-colors cursor-pointer w-fit"
@@ -72,8 +72,8 @@ export default function AboutPage() {
           </a>
 
           {/* Profile Circle Frame */}
-          <div className="flex flex-col gap-[16px] mt-[32px]">
-            <div className="size-[100px] rounded-full overflow-hidden">
+          <div className="flex flex-row lg:flex-col items-center lg:items-start gap-[16px] lg:gap-[24px] mt-[16px] lg:mt-[32px]">
+            <div className="size-[80px] lg:size-[100px] rounded-full overflow-hidden bg-gray-50 shrink-0">
               <img
                 src="/avatar.png"
                 alt="Dary Ramadhan"
@@ -82,40 +82,43 @@ export default function AboutPage() {
             </div>
             <div>
               <h1 className="text-[20px] font-medium text-black tracking-[-0.5px]">{portfolioInfo.author}</h1>
-              <p className="text-[14px] text-[#8e8e8e] mt-[2px]">High-Agency Product Designer</p>
-              <p className="text-[14px] text-[#8e8e8e] mt-[2px]">Based in Jakarta, ID</p>
+              <p className="text-[13px] text-[#8e8e8e] mt-[2px]">High-Agency Product Designer</p>
+              <p className="text-[13px] text-[#8e8e8e] mt-[2px]">Based in Jakarta, ID</p>
             </div>
           </div>
 
-          <hr className="border-[#f4f4f4]" />
+          <hr className="hidden lg:block border-[#f4f4f4]" />
 
-          {/* Education */}
-          <div className="flex flex-col gap-[8px]">
-            <p className="text-[10px] font-semibold text-[#8e8e8e] uppercase tracking-[1px]">Education</p>
-            <div className="text-[14px] text-black">
-              <p className="font-medium">BINUS University</p>
-              <p className="text-gray-500 text-[12px] mt-[1px]">B.S. in Computer Science</p>
-              <p className="text-gray-400 text-[12px] mt-[1px]">2020 — 2024</p>
+          {/* Combined Info Panel */}
+          <div className="flex flex-col sm:flex-row lg:flex-col gap-[24px] lg:gap-[16px] w-full">
+            {/* Education */}
+            <div className="flex-1 flex flex-col gap-[8px]">
+              <p className="text-[10px] font-semibold text-[#8e8e8e] uppercase tracking-[1px]">Education</p>
+              <div className="text-[14px] text-black">
+                <p className="font-medium">BINUS University</p>
+                <p className="text-gray-500 text-[12px] mt-[1px]">B.S. in Computer Science</p>
+                <p className="text-gray-400 text-[11px] mt-[1px]">2020 — 2024</p>
+              </div>
             </div>
-          </div>
 
-          <hr className="border-[#f4f4f4]" />
+            <hr className="hidden sm:block lg:hidden border-r border-[#f4f4f4] h-[60px] self-center" />
 
-          {/* Contact Details */}
-          <div className="flex flex-col gap-[12px]">
-            <p className="text-[10px] font-semibold text-[#8e8e8e] uppercase tracking-[1px]">Contact & Links</p>
-            <div className="flex flex-col gap-[8px] text-[13px] text-black">
-              {socialLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:underline hover:text-[#f25c0c] transition-colors"
-                >
-                  {link.label}
-                </a>
-              ))}
+            {/* Contact Details */}
+            <div className="flex-1 flex flex-col gap-[8px] lg:gap-[12px]">
+              <p className="text-[10px] font-semibold text-[#8e8e8e] uppercase tracking-[1px]">Contact & Links</p>
+              <div className="flex flex-wrap sm:flex-col gap-[12px] sm:gap-[8px] text-[13px] text-black">
+                {socialLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline hover:text-[#f25c0c] transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
