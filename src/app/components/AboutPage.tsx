@@ -145,11 +145,13 @@ export default function AboutPage() {
               Work Experience
             </h2>
             <div className="relative flex flex-col gap-[32px] pl-[24px]">
-              {/* Vertical timeline line */}
-              <div className="absolute left-[5px] top-[8px] bottom-[8px] w-[2px] bg-[#f0f0f0]" />
-
               {experiences.map((exp, index) => (
                 <div key={index} className="relative flex flex-col gap-[8px]">
+                  {/* Vertical timeline segment to next dot */}
+                  {index !== experiences.length - 1 && (
+                    <div className="absolute left-[-19px] top-[12px] bottom-[-36px] w-[2px] bg-[#f0f0f0]" />
+                  )}
+
                   {/* Milestone dot indicator */}
                   <span
                     className={`absolute -left-[24px] top-[6px] size-[12px] rounded-full bg-white z-10 transition-all duration-300 ${
