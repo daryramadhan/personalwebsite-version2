@@ -234,7 +234,14 @@ export const projects: Project[] = [
           paragraphs: [
             "Users need to be encouraged their discovery skills, we learn that showing sneakpeek increase the willingness of the users for trying the new features."
           ],
-          navTitle: "Feature #1"
+          navTitle: "Feature #1",
+          images: [
+            "/uploads/uploaded_1784986596876.gif"
+          ],
+          image: "/uploads/uploaded_1784986596876.gif",
+          captions: [
+            ""
+          ]
         },
         {
           id: "section-1784983687420",

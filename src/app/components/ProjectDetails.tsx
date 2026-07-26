@@ -174,7 +174,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                               <img
                                 src={imgSrc}
                                 alt={`${sec.heading} mockup ${imgIdx + 1}`}
-                                className="max-h-[380px] w-auto object-contain rounded-[8px]"
+                                className="w-full h-auto rounded-[6px] block"
                               />
                             </div>
                             {specificCaption && (
