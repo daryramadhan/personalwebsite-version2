@@ -67,12 +67,13 @@ const optimizeAndUploadImage = (file: File): Promise<string> => {
               return;
             }
 
-            const filename = `uploaded_${Date.now()}.webp`;
+            const ext = blob.type === "image/png" ? "png" : "webp";
+            const filename = `uploaded_${Date.now()}.${ext}`;
             try {
               const response = await fetch(`/api/upload-image?filename=${filename}`, {
                 method: "POST",
                 headers: {
-                  "Content-Type": "image/webp"
+                  "Content-Type": blob.type
                 },
                 body: blob
               });

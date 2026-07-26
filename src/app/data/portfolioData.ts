@@ -801,11 +801,11 @@ export const projects: Project[] = [
           ],
           navTitle: "Process",
           images: [
-            "/uploads/uploaded_1785056625041.webp"
+            "/uploads/uploaded_1785058181153.webp"
           ],
-          image: "/uploads/uploaded_1785056625041.webp",
+          image: "/uploads/uploaded_1785058181153.webp",
           captions: [
-            "The old landing page design"
+            ""
           ],
           postImageParagraphs: [
             "From there, I moved into research: studying Sentra's existing design system to understand its behaviors, component patterns, and visual language. This was critical — any new design needed to feel like it belonged in Sentra, not bolted on from the outside."
@@ -813,7 +813,9 @@ export const projects: Project[] = [
           mediaBlocks: [
             {
               id: "block-1785057638024",
-              images: [],
+              images: [
+                "/uploads/uploaded_1785058139022.webp"
+              ],
               layout: "1-column",
               captions: [
                 ""
@@ -822,8 +824,7 @@ export const projects: Project[] = [
                 "With that foundation, I explored multiple design options for each problem area, then iterated based on continued feedback until the solutions felt right for real users, not just on paper."
               ]
             }
-          ],
-          caption: "The old landing page design"
+          ]
         },
         {
           id: "section-1785057699811",
