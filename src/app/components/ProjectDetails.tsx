@@ -190,6 +190,16 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                 );
               })()}
 
+              {sec.postImageParagraphs && sec.postImageParagraphs.length > 0 && (
+                <div className="flex flex-col gap-[16px] mt-6 mb-4">
+                  {sec.postImageParagraphs.map((para, pIdx) => (
+                    <p key={pIdx} className="font-light text-[16px] text-black text-justify animate-fade-in">
+                      {formatText(para)}
+                    </p>
+                  ))}
+                </div>
+              )}
+
               {/* Render metadata row inside the first section (Overview) */}
               {idx === 0 && (
                 <>

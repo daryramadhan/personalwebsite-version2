@@ -31,13 +31,7 @@ export default function LeftPanel() {
             {portfolioInfo.headline}
           </p>
           <p className="font-['Manrope',sans-serif] font-light text-[14px] leading-[1.4] text-black w-full">
-            {portfolioInfo.description}{" "}
-            <a
-              href="#about"
-              className="text-[#F25C0C] hover:underline"
-            >
-              Learn About Me
-            </a>
+            {portfolioInfo.description}
           </p>
         </div>
 
@@ -67,9 +61,9 @@ export default function LeftPanel() {
                 : "opacity-0 translate-y-[8px] scale-95"
                 }`}
             >
-              <div className="size-[120px] rounded-full border-2 border-white shadow-lg overflow-hidden bg-gray-100">
+              <div className="size-[120px] rounded-full border-1 border-white shadow-lg overflow-hidden bg-gray-100">
                 <img
-                  src="/avatar.webp"
+                  src="/avatar.png"
                   alt="Dary Ramadhan"
                   className="size-full object-cover"
                 />

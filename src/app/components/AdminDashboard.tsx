@@ -1013,6 +1013,44 @@ export default function AdminDashboard() {
                         );
                       })()}
 
+                      {/* Post-Image Paragraphs Editor */}
+                      <div className="flex flex-col gap-[8px] border-t border-[#f0f0f0] pt-[16px] mt-[8px]">
+                        <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                          Paragraphs Below Mockup Images
+                        </label>
+                        {(sec.postImageParagraphs || []).map((pText, pIdx) => (
+                          <div key={pIdx} className="flex gap-[8px] items-start">
+                            <textarea
+                              value={pText}
+                              rows={3}
+                              onChange={(e) => {
+                                const nextParas = [...(sec.postImageParagraphs || [])];
+                                nextParas[pIdx] = e.target.value;
+                                updateSectionField(sec.id, "postImageParagraphs", nextParas);
+                              }}
+                              className="flex-1 border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black bg-white transition-colors resize-none"
+                            />
+                            <button
+                              onClick={() => {
+                                const nextParas = (sec.postImageParagraphs || []).filter((_, idx) => idx !== pIdx);
+                                updateSectionField(sec.id, "postImageParagraphs", nextParas.length > 0 ? nextParas : undefined);
+                              }}
+                              className="text-red-500 hover:text-red-700 text-[12px] font-semibold mt-[8px] cursor-pointer"
+                            >
+                              Remove
+                            </button>
+                          </div>
+                        ))}
+                        <button
+                          onClick={() => {
+                            updateSectionField(sec.id, "postImageParagraphs", [...(sec.postImageParagraphs || []), ""]);
+                          }}
+                          className="text-[11px] font-semibold text-[#f25c0c] hover:underline cursor-pointer self-start"
+                        >
+                          + Add Paragraph Below Images
+                        </button>
+                      </div>
+
                     </div>
                   ))}
                 </div>

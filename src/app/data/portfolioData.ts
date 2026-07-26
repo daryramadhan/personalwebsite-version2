@@ -21,6 +21,7 @@ export interface CaseStudySection {
   layout?: "1-column" | "2-column";
   captions?: string[];
   navTitle?: string;
+  postImageParagraphs?: string[];
 }
 
 export interface CaseStudy {
@@ -720,6 +721,75 @@ export const projects: Project[] = [
             ""
           ],
           navTitle: "Resumify"
+        }
+      ]
+    }
+  },
+  {
+    id: "sentra-landing-page",
+    title: "Sentra Landing Page",
+    client: "Pupuk Indonesia",
+    category: "Corporate",
+    role: "Product Designer",
+    year: "2026",
+    url: "#/project/sentra-landing-page",
+    src: "/uploads/uploaded_1785056495164.webp",
+    badge: false,
+    fit: "top",
+    isEmpty: false,
+    caseStudy: {
+      challenge: "",
+      solution: "",
+      timeline: "1 week",
+      sections: [
+        {
+          id: "overview",
+          heading: "Overview",
+          paragraphs: [
+            "An overview of the design challenges and results for the Sentra Landing Page project."
+          ],
+          images: [
+            "/uploads/uploaded_1785056710988.webp"
+          ],
+          image: "/uploads/uploaded_1785056710988.webp",
+          captions: [
+            ""
+          ]
+        },
+        {
+          id: "section-1785056515647",
+          heading: "Project Background",
+          paragraphs: [
+            "PT Pupuk Indonesia (Persero) is Indonesia's largest state-owned fertilizer company and serves as the holding group for over 10 subsidiaries — including PT Petrokimia Gresik, PT Pupuk Kalimantan Timur, PT Pupuk Sriwidjaja Palembang, and several others spanning fertilizer production, logistics, engineering, and trade. As a BUMN (state-owned enterprise), Pupuk Indonesia operates at a national scale with thousands of employees spread across its group companies.",
+            "Sentra is Pupuk Indonesia's internal digital workplace platform — built to centralize and digitize all employee activities across the group. From legal submissions and vehicle bookings to consumption orders and risk management, every daily work process runs through Sentra. This makes the landing page not just an entry point, but a tool employees return to every single working day."
+          ],
+          navTitle: "Background "
+        },
+        {
+          id: "section-1785056556502",
+          heading: "Problem",
+          paragraphs: [
+            "The initial design of Sentra's landing page was functional, but feedback surfaced a recurring issue: it didn't feel personal or intuitive to use. Every employee — regardless of their role, department, or daily workflows — saw the exact same interface. There was no sense of ownership over the workspace.",
+            "The missing piece was personalization. For a platform used every day, the landing experience should adapt to the user, not the other way around. I identified several UX gaps: the quick access section had no way to be customized, the favorites feature lacked proper empty state guidance, and the overall page didn't give users a clear path to the services most relevant to them.",
+            "From there, I moved into research: studying Sentra's existing design system to understand its behaviors, component patterns, and visual language. This was critical — any new design needed to feel like it belonged in Sentra, not bolted on from the outside."
+          ],
+          navTitle: "Problem"
+        },
+        {
+          id: "section-1785056594817",
+          heading: "Process",
+          paragraphs: [
+            "My process started with conversations — lots of them. I spent time talking directly with users to understand their habits, frustrations, and what they actually needed from the platform on a daily basis. This qualitative approach helped me identify patterns that weren't visible from the interface alone.",
+            "Below is the old design."
+          ],
+          navTitle: "Process",
+          images: [
+            "/uploads/uploaded_1785056625041.webp"
+          ],
+          image: "/uploads/uploaded_1785056625041.webp",
+          captions: [
+            ""
+          ]
         }
       ]
     }
