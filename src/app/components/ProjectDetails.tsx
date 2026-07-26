@@ -392,7 +392,9 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
               </a>
             ))}
             <a
-              href="#resume"
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hover:underline"
             >
               Download Resume

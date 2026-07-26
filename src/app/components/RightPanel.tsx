@@ -63,7 +63,9 @@ export default function RightPanel() {
               {portfolioInfo.ctas.primary.label}
             </a>
             <a
-              href="#resume"
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-black font-medium text-[13px] md:text-[14px] leading-[1.4] whitespace-nowrap cursor-pointer hover:underline"
             >
               Download Resume

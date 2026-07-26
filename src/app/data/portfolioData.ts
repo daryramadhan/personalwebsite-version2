@@ -103,7 +103,7 @@ export const portfolioInfo: PortfolioInfo = {
   ctas: {
     primary: {
       label: "Book a Call",
-      url: "#book"
+      url: "https://cal.com/daryramadhan/discovery-call"
     },
     secondary: {
       label: "Learn About Me",
@@ -115,57 +115,47 @@ export const portfolioInfo: PortfolioInfo = {
 export const socialLinks: SocialLink[] = [
   {
     label: "LinkedIn",
-    url: "https://linkedin.com"
+    url: "https://linkedin.com/in/daryramadhan"
   },
   {
     label: "Behance",
-    url: "https://behance.net"
+    url: "https://www.behance.net/daryramadhan"
   },
   {
     label: "Dribbble",
-    url: "https://dribbble.com"
+    url: "https://dribbble.com/daryramadhan"
   },
   {
     label: "Fastwork",
-    url: "https://fastwork.com"
+    url: "https://fastwork.id/byob/n4wo0EdH1k?openExternalBrowser=1&source=byob"
   }
 ];
 
 export const clients: Client[] = [
   {
     id: 1,
-    logo: imgImage1,
-    name: "Client 1"
+    logo: "/logos/metalindo.webp",
+    name: "Metalindo Multiperkasa"
   },
   {
     id: 2,
-    logo: imgImage2,
-    name: "Client 2",
-    opacity: 20
+    logo: "/logos/synapsis.webp",
+    name: "Synapsis"
   },
   {
     id: 3,
-    logo: imgImage2,
-    name: "Client 3",
-    opacity: 20
+    logo: "/logos/ui-cepccit.webp",
+    name: "UI CEP-CCIT"
   },
   {
     id: 4,
-    logo: imgImage2,
-    name: "Client 4",
-    opacity: 20
+    logo: "/logos/apple-academy.webp",
+    name: "Apple Developer Academy"
   },
   {
     id: 5,
-    logo: imgImage2,
-    name: "Client 5",
-    opacity: 20
-  },
-  {
-    id: 6,
-    logo: imgImage2,
-    name: "Client 6",
-    opacity: 20
+    logo: "/logos/nyambee.webp",
+    name: "Nyambee"
   }
 ];
 
@@ -426,6 +416,44 @@ export const projects: Project[] = [
           ]
         },
         {
+          id: "section-1785062094514",
+          heading: "Resume Review",
+          paragraphs: [
+            "User can upload their existing resume into Resumify and the platform will create a card summary with character that represents the resume quality"
+          ],
+          navTitle: "Feature #4",
+          images: [
+            "/uploads/uploaded_1785062152805.png",
+            "/uploads/uploaded_1785062152867.png",
+            "/uploads/uploaded_1785062152929.png"
+          ],
+          image: "/uploads/uploaded_1785062152805.png",
+          captions: [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          id: "section-1785062172194",
+          heading: "Job Match",
+          paragraphs: [
+            "Based on the user portfolio, platform can recommend job who the experience  similar with swiping in the dating app"
+          ],
+          navTitle: "Feature #5",
+          images: [
+            "/uploads/uploaded_1785062200146.png",
+            "/uploads/uploaded_1785062234253.png",
+            "/uploads/uploaded_1785062238268.png"
+          ],
+          image: "/uploads/uploaded_1785062200146.png",
+          captions: [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
           id: "section-1784983783387",
           heading: "What I Learned",
           paragraphs: [
@@ -586,7 +614,7 @@ export const projects: Project[] = [
     year: "2026",
     url: "#/project/redesigning-the-btr-flow-to-increase-submission-efficiency-by-200",
     src: "/uploads/uploaded_1785059628693.png",
-    badge: false,
+    badge: true,
     fit: "top",
     isEmpty: false,
     caseStudy: {
@@ -681,65 +709,80 @@ export const projects: Project[] = [
     }
   },
   {
-    id: "surveillance-system",
-    title: "Surveillance System",
-    category: "Exploration Design",
+    id: "greenflags",
+    title: "Greenflags Landing Page",
+    category: "Landing Page",
     role: "UI/UX Designer",
     year: "2026",
-    url: "#/project/surveillance-system",
-    src: "/uploads/uploaded_1784982660340.webp",
+    url: "#/project/greenflags",
+    src: "/uploads/uploaded_1785059266560.png",
     badge: false,
     fit: "top",
     isEmpty: false,
     caseStudy: {
       challenge: "",
       solution: "",
-      timeline: "1 week",
+      timeline: "3 weeks",
       sections: [
         {
           id: "overview",
           heading: "Overview",
           paragraphs: [
-            "An overview of the design challenges and results for the Surveillance System project."
+            "Greenflags — Your journey to finding love with us is simple and meaningful, in just three steps: apply for access, receive curated matches, and build real connections."
           ],
+          navTitle: "Overview",
           images: [
-            "/uploads/uploaded_1784982825613.webp"
+            "/uploads/uploaded_1785059289651.png"
           ],
-          image: "/uploads/uploaded_1784982825613.webp",
+          image: "/uploads/uploaded_1785059289651.png",
           captions: [
-            ""
-          ]
+            "Showcase Greenflags Landing Page"
+          ],
+          caption: "Showcase Greenflags Landing Page"
         },
         {
-          id: "section-1784982728048",
-          heading: "Project Responsibility",
+          id: "section-1784976045166",
+          heading: "Project Background",
           paragraphs: [
-            "Main Responsibility – In this opportunity, I was given task to help founder to define the brand and designing the end-to-end platform and make sure seamless deliverables for the developers"
+            "The brand needs to be optimized for stronger positioning. We helped Greenflags define their brand position: Greenflags — Your journey to finding love with us is simple and meaningful, in just three steps: apply for access, receive curated matches, and build real connections."
           ],
-          navTitle: "Responsibility"
-        },
-        {
-          id: "section-1784982781770",
-          heading: "Project Highlight",
-          paragraphs: [
-            ""
-          ],
-          navTitle: "Gallery",
+          navTitle: "Background",
           images: [
-            "/uploads/uploaded_1784982798918.webp",
-            "/uploads/uploaded_1784982799090.webp",
-            "/uploads/uploaded_1784982799208.webp"
+            "/uploads/uploaded_1784976159218.webp",
+            "/uploads/uploaded_1784976248267.webp",
+            "/uploads/uploaded_1784976248320.webp",
+            "/uploads/uploaded_1784983210728.webp",
+            "/uploads/uploaded_1784983245244.webp"
           ],
-          image: "/uploads/uploaded_1784982798918.webp",
+          image: "/uploads/uploaded_1784976159218.webp",
           captions: [
+            "",
+            "",
             "",
             "",
             ""
           ]
+        },
+        {
+          id: "section-1784983278143",
+          heading: "Gallery",
+          paragraphs: [
+            ""
+          ],
+          images: [
+            "/uploads/uploaded_1784983367353.webp",
+            "/uploads/uploaded_1784983299931.webp"
+          ],
+          image: "/uploads/uploaded_1784983367353.webp",
+          captions: [
+            "",
+            "Landing page for Greenflags"
+          ],
+          caption: ""
         }
       ]
     },
-    client: "Exploration Design"
+    client: "Greenflags"
   },
   {
     id: "techhouse-software-house-ai-solutions-for-your-small-biz-until-enterprises",
@@ -829,82 +872,6 @@ export const projects: Project[] = [
     }
   },
   {
-    id: "greenflags",
-    title: "Greenflags Landing Page",
-    category: "Landing Page",
-    role: "UI/UX Designer",
-    year: "2026",
-    url: "#/project/greenflags",
-    src: "/uploads/uploaded_1785059266560.png",
-    badge: false,
-    fit: "top",
-    isEmpty: false,
-    caseStudy: {
-      challenge: "",
-      solution: "",
-      timeline: "3 weeks",
-      sections: [
-        {
-          id: "overview",
-          heading: "Overview",
-          paragraphs: [
-            "Greenflags — Your journey to finding love with us is simple and meaningful, in just three steps: apply for access, receive curated matches, and build real connections."
-          ],
-          navTitle: "Overview",
-          images: [
-            "/uploads/uploaded_1785059289651.png"
-          ],
-          image: "/uploads/uploaded_1785059289651.png",
-          captions: [
-            "Showcase Greenflags Landing Page"
-          ],
-          caption: "Showcase Greenflags Landing Page"
-        },
-        {
-          id: "section-1784976045166",
-          heading: "Project Background",
-          paragraphs: [
-            "The brand needs to be optimized for stronger positioning. We helped Greenflags define their brand position: Greenflags — Your journey to finding love with us is simple and meaningful, in just three steps: apply for access, receive curated matches, and build real connections."
-          ],
-          navTitle: "Background",
-          images: [
-            "/uploads/uploaded_1784976159218.webp",
-            "/uploads/uploaded_1784976248267.webp",
-            "/uploads/uploaded_1784976248320.webp",
-            "/uploads/uploaded_1784983210728.webp",
-            "/uploads/uploaded_1784983245244.webp"
-          ],
-          image: "/uploads/uploaded_1784976159218.webp",
-          captions: [
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        },
-        {
-          id: "section-1784983278143",
-          heading: "Gallery",
-          paragraphs: [
-            ""
-          ],
-          images: [
-            "/uploads/uploaded_1784983367353.webp",
-            "/uploads/uploaded_1784983299931.webp"
-          ],
-          image: "/uploads/uploaded_1784983367353.webp",
-          captions: [
-            "",
-            "Landing page for Greenflags"
-          ],
-          caption: ""
-        }
-      ]
-    },
-    client: "Greenflags"
-  },
-  {
     id: "e-recruitment-minimalits-end-to-end-hiring-pipeline-saas-web-app",
     title: "Minimalits End-to-End Hiring Pipeline SaaS Web App",
     category: "Web App",
@@ -977,5 +944,140 @@ export const projects: Project[] = [
       ]
     },
     client: "PT. Madhani Talatah Nusantara"
+  },
+  {
+    id: "junso-landing-page",
+    title: "Junso Landing Page",
+    client: "Junso",
+    category: "Landing Page",
+    role: "UI/UX & Web Developer",
+    year: "2026",
+    url: "#/project/junso-landing-page",
+    src: "/uploads/uploaded_1785061527055.png",
+    badge: false,
+    fit: "top",
+    isEmpty: false,
+    caseStudy: {
+      challenge: "",
+      solution: "",
+      timeline: "1 weeks",
+      sections: [
+        {
+          id: "overview",
+          heading: "Overview",
+          paragraphs: [
+            "I didn't just design Junso. I defined what it looks like, sounds like, and feels like to use — then built the whole thing myself."
+          ],
+          images: [
+            "/uploads/uploaded_1785061551146.png"
+          ],
+          image: "/uploads/uploaded_1785061551146.png",
+          captions: [
+            ""
+          ]
+        },
+        {
+          id: "section-1785061568271",
+          heading: "Project Background",
+          paragraphs: [
+            "The client came with a product and a brief. I came with the visual language, the copy direction, the component architecture, and the code that turned all of it into a live website. No handoff. No lost-in-translation between design and development."
+          ],
+          navTitle: "Background",
+          images: [
+            "/uploads/uploaded_1785061588254.png"
+          ],
+          image: "/uploads/uploaded_1785061588254.png",
+          captions: [
+            "Product Lists Section"
+          ],
+          caption: "Product Lists Section"
+        },
+        {
+          id: "section-1785061600922",
+          heading: "What I Learned",
+          paragraphs: [
+            "When you're both the designer and the developer, you make better decisions in both directions. You design things that are actually buildable. You build things that stay true to the intent.",
+            "That gap — between what something looks like and what it actually is — is where most digital products lose their quality. On Junso, that gap didn't exist."
+          ],
+          navTitle: "Learning"
+        },
+        {
+          id: "section-1785061634757",
+          heading: "Final Design",
+          paragraphs: [
+            ""
+          ],
+          navTitle: "Result",
+          images: [
+            "/uploads/uploaded_1785061649246.png"
+          ],
+          image: "/uploads/uploaded_1785061649246.png",
+          captions: [
+            ""
+          ]
+        }
+      ]
+    }
+  },
+  {
+    id: "surveillance-system",
+    title: "Surveillance System",
+    category: "Exploration Design",
+    role: "UI/UX Designer",
+    year: "2026",
+    url: "#/project/surveillance-system",
+    src: "/uploads/uploaded_1784982660340.webp",
+    badge: false,
+    fit: "top",
+    isEmpty: false,
+    caseStudy: {
+      challenge: "",
+      solution: "",
+      timeline: "1 week",
+      sections: [
+        {
+          id: "overview",
+          heading: "Overview",
+          paragraphs: [
+            "An overview of the design challenges and results for the Surveillance System project."
+          ],
+          images: [
+            "/uploads/uploaded_1784982825613.webp"
+          ],
+          image: "/uploads/uploaded_1784982825613.webp",
+          captions: [
+            ""
+          ]
+        },
+        {
+          id: "section-1784982728048",
+          heading: "Project Responsibility",
+          paragraphs: [
+            "Main Responsibility – In this opportunity, I was given task to help founder to define the brand and designing the end-to-end platform and make sure seamless deliverables for the developers"
+          ],
+          navTitle: "Responsibility"
+        },
+        {
+          id: "section-1784982781770",
+          heading: "Project Highlight",
+          paragraphs: [
+            ""
+          ],
+          navTitle: "Gallery",
+          images: [
+            "/uploads/uploaded_1784982798918.webp",
+            "/uploads/uploaded_1784982799090.webp",
+            "/uploads/uploaded_1784982799208.webp"
+          ],
+          image: "/uploads/uploaded_1784982798918.webp",
+          captions: [
+            "",
+            "",
+            ""
+          ]
+        }
+      ]
+    },
+    client: "Exploration Design"
   }
 ];
