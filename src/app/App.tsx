@@ -2,6 +2,7 @@ import { useState, useEffect, lazy, Suspense } from "react";
 import LeftPanel from "./components/LeftPanel";
 import RightPanel from "./components/RightPanel";
 import ProjectDetails from "./components/ProjectDetails";
+import AboutPage from "./components/AboutPage";
 import { projects } from "./data/portfolioData";
 
 // Lazy load AdminDashboard to keep production bundle light and tree-shaken
@@ -18,6 +19,7 @@ export default function App() {
   const projectId = isProjectRoute ? activeHash.slice(projectPrefix.length) : null;
   const activeProject = projectId ? projects.find((p) => p.id === projectId && !p.isEmpty) : null;
   const isAdminRoute = activeHash === "#/admin" && import.meta.env.DEV;
+  const isAboutRoute = activeHash === "#/about" || activeHash === "#/resume" || activeHash === "#about" || activeHash === "#resume";
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -59,6 +61,9 @@ export default function App() {
     if (isAdminRoute) {
       title = "Admin CMS Dashboard | Dary Ramadhan";
       desc = "Secure content management editor.";
+    } else if (isAboutRoute) {
+      title = "About | Dary Ramadhan";
+      desc = "Learn about Dary Ramadhan, Lead Product Designer based in Jakarta. Specializing in enterprise workflows, Figma design systems, and UI/UX solutions.";
     } else if (activeProject) {
       title = `${activeProject.title} — Case Study by Dary Ramadhan`;
       if (activeProject.caseStudy?.challenge) {
@@ -86,14 +91,16 @@ export default function App() {
     if (ogTitleMeta) {
       ogTitleMeta.setAttribute("content", title);
     }
-  }, [activeHash, activeProject, isAdminRoute]);
+  }, [activeHash, activeProject, isAdminRoute, isAboutRoute]);
 
   return (
-    <div className={`bg-white min-h-screen font-['Manrope',sans-serif] relative ${activeProject || isAdminRoute ? "" : "overflow-x-hidden"}`}>
+    <div className={`bg-white min-h-screen font-['Manrope',sans-serif] relative ${activeProject || isAdminRoute || isAboutRoute ? "" : "overflow-x-hidden"}`}>
       {isAdminRoute ? (
         <Suspense fallback={null}>
           <AdminDashboard />
         </Suspense>
+      ) : isAboutRoute ? (
+        <AboutPage />
       ) : activeProject ? (
         <ProjectDetails project={activeProject} />
       ) : (

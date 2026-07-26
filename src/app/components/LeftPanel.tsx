@@ -49,7 +49,7 @@ export default function LeftPanel() {
           >
             {portfolioInfo.ctas.primary.label}
           </a>
-          
+
           <div className="relative">
             <a
               href={portfolioInfo.ctas.secondary.url || "#"}
@@ -59,16 +59,15 @@ export default function LeftPanel() {
             >
               {portfolioInfo.ctas.secondary.label}
             </a>
-            
+
             {/* Popover Circle Profile Image on Hover */}
             <div
-              className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-[12px] pointer-events-none transition-all duration-300 ease-out z-30 ${
-                isHovered
-                  ? "opacity-100 translate-y-0 scale-100"
-                  : "opacity-0 translate-y-[8px] scale-95"
-              }`}
+              className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-[12px] pointer-events-none transition-all duration-300 ease-out z-30 ${isHovered
+                ? "opacity-100 translate-y-0 scale-100"
+                : "opacity-0 translate-y-[8px] scale-95"
+                }`}
             >
-              <div className="size-[70px] rounded-full border-2 border-white shadow-lg overflow-hidden bg-gray-100">
+              <div className="size-[120px] rounded-full border-2 border-white shadow-lg overflow-hidden bg-gray-100">
                 <img
                   src="/avatar.png"
                   alt="Dary Ramadhan"
