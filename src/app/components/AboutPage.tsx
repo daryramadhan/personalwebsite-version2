@@ -144,15 +144,27 @@ export default function AboutPage() {
             <h2 className="font-medium text-[24px] leading-[1.2] tracking-[-0.5px] text-black border-b border-[#f4f4f4] pb-[8px]">
               Work Experience
             </h2>
-            <div className="flex flex-col gap-[32px]">
+            <div className="relative flex flex-col gap-[32px] pl-[24px]">
+              {/* Vertical timeline line */}
+              <div className="absolute left-[5px] top-[8px] bottom-[8px] w-[2px] bg-[#f0f0f0]" />
+
               {experiences.map((exp, index) => (
-                <div key={index} className="flex flex-col gap-[8px]">
+                <div key={index} className="relative flex flex-col gap-[8px]">
+                  {/* Milestone dot indicator */}
+                  <span
+                    className={`absolute -left-[24px] top-[6px] size-[12px] rounded-full bg-white z-10 transition-all duration-300 ${
+                      index === 0
+                        ? "border-[3px] border-[#f25c0c] shadow-sm shadow-[#f25c0c]/20"
+                        : "border-[2px] border-gray-300"
+                    }`}
+                  />
+
                   <div className="flex justify-between items-start gap-[12px] flex-wrap">
                     <div>
                       <h3 className="text-[16px] font-medium text-black">{exp.role}</h3>
                       <p className="text-[14px] font-regular text-[#f25c0c] mt-[2px]">{exp.company}</p>
                     </div>
-                    <span className="text-[12px] font-medium text-gray-400 bg-gray-50 rounded-full px-[10px] py-[3px]">
+                    <span className="text-[12px] font-medium text-gray-400 bg-gray-50 border border-gray-100 rounded-full px-[10px] py-[3px]">
                       {exp.period}
                     </span>
                   </div>
