@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { portfolioInfo, socialLinks } from "../data/portfolioData";
 import AvailableDot from "./AvailableDot";
 
 export default function LeftPanel() {
+  const [isHovered, setIsHovered] = useState(false);
   return (
     <div
       className="lg:fixed lg:top-0 lg:left-0 lg:h-screen lg:w-[480px] relative w-full min-h-screen flex flex-col justify-between px-[24px] py-[40px] md:px-[50px] lg:py-[32px] bg-white gap-12 lg:gap-0"
@@ -47,12 +49,34 @@ export default function LeftPanel() {
           >
             {portfolioInfo.ctas.primary.label}
           </a>
-          <a
-            href={portfolioInfo.ctas.secondary.url || "#"}
-            className="text-black font-['Manrope',sans-serif] font-medium text-[14px] leading-[1.4] whitespace-nowrap cursor-pointer hover:underline"
-          >
-            {portfolioInfo.ctas.secondary.label}
-          </a>
+          
+          <div className="relative">
+            <a
+              href={portfolioInfo.ctas.secondary.url || "#"}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              className="text-black font-['Manrope',sans-serif] font-medium text-[14px] leading-[1.4] whitespace-nowrap cursor-pointer hover:underline py-[4px] block"
+            >
+              {portfolioInfo.ctas.secondary.label}
+            </a>
+            
+            {/* Popover Circle Profile Image on Hover */}
+            <div
+              className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-[12px] pointer-events-none transition-all duration-300 ease-out z-30 ${
+                isHovered
+                  ? "opacity-100 translate-y-0 scale-100"
+                  : "opacity-0 translate-y-[8px] scale-95"
+              }`}
+            >
+              <div className="size-[70px] rounded-full border-2 border-white shadow-lg overflow-hidden bg-gray-100">
+                <img
+                  src="/avatar.png"
+                  alt="Dary Ramadhan"
+                  className="size-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

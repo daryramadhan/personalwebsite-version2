@@ -96,7 +96,7 @@ export const portfolioInfo: PortfolioInfo = {
       url: "#book"
     },
     secondary: {
-      label: "Download Resume",
+      label: "Learn About Me",
       url: "#resume"
     }
   }
@@ -489,7 +489,7 @@ export const projects: Project[] = [
   },
   {
     id: "greenflags",
-    title: "Greenflags",
+    title: "Greenflags Landing Page",
     category: "Landing Page",
     role: "UI/UX Designer",
     year: "2026",
@@ -565,7 +565,7 @@ export const projects: Project[] = [
   },
   {
     id: "techhouse-software-house-ai-solutions-for-your-small-biz-until-enterprises",
-    title: "TechHouse | Software house & AI solutions for your small biz until enterprises",
+    title: "TechHouse Brand Design",
     category: "Software",
     role: "Brand Designer",
     year: "2026",
@@ -618,10 +618,10 @@ export const projects: Project[] = [
   },
   {
     id: "e-recruitment-minimalits-end-to-end-hiring-pipeline-saas-web-app",
-    title: "E-Recruitment | Minimalits End-to-End Hiring Pipeline SaaS Web App",
+    title: "Minimalits End-to-End Hiring Pipeline SaaS Web App",
     category: "Web App",
     role: "Product Designer",
-    year: "2026",
+    year: "2025",
     url: "#/project/e-recruitment-minimalits-end-to-end-hiring-pipeline-saas-web-app",
     src: "/uploads/uploaded_1784984227911.webp",
     badge: false,
@@ -692,7 +692,7 @@ export const projects: Project[] = [
   },
   {
     id: "illustration",
-    title: "Illustration",
+    title: "Illustration Design for Resumify",
     category: "AI SaaS",
     role: "Product Designer",
     year: "2026",
