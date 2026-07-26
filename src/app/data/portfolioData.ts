@@ -171,6 +171,147 @@ export const clients: Client[] = [
 
 export const projects: Project[] = [
   {
+    id: "sentra-landing-page",
+    title: "Sentra Landing Page",
+    client: "Pupuk Indonesia",
+    category: "Corporate",
+    role: "Product Designer",
+    year: "2026",
+    url: "#/project/sentra-landing-page",
+    src: "/uploads/uploaded_1785059197708.png",
+    badge: true,
+    fit: "top",
+    isEmpty: false,
+    caseStudy: {
+      challenge: "",
+      solution: "",
+      timeline: "1 week",
+      sections: [
+        {
+          id: "section-1785058728761",
+          heading: "Overview",
+          paragraphs: [
+            "PT Pupuk Indonesia (Persero) is Indonesia's largest state-owned fertilizer company and serves as the holding group for over 10 subsidiaries — including PT Petrokimia Gresik, PT Pupuk Kalimantan Timur, PT Pupuk Sriwidjaja Palembang, and several others spanning fertilizer production, logistics, engineering, and trade. As a BUMN (state-owned enterprise), Pupuk Indonesia operates at a national scale with thousands of employees spread across its group companies."
+          ],
+          images: [
+            "/uploads/uploaded_1785058770076.png"
+          ],
+          image: "/uploads/uploaded_1785058770076.png",
+          captions: [
+            ""
+          ]
+        },
+        {
+          id: "section-1785056515647",
+          heading: "Project Background",
+          paragraphs: [
+            "Sentra is Pupuk Indonesia's internal digital workplace platform — built to centralize and digitize all employee activities across the group. From legal submissions and vehicle bookings to consumption orders and risk management, every daily work process runs through Sentra. This makes the landing page not just an entry point, but a tool employees return to every single working day."
+          ],
+          navTitle: "Background "
+        },
+        {
+          id: "section-1785058786186",
+          heading: "The Problem",
+          paragraphs: [
+            "The initial design of Sentra's landing page was functional, but feedback surfaced a recurring issue: it didn't feel personal or intuitive to use. Every employee — regardless of their role, department, or daily workflows — saw the exact same interface. There was no sense of ownership over the workspace.",
+            "The missing piece was personalization. For a platform used every day, the landing experience should adapt to the user, not the other way around. I identified several UX gaps: the quick access section had no way to be customized, the favorites feature lacked proper empty state guidance, and the overall page didn't give users a clear path to the services most relevant to them."
+          ],
+          navTitle: "Problem"
+        },
+        {
+          id: "section-1785058854859",
+          heading: "Process",
+          paragraphs: [
+            "My process started with conversations — lots of them. I spent time talking directly with users to understand their habits, frustrations, and what they actually needed from the platform on a daily basis. This qualitative approach helped me identify patterns that weren't visible from the interface alone.",
+            "Below is the old design."
+          ],
+          navTitle: "Process",
+          images: [],
+          captions: [],
+          mediaBlocks: [
+            {
+              id: "block-1785058931448",
+              images: [
+                "/uploads/uploaded_1785059054664.png"
+              ],
+              layout: "1-column",
+              captions: [
+                ""
+              ],
+              postParagraphs: [
+                "From there, I moved into research: studying Sentra's existing design system to understand its behaviors, component patterns, and visual language. This was critical — any new design needed to feel like it belonged in Sentra, not bolted on from the outside.",
+                "With that foundation, I explored multiple design options for each problem area, then iterated based on continued feedback until the solutions felt right for real users, not just on paper."
+              ]
+            },
+            {
+              id: "block-1785059023232",
+              images: [
+                "/uploads/uploaded_1785059050842.png"
+              ],
+              layout: "1-column",
+              captions: [
+                ""
+              ],
+              postParagraphs: []
+            }
+          ]
+        },
+        {
+          id: "section-1785057699811",
+          heading: "Discussion & Iteration",
+          paragraphs: [
+            "One of the more interesting design decisions happened around the quick access customization feature. My initial approach used a modal — a common pattern for this kind of management UI. But in discussion with Pupuk Indonesia's internal development team, we explored whether the modal was the right fit for something users would interact with regularly.",
+            "The outcome: we moved toward an inline edit mode that lives directly within the section itself. Users click \"Kelola akses cepat,\" the section enters edit mode in place, and they can drag to reorder, tap to remove, and add new actions from an expandable panel — all without leaving the page context. No overlay, no interruption."
+          ],
+          navTitle: "Iteration",
+          images: [
+            "/uploads/uploaded_1785057734940.webp"
+          ],
+          image: "/uploads/uploaded_1785057734940.webp",
+          captions: [
+            ""
+          ],
+          postImageParagraphs: [
+            "These kinds of discussions were genuinely enjoyable. Working directly with the dev team meant design decisions were grounded in both user experience and technical reality."
+          ]
+        },
+        {
+          id: "section-1785057750653",
+          heading: "Deliverables",
+          paragraphs: [
+            "As the sole designer on this project — handling everything from initial discovery and design exploration to stakeholder presentations and final handoff — I made sure every deliverable was built to serve the developers as much as the users.",
+            "Because Sentra already has an established design system, my deliverables were tightly aligned to its existing component library and interaction patterns. Annotations, interaction states, edge cases, and component behavior were all documented clearly — so the gap between design and implementation stayed as small as possible."
+          ],
+          navTitle: "Deliverables",
+          images: [
+            "/uploads/uploaded_1785057781084.webp"
+          ],
+          image: "/uploads/uploaded_1785057781084.webp",
+          captions: [
+            ""
+          ],
+          postImageParagraphs: [
+            "- Personalized quick access with inline edit mode, drag-to-reorder, and an expandable action picker supporting 20+ services\n- Improved empty state for the Favorites section with clear, minimal guidance directing users to the star icon\n- Contextual activity tracker and daily agenda on the landing page\n- Seamless integration with Sentra's existing design system"
+          ]
+        },
+        {
+          id: "section-1785057805941",
+          heading: "The Final Design",
+          paragraphs: [
+            ""
+          ],
+          images: [
+            "/uploads/uploaded_1785057828823.webp"
+          ],
+          image: "/uploads/uploaded_1785057828823.webp",
+          captions: [
+            ""
+          ]
+        }
+      ]
+    }
+  },
+  {
     id: "resumify-ai-powered-resume-builder",
     title: "Resumify | AI-Powered Resume Builder",
     category: "AI SaaS",
@@ -437,6 +578,109 @@ export const projects: Project[] = [
     client: "Exploration Design"
   },
   {
+    id: "redesigning-the-btr-flow-to-increase-submission-efficiency-by-200",
+    title: "Redesigning the BTR Flow to Increase Submission Efficiency by 200%",
+    client: "PT. Madhani Talatah Nusantara",
+    category: "Web App",
+    role: "Product Designer",
+    year: "2026",
+    url: "#/project/redesigning-the-btr-flow-to-increase-submission-efficiency-by-200",
+    src: "/uploads/uploaded_1785059628693.png",
+    badge: false,
+    fit: "top",
+    isEmpty: false,
+    caseStudy: {
+      challenge: "",
+      solution: "",
+      timeline: "1 month",
+      sections: [
+        {
+          id: "overview",
+          heading: "Overview",
+          paragraphs: [
+            "Business travel shouldn't be a headache",
+            "PT Madhani Talatah Nusantara manages hundreds of employee business trips per month through an internal HR platform called ESS (Employee Self-Service). The Business Travel Request (BTR) feature allows employees to submit and manage travel needs — from flight bookings to hotel accommodations."
+          ],
+          images: [
+            "/uploads/uploaded_1785059814424.png"
+          ],
+          image: "/uploads/uploaded_1785059814424.png",
+          captions: [
+            ""
+          ]
+        },
+        {
+          id: "section-1785059827411",
+          heading: "The Problem",
+          paragraphs: [
+            "The original BTR flow opened as a side panel while the main dashboard remained visible in the background. This created two compounding problems: cognitive overload from visual noise, and an interface trying to handle multi-step input in a space designed for quick previews.",
+            "Main page visible in background creates constant visual distraction\n\n- All 4 information types (applicant, trip, passenger, booking) collapsed into one unstructured scroll\n- No progress indicator — users don't know where they are in the process\n- Critical actions (submit, save) compete with secondary info\n- Dense information architecture causes cognitive overload on first open"
+          ],
+          navTitle: "Problem",
+          images: [
+            "/uploads/uploaded_1785059881719.png",
+            "/uploads/uploaded_1785060235065.png"
+          ],
+          image: "/uploads/uploaded_1785059881719.png",
+          captions: [
+            "",
+            "A side modal doing the job of a full page"
+          ]
+        },
+        {
+          id: "section-1785060000487",
+          heading: "The Design Process",
+          paragraphs: [
+            "From observation to validated solution – Rather than jumping to solutions, I spent time understanding the mental model of employees who needed to submit travel requests — most of whom were non-technical staff unfamiliar with complex enterprise software."
+          ],
+          navTitle: "Process",
+          images: [
+            "/uploads/uploaded_1785060546841.png",
+            "/uploads/uploaded_1785060551574.png"
+          ],
+          image: "/uploads/uploaded_1785060546841.png",
+          captions: [
+            "Version 1",
+            "Version 2 (Improvement)"
+          ],
+          caption: "Version 1",
+          layout: "2-column",
+          postImageParagraphs: [
+            "Version 1 displayed the route as a simple text line, which made departure and arrival details difficult to scan. In Version 2, I added a visual flight route with airport codes, airport names, cities, and a plane icon.",
+            "This small but high-impact improvement helps employees verify their itinerary faster and submit travel requests with greater confidence."
+          ]
+        },
+        {
+          id: "section-1785059903078",
+          heading: "BTR Flow Improvement",
+          paragraphs: [
+            "Below is the redesigned flow for the improved BTR application experience. Full-page dedicated experience eliminates all background distractions"
+          ],
+          navTitle: "Solution",
+          images: [
+            "/uploads/uploaded_1785060242668.png"
+          ],
+          image: "/uploads/uploaded_1785060242668.png",
+          captions: [
+            ""
+          ],
+          postImageParagraphs: [
+            "- 4-step progress stepper (Perjalanan → Penumpang → Akomodasi → Review) gives clear orientation\n- One focused task per step reduces decision fatigue\n- Review step consolidates all data for final verification before submit\n- Success state with clear next actions (\"Lihat Detail Pengajuan\")"
+          ]
+        },
+        {
+          id: "section-1785059959020",
+          heading: "What I Learned",
+          paragraphs: [
+            "Users need spatial anchoring – Without a clear sense of \"where am I in this process?\", users hesitate, second-guess, or abandon. A progress stepper isn't decoration — it's navigation.",
+            "Rather than jumping to solutions, I spent time understanding the mental model of employees who needed to submit travel requests — most of whom were non-technical staff unfamiliar with complex enterprise software."
+          ],
+          navTitle: "Learning"
+        }
+      ]
+    }
+  },
+  {
     id: "surveillance-system",
     title: "Surveillance System",
     category: "Exploration Design",
@@ -498,82 +742,6 @@ export const projects: Project[] = [
     client: "Exploration Design"
   },
   {
-    id: "greenflags",
-    title: "Greenflags Landing Page",
-    category: "Landing Page",
-    role: "UI/UX Designer",
-    year: "2026",
-    url: "#/project/greenflags",
-    src: "/uploads/uploaded_1784975965661.webp",
-    badge: false,
-    fit: "top",
-    isEmpty: false,
-    caseStudy: {
-      challenge: "",
-      solution: "",
-      timeline: "3 weeks",
-      sections: [
-        {
-          id: "overview",
-          heading: "Overview",
-          paragraphs: [
-            "Greenflags — Your journey to finding love with us is simple and meaningful, in just three steps: apply for access, receive curated matches, and build real connections."
-          ],
-          navTitle: "Overview",
-          images: [
-            "/uploads/uploaded_1784976111723.webp"
-          ],
-          image: "/uploads/uploaded_1784976111723.webp",
-          captions: [
-            "Showcase Greenflags Landing Page"
-          ],
-          caption: "Showcase Greenflags Landing Page"
-        },
-        {
-          id: "section-1784976045166",
-          heading: "Project Background",
-          paragraphs: [
-            "The brand needs to be optimized for stronger positioning. We helped Greenflags define their brand position: Greenflags — Your journey to finding love with us is simple and meaningful, in just three steps: apply for access, receive curated matches, and build real connections."
-          ],
-          navTitle: "Background",
-          images: [
-            "/uploads/uploaded_1784976159218.webp",
-            "/uploads/uploaded_1784976248267.webp",
-            "/uploads/uploaded_1784976248320.webp",
-            "/uploads/uploaded_1784983210728.webp",
-            "/uploads/uploaded_1784983245244.webp"
-          ],
-          image: "/uploads/uploaded_1784976159218.webp",
-          captions: [
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        },
-        {
-          id: "section-1784983278143",
-          heading: "Gallery",
-          paragraphs: [
-            ""
-          ],
-          images: [
-            "/uploads/uploaded_1784983367353.webp",
-            "/uploads/uploaded_1784983299931.webp"
-          ],
-          image: "/uploads/uploaded_1784983367353.webp",
-          captions: [
-            "",
-            "Landing page for Greenflags"
-          ],
-          caption: ""
-        }
-      ]
-    },
-    client: "Greenflags"
-  },
-  {
     id: "techhouse-software-house-ai-solutions-for-your-small-biz-until-enterprises",
     title: "TechHouse Brand Design",
     category: "Software",
@@ -625,6 +793,116 @@ export const projects: Project[] = [
       ]
     },
     client: "TehcHouse"
+  },
+  {
+    id: "illustration",
+    title: "Illustration Design for Resumify",
+    category: "AI SaaS",
+    role: "Product Designer",
+    year: "2026",
+    url: "#/project/illustration",
+    src: "/uploads/uploaded_1784986270100.webp",
+    badge: false,
+    fit: "center",
+    isEmpty: false,
+    caseStudy: {
+      challenge: "",
+      solution: "",
+      timeline: "2 Months (Q4 2025)",
+      sections: [
+        {
+          id: "overview",
+          heading: "Overview",
+          paragraphs: [
+            "This project started after observing how many fresh graduates struggle to create a strong resume. Most resumes are text-heavy, unstructured, and fail ATS checks. Job seekers often don't know how to phrase achievements, quantify impact, or highlight strengths."
+          ],
+          images: [
+            "/uploads/uploaded_1784986322779.webp"
+          ],
+          image: "/uploads/uploaded_1784986322779.webp",
+          captions: [
+            ""
+          ],
+          navTitle: "Resumify"
+        }
+      ]
+    }
+  },
+  {
+    id: "greenflags",
+    title: "Greenflags Landing Page",
+    category: "Landing Page",
+    role: "UI/UX Designer",
+    year: "2026",
+    url: "#/project/greenflags",
+    src: "/uploads/uploaded_1785059266560.png",
+    badge: false,
+    fit: "top",
+    isEmpty: false,
+    caseStudy: {
+      challenge: "",
+      solution: "",
+      timeline: "3 weeks",
+      sections: [
+        {
+          id: "overview",
+          heading: "Overview",
+          paragraphs: [
+            "Greenflags — Your journey to finding love with us is simple and meaningful, in just three steps: apply for access, receive curated matches, and build real connections."
+          ],
+          navTitle: "Overview",
+          images: [
+            "/uploads/uploaded_1785059289651.png"
+          ],
+          image: "/uploads/uploaded_1785059289651.png",
+          captions: [
+            "Showcase Greenflags Landing Page"
+          ],
+          caption: "Showcase Greenflags Landing Page"
+        },
+        {
+          id: "section-1784976045166",
+          heading: "Project Background",
+          paragraphs: [
+            "The brand needs to be optimized for stronger positioning. We helped Greenflags define their brand position: Greenflags — Your journey to finding love with us is simple and meaningful, in just three steps: apply for access, receive curated matches, and build real connections."
+          ],
+          navTitle: "Background",
+          images: [
+            "/uploads/uploaded_1784976159218.webp",
+            "/uploads/uploaded_1784976248267.webp",
+            "/uploads/uploaded_1784976248320.webp",
+            "/uploads/uploaded_1784983210728.webp",
+            "/uploads/uploaded_1784983245244.webp"
+          ],
+          image: "/uploads/uploaded_1784976159218.webp",
+          captions: [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          id: "section-1784983278143",
+          heading: "Gallery",
+          paragraphs: [
+            ""
+          ],
+          images: [
+            "/uploads/uploaded_1784983367353.webp",
+            "/uploads/uploaded_1784983299931.webp"
+          ],
+          image: "/uploads/uploaded_1784983367353.webp",
+          captions: [
+            "",
+            "Landing page for Greenflags"
+          ],
+          caption: ""
+        }
+      ]
+    },
+    client: "Greenflags"
   },
   {
     id: "e-recruitment-minimalits-end-to-end-hiring-pipeline-saas-web-app",
@@ -699,186 +977,5 @@ export const projects: Project[] = [
       ]
     },
     client: "PT. Madhani Talatah Nusantara"
-  },
-  {
-    id: "illustration",
-    title: "Illustration Design for Resumify",
-    category: "AI SaaS",
-    role: "Product Designer",
-    year: "2026",
-    url: "#/project/illustration",
-    src: "/uploads/uploaded_1784986270100.webp",
-    badge: false,
-    fit: "center",
-    isEmpty: false,
-    caseStudy: {
-      challenge: "",
-      solution: "",
-      timeline: "2 Months (Q4 2025)",
-      sections: [
-        {
-          id: "overview",
-          heading: "Overview",
-          paragraphs: [
-            "This project started after observing how many fresh graduates struggle to create a strong resume. Most resumes are text-heavy, unstructured, and fail ATS checks. Job seekers often don't know how to phrase achievements, quantify impact, or highlight strengths."
-          ],
-          images: [
-            "/uploads/uploaded_1784986322779.webp"
-          ],
-          image: "/uploads/uploaded_1784986322779.webp",
-          captions: [
-            ""
-          ],
-          navTitle: "Resumify"
-        }
-      ]
-    }
-  },
-  {
-    id: "sentra-landing-page",
-    title: "Sentra Landing Page",
-    client: "Pupuk Indonesia",
-    category: "Corporate",
-    role: "Product Designer",
-    year: "2026",
-    url: "#/project/sentra-landing-page",
-    src: "/uploads/uploaded_1785056495164.webp",
-    badge: false,
-    fit: "top",
-    isEmpty: false,
-    caseStudy: {
-      challenge: "",
-      solution: "",
-      timeline: "1 week",
-      sections: [
-        {
-          id: "overview",
-          heading: "Overview",
-          paragraphs: [
-            "PT Pupuk Indonesia (Persero) is Indonesia's largest state-owned fertilizer company and serves as the holding group for over 10 subsidiaries — including PT Petrokimia Gresik, PT Pupuk Kalimantan Timur, PT Pupuk Sriwidjaja Palembang, and several others spanning fertilizer production, logistics, engineering, and trade. As a BUMN (state-owned enterprise), Pupuk Indonesia operates at a national scale with thousands of employees spread across its group companies."
-          ],
-          images: [
-            "/uploads/uploaded_1785057882483.webp"
-          ],
-          image: "/uploads/uploaded_1785057882483.webp",
-          captions: [
-            ""
-          ],
-          mediaBlocks: [
-            {
-              id: "block-1785057574916",
-              images: [],
-              layout: "1-column",
-              captions: [],
-              postParagraphs: []
-            }
-          ]
-        },
-        {
-          id: "section-1785056515647",
-          heading: "Project Background",
-          paragraphs: [
-            "Sentra is Pupuk Indonesia's internal digital workplace platform — built to centralize and digitize all employee activities across the group. From legal submissions and vehicle bookings to consumption orders and risk management, every daily work process runs through Sentra. This makes the landing page not just an entry point, but a tool employees return to every single working day."
-          ],
-          navTitle: "Background "
-        },
-        {
-          id: "section-1785056556502",
-          heading: "Problem",
-          paragraphs: [
-            "The initial design of Sentra's landing page was functional, but feedback surfaced a recurring issue: it didn't feel personal or intuitive to use. Every employee — regardless of their role, department, or daily workflows — saw the exact same interface. There was no sense of ownership over the workspace.",
-            "The missing piece was personalization. For a platform used every day, the landing experience should adapt to the user, not the other way around. I identified several UX gaps: the quick access section had no way to be customized, the favorites feature lacked proper empty state guidance, and the overall page didn't give users a clear path to the services most relevant to them.",
-            "From there, I moved into research: studying Sentra's existing design system to understand its behaviors, component patterns, and visual language. This was critical — any new design needed to feel like it belonged in Sentra, not bolted on from the outside."
-          ],
-          navTitle: "Problem"
-        },
-        {
-          id: "section-1785056594817",
-          heading: "Process",
-          paragraphs: [
-            "My process started with conversations — lots of them. I spent time talking directly with users to understand their habits, frustrations, and what they actually needed from the platform on a daily basis. This qualitative approach helped me identify patterns that weren't visible from the interface alone.",
-            "Below is the old design."
-          ],
-          navTitle: "Process",
-          images: [
-            "/uploads/uploaded_1785058181153.webp"
-          ],
-          image: "/uploads/uploaded_1785058181153.webp",
-          captions: [
-            ""
-          ],
-          postImageParagraphs: [
-            "From there, I moved into research: studying Sentra's existing design system to understand its behaviors, component patterns, and visual language. This was critical — any new design needed to feel like it belonged in Sentra, not bolted on from the outside."
-          ],
-          mediaBlocks: [
-            {
-              id: "block-1785057638024",
-              images: [
-                "/uploads/uploaded_1785058139022.webp"
-              ],
-              layout: "1-column",
-              captions: [
-                ""
-              ],
-              postParagraphs: [
-                "With that foundation, I explored multiple design options for each problem area, then iterated based on continued feedback until the solutions felt right for real users, not just on paper."
-              ]
-            }
-          ]
-        },
-        {
-          id: "section-1785057699811",
-          heading: "Discussion & Iteration",
-          paragraphs: [
-            "One of the more interesting design decisions happened around the quick access customization feature. My initial approach used a modal — a common pattern for this kind of management UI. But in discussion with Pupuk Indonesia's internal development team, we explored whether the modal was the right fit for something users would interact with regularly.",
-            "The outcome: we moved toward an inline edit mode that lives directly within the section itself. Users click \"Kelola akses cepat,\" the section enters edit mode in place, and they can drag to reorder, tap to remove, and add new actions from an expandable panel — all without leaving the page context. No overlay, no interruption."
-          ],
-          navTitle: "Iteration",
-          images: [
-            "/uploads/uploaded_1785057734940.webp"
-          ],
-          image: "/uploads/uploaded_1785057734940.webp",
-          captions: [
-            ""
-          ],
-          postImageParagraphs: [
-            "These kinds of discussions were genuinely enjoyable. Working directly with the dev team meant design decisions were grounded in both user experience and technical reality."
-          ]
-        },
-        {
-          id: "section-1785057750653",
-          heading: "Deliverables",
-          paragraphs: [
-            "As the sole designer on this project — handling everything from initial discovery and design exploration to stakeholder presentations and final handoff — I made sure every deliverable was built to serve the developers as much as the users.",
-            "Because Sentra already has an established design system, my deliverables were tightly aligned to its existing component library and interaction patterns. Annotations, interaction states, edge cases, and component behavior were all documented clearly — so the gap between design and implementation stayed as small as possible."
-          ],
-          navTitle: "Deliverables",
-          images: [
-            "/uploads/uploaded_1785057781084.webp"
-          ],
-          image: "/uploads/uploaded_1785057781084.webp",
-          captions: [
-            ""
-          ],
-          postImageParagraphs: [
-            "- Personalized quick access with inline edit mode, drag-to-reorder, and an expandable action picker supporting 20+ services\n- Improved empty state for the Favorites section with clear, minimal guidance directing users to the star icon\n- Contextual activity tracker and daily agenda on the landing page\n- Seamless integration with Sentra's existing design system"
-          ]
-        },
-        {
-          id: "section-1785057805941",
-          heading: "The Final Design",
-          paragraphs: [
-            ""
-          ],
-          images: [
-            "/uploads/uploaded_1785057828823.webp"
-          ],
-          image: "/uploads/uploaded_1785057828823.webp",
-          captions: [
-            ""
-          ]
-        }
-      ]
-    }
   }
 ];

@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, Fragment } from "react";
 import { Project, projects, socialLinks, portfolioInfo, CaseStudySection } from "../data/portfolioData";
 
 interface ProjectDetailsProps {
@@ -105,6 +105,85 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
     });
   };
 
+  // Parse lines to detect and format bullet lists and ordered numbered lists
+  const renderParagraphContent = (para: string) => {
+    if (!para || para.trim() === "") return null;
+
+    const lines = para.split("\n");
+    const renderedElements: React.ReactNode[] = [];
+    let currentListType: "bullet" | "ordered" | null = null;
+    let currentListItems: string[] = [];
+
+    const flushList = (key: string | number) => {
+      if (currentListItems.length === 0) return;
+      if (currentListType === "bullet") {
+        renderedElements.push(
+          <ul key={key} className="list-none pl-0 flex flex-col gap-[10px] my-[14px] w-full animate-fade-in">
+            {currentListItems.map((item, idx) => {
+              const cleanText = item.trim().substring(2);
+              return (
+                <li key={idx} className="flex items-start gap-[12px] text-[16px] text-black font-light leading-[1.6]">
+                  <span className="size-[6px] rounded-full bg-[#f25c0c] shrink-0 mt-[10px]" />
+                  <span className="flex-1 text-justify">{formatText(cleanText)}</span>
+                </li>
+              );
+            })}
+          </ul>
+        );
+      } else if (currentListType === "ordered") {
+        renderedElements.push(
+          <ol key={key} className="list-none pl-0 flex flex-col gap-[10px] my-[14px] w-full animate-fade-in">
+            {currentListItems.map((item, idx) => {
+              const match = item.trim().match(/^(\d+)\.\s(.*)$/);
+              const num = match ? match[1] : (idx + 1).toString();
+              const cleanText = match ? match[2] : item.trim();
+              return (
+                <li key={idx} className="flex items-start gap-[12px] text-[16px] text-black font-light leading-[1.6]">
+                  <span className="text-[#f25c0c] font-semibold shrink-0 w-[18px] text-right text-[14px] mt-[1px]">{num}.</span>
+                  <span className="flex-1 text-justify">{formatText(cleanText)}</span>
+                </li>
+              );
+            })}
+          </ol>
+        );
+      }
+      currentListItems = [];
+      currentListType = null;
+    };
+
+    lines.forEach((line, lineIdx) => {
+      const trimmed = line.trim();
+      const isBullet = trimmed.startsWith("- ") || trimmed.startsWith("* ");
+      const isOrdered = /^\d+\.\s/.test(trimmed);
+
+      if (isBullet) {
+        if (currentListType !== "bullet") {
+          flushList(`list-${lineIdx}`);
+          currentListType = "bullet";
+        }
+        currentListItems.push(line);
+      } else if (isOrdered) {
+        if (currentListType !== "ordered") {
+          flushList(`list-${lineIdx}`);
+          currentListType = "ordered";
+        }
+        currentListItems.push(line);
+      } else {
+        flushList(`list-${lineIdx}`);
+        if (trimmed !== "") {
+          renderedElements.push(
+            <p key={`p-${lineIdx}`} className="font-light text-[16px] text-black text-justify leading-[1.6] mb-[8px] last:mb-0">
+              {formatText(line)}
+            </p>
+          );
+        }
+      }
+    });
+
+    flushList("list-final");
+    return <div className="flex flex-col w-full">{renderedElements}</div>;
+  };
+
   return (
     <div className="bg-white min-h-screen font-['Manrope',sans-serif] text-black flex flex-col justify-between">
       {/* Main Column Container */}
@@ -149,9 +228,9 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
 
               <div className="flex flex-col gap-[16px] mb-4">
                 {sec.paragraphs.map((para, pIdx) => (
-                  <p key={pIdx} className="font-light text-[16px] text-black text-justify">
-                    {formatText(para)}
-                  </p>
+                  <Fragment key={pIdx}>
+                    {renderParagraphContent(para)}
+                  </Fragment>
                 ))}
               </div>
 
@@ -189,9 +268,9 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                         {block.postParagraphs && block.postParagraphs.length > 0 && (
                           <div className="flex flex-col gap-[16px] mt-[8px]">
                             {block.postParagraphs.map((para, pIdx) => (
-                              <p key={pIdx} className="font-light text-[16px] text-black text-justify animate-fade-in">
-                                {formatText(para)}
-                              </p>
+                              <Fragment key={pIdx}>
+                                {renderParagraphContent(para)}
+                              </Fragment>
                             ))}
                           </div>
                         )}
@@ -240,9 +319,9 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                   {sec.postImageParagraphs && sec.postImageParagraphs.length > 0 && (
                     <div className="flex flex-col gap-[16px] mt-6 mb-4">
                       {sec.postImageParagraphs.map((para, pIdx) => (
-                        <p key={pIdx} className="font-light text-[16px] text-black text-justify animate-fade-in">
-                          {formatText(para)}
-                        </p>
+                        <Fragment key={pIdx}>
+                          {renderParagraphContent(para)}
+                        </Fragment>
                       ))}
                     </div>
                   )}
