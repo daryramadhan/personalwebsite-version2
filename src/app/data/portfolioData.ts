@@ -11,6 +11,14 @@ import imgUploaded_1784916922864 from "@/imports/LandingPage/uploaded_1784916922
 import imgUploaded_1784917102408 from "@/imports/LandingPage/uploaded_1784917102408.webp";
 import imgUploaded_1784917109510 from "@/imports/LandingPage/uploaded_1784917109510.webp";
 
+export interface SectionMediaBlock {
+  id: string;
+  images: string[];
+  layout?: "1-column" | "2-column";
+  captions?: string[];
+  postParagraphs?: string[];
+}
+
 export interface CaseStudySection {
   id: string;
   heading: string;
@@ -22,6 +30,7 @@ export interface CaseStudySection {
   captions?: string[];
   navTitle?: string;
   postImageParagraphs?: string[];
+  mediaBlocks?: SectionMediaBlock[];
 }
 
 export interface CaseStudy {

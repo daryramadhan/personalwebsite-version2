@@ -155,49 +155,98 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                 ))}
               </div>
 
-              {(() => {
-                const secImages = sec.images && sec.images.length > 0
-                  ? sec.images
-                  : (sec.image ? [sec.image] : []);
-                const isTwoColumn = sec.layout === "2-column";
-
-                if (secImages.length === 0) return null;
-
-                return (
-                  <div className="flex flex-col gap-[8x] w-full">
-                    <div className={`grid gap-[8px] w-full ${isTwoColumn ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"}`}>
-                      {secImages.map((imgSrc, imgIdx) => {
-                        const specificCaption = sec.captions?.[imgIdx] || (imgIdx === 0 ? sec.caption : undefined);
-                        return (
-                          <div key={imgIdx} className="flex flex-col gap-[16px] w-full animate-fade-in">
-                            <div className="w-full rounded-[8px] bg-[#f9f9f9] flex items-center justify-center p-[16px] md:p-[24px]">
-                              <img
-                                src={imgSrc}
-                                alt={`${sec.heading} mockup ${imgIdx + 1}`}
-                                className="w-full h-auto rounded-[6px] block"
-                              />
-                            </div>
-                            {specificCaption && (
-                              <p className="font-light text-[14px] leading-[1.4] text-[#b4b4b4] mt-[4px] text-center mb-[24px]">
-                                {specificCaption}
-                              </p>
-                            )}
+              {/* Render Media Groups (if defined) */}
+              {sec.mediaBlocks && sec.mediaBlocks.length > 0 ? (
+                <div className="flex flex-col gap-[36px] w-full mt-4">
+                  {sec.mediaBlocks.map((block, bIdx) => {
+                    const blockImages = block.images || [];
+                    const isTwoColumn = block.layout === "2-column";
+                    return (
+                      <div key={block.id || bIdx} className="flex flex-col gap-[16px] w-full">
+                        {blockImages.length > 0 && (
+                          <div className={`grid gap-[8px] w-full ${isTwoColumn ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"}`}>
+                            {blockImages.map((imgSrc, imgIdx) => {
+                              const specificCaption = block.captions?.[imgIdx];
+                              return (
+                                <div key={imgIdx} className="flex flex-col gap-[16px] w-full animate-fade-in">
+                                  <div className="w-full rounded-[8px] bg-[#f9f9f9] flex items-center justify-center p-[16px] md:p-[24px]">
+                                    <img
+                                      src={imgSrc}
+                                      alt={`${sec.heading} mockup ${bIdx + 1}-${imgIdx + 1}`}
+                                      className="w-full h-auto rounded-[6px] block"
+                                    />
+                                  </div>
+                                  {specificCaption && (
+                                    <p className="font-light text-[14px] leading-[1.4] text-[#b4b4b4] mt-[4px] text-center mb-[24px]">
+                                      {specificCaption}
+                                    </p>
+                                  )}
+                                </div>
+                              );
+                            })}
                           </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                );
-              })()}
-
-              {sec.postImageParagraphs && sec.postImageParagraphs.length > 0 && (
-                <div className="flex flex-col gap-[16px] mt-6 mb-4">
-                  {sec.postImageParagraphs.map((para, pIdx) => (
-                    <p key={pIdx} className="font-light text-[16px] text-black text-justify animate-fade-in">
-                      {formatText(para)}
-                    </p>
-                  ))}
+                        )}
+                        {block.postParagraphs && block.postParagraphs.length > 0 && (
+                          <div className="flex flex-col gap-[16px] mt-[8px]">
+                            {block.postParagraphs.map((para, pIdx) => (
+                              <p key={pIdx} className="font-light text-[16px] text-black text-justify animate-fade-in">
+                                {formatText(para)}
+                              </p>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
+              ) : (
+                /* Legacy fallback */
+                <>
+                  {(() => {
+                    const secImages = sec.images && sec.images.length > 0
+                      ? sec.images
+                      : (sec.image ? [sec.image] : []);
+                    const isTwoColumn = sec.layout === "2-column";
+
+                    if (secImages.length === 0) return null;
+
+                    return (
+                      <div className="flex flex-col gap-[8px] w-full">
+                        <div className={`grid gap-[8px] w-full ${isTwoColumn ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"}`}>
+                          {secImages.map((imgSrc, imgIdx) => {
+                            const specificCaption = sec.captions?.[imgIdx] || (imgIdx === 0 ? sec.caption : undefined);
+                            return (
+                              <div key={imgIdx} className="flex flex-col gap-[16px] w-full animate-fade-in">
+                                <div className="w-full rounded-[8px] bg-[#f9f9f9] flex items-center justify-center p-[16px] md:p-[24px]">
+                                  <img
+                                    src={imgSrc}
+                                    alt={`${sec.heading} mockup ${imgIdx + 1}`}
+                                    className="w-full h-auto rounded-[6px] block"
+                                  />
+                                </div>
+                                {specificCaption && (
+                                  <p className="font-light text-[14px] leading-[1.4] text-[#b4b4b4] mt-[4px] text-center mb-[24px]">
+                                    {specificCaption}
+                                  </p>
+                                )}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    );
+                  })()}
+
+                  {sec.postImageParagraphs && sec.postImageParagraphs.length > 0 && (
+                    <div className="flex flex-col gap-[16px] mt-6 mb-4">
+                      {sec.postImageParagraphs.map((para, pIdx) => (
+                        <p key={pIdx} className="font-light text-[16px] text-black text-justify animate-fade-in">
+                          {formatText(para)}
+                        </p>
+                      ))}
+                    </div>
+                  )}
+                </>
               )}
 
               {/* Render metadata row inside the first section (Overview) */}

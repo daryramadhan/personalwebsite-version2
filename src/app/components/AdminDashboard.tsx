@@ -371,6 +371,43 @@ export default function AdminDashboard() {
     handleUpdateSections(sections);
   };
 
+  const handleAddMediaBlock = (sectionId: string) => {
+    const sections = getActiveProjectSections().map(s => {
+      if (s.id !== sectionId) return s;
+      const mediaBlocks = s.mediaBlocks ? [...s.mediaBlocks] : [];
+      const newBlock = {
+        id: `block-${Date.now()}`,
+        images: [],
+        layout: "1-column" as const,
+        captions: [],
+        postParagraphs: []
+      };
+      return { ...s, mediaBlocks: [...mediaBlocks, newBlock] };
+    });
+    handleUpdateSections(sections);
+  };
+
+  const handleRemoveMediaBlock = (sectionId: string, blockId: string) => {
+    const sections = getActiveProjectSections().map(s => {
+      if (s.id !== sectionId || !s.mediaBlocks) return s;
+      const mediaBlocks = s.mediaBlocks.filter(b => b.id !== blockId);
+      return { ...s, mediaBlocks: mediaBlocks.length > 0 ? mediaBlocks : undefined };
+    });
+    handleUpdateSections(sections);
+  };
+
+  const handleUpdateMediaBlockField = (sectionId: string, blockId: string, field: string, value: any) => {
+    const sections = getActiveProjectSections().map(s => {
+      if (s.id !== sectionId || !s.mediaBlocks) return s;
+      const mediaBlocks = s.mediaBlocks.map(b => {
+        if (b.id !== blockId) return b;
+        return { ...b, [field]: value };
+      });
+      return { ...s, mediaBlocks };
+    });
+    handleUpdateSections(sections);
+  };
+
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-[#fafafa] flex items-center justify-center p-[24px] font-['Manrope',sans-serif]">
@@ -1048,6 +1085,224 @@ export default function AdminDashboard() {
                           className="text-[11px] font-semibold text-[#f25c0c] hover:underline cursor-pointer self-start"
                         >
                           + Add Paragraph Below Images
+                        </button>
+                      </div>
+
+                      {/* Media & Paragraph Stacking Editor */}
+                      <div className="flex flex-col gap-[16px] border-t border-[#f0f0f0] pt-[20px] mt-[16px]">
+                        <div className="flex justify-between items-center">
+                          <label className="text-[12px] font-bold text-black uppercase tracking-[0.5px]">
+                            Alternating Images & Paragraph Groups
+                          </label>
+                        </div>
+
+                        {/* List of stacked groups */}
+                        {sec.mediaBlocks && sec.mediaBlocks.length > 0 && (
+                          <div className="flex flex-col gap-[20px]">
+                            {sec.mediaBlocks.map((block, bIdx) => {
+                              const blockImages = block.images || [];
+                              return (
+                                <div key={block.id || bIdx} className="p-[16px] border border-[#e8e8e8] rounded-[10px] bg-[#fcfcfc] flex flex-col gap-[16px] relative">
+                                  {/* Header */}
+                                  <div className="flex justify-between items-center border-b border-[#f0f0f0] pb-[8px]">
+                                    <span className="text-[12px] font-bold text-[#f25c0c]">
+                                      Group #{bIdx + 1}
+                                    </span>
+                                    <button
+                                      onClick={() => handleRemoveMediaBlock(sec.id, block.id)}
+                                      className="text-red-500 hover:text-red-700 text-[11px] font-semibold cursor-pointer"
+                                    >
+                                      Remove Group
+                                    </button>
+                                  </div>
+
+                                  {/* Layout columns */}
+                                  <div className="flex flex-col gap-[6px]">
+                                    <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                                      Columns Layout
+                                    </label>
+                                    <div className="flex gap-[24px]">
+                                      <label className="flex items-center gap-[6px] text-[13px] font-medium cursor-pointer">
+                                        <input
+                                          type="radio"
+                                          name={`layout-${block.id}`}
+                                          checked={block.layout !== "2-column"}
+                                          onChange={() => handleUpdateMediaBlockField(sec.id, block.id, "layout", "1-column")}
+                                          className="cursor-pointer accent-[#f25c0c]"
+                                        />
+                                        1 Column
+                                      </label>
+                                      <label className="flex items-center gap-[6px] text-[13px] font-medium cursor-pointer">
+                                        <input
+                                          type="radio"
+                                          name={`layout-${block.id}`}
+                                          checked={block.layout === "2-column"}
+                                          onChange={() => handleUpdateMediaBlockField(sec.id, block.id, "layout", "2-column")}
+                                          className="cursor-pointer accent-[#f25c0c]"
+                                        />
+                                        2 Columns
+                                      </label>
+                                    </div>
+                                  </div>
+
+                                  {/* Group Images List */}
+                                  <div className="flex flex-col gap-[8px]">
+                                    <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                                      Mockup Images
+                                    </label>
+                                    {blockImages.map((imgSrc, imgIdx) => (
+                                      <div key={imgIdx} className="flex flex-col gap-[8px] p-[10px] border border-[#f0f0f0] rounded-[6px] bg-white">
+                                        <div className="flex items-center gap-[12px]">
+                                          <img src={imgSrc} alt={`Mockup ${imgIdx + 1}`} className="h-[36px] w-[54px] object-cover rounded-[4px] border border-[#f0f0f0]" />
+                                          <span className="text-[11px] font-semibold text-gray-500 flex-1">Image #{imgIdx + 1}</span>
+                                          <div className="flex items-center gap-[4px]">
+                                            <button
+                                              onClick={() => {
+                                                if (imgIdx === 0) return;
+                                                const next = [...blockImages];
+                                                const nextCaps = block.captions ? [...block.captions] : [];
+                                                const tempImg = next[imgIdx];
+                                                next[imgIdx] = next[imgIdx - 1];
+                                                next[imgIdx - 1] = tempImg;
+                                                const tempCap = nextCaps[imgIdx];
+                                                nextCaps[imgIdx] = nextCaps[imgIdx - 1];
+                                                nextCaps[imgIdx - 1] = tempCap;
+                                                handleUpdateMediaBlockField(sec.id, block.id, "images", next);
+                                                handleUpdateMediaBlockField(sec.id, block.id, "captions", nextCaps);
+                                              }}
+                                              disabled={imgIdx === 0}
+                                              className="text-[11px] text-gray-500 hover:text-black cursor-pointer disabled:opacity-30 p-[4px]"
+                                            >
+                                              ▲
+                                            </button>
+                                            <button
+                                              onClick={() => {
+                                                if (imgIdx === blockImages.length - 1) return;
+                                                const next = [...blockImages];
+                                                const nextCaps = block.captions ? [...block.captions] : [];
+                                                const tempImg = next[imgIdx];
+                                                next[imgIdx] = next[imgIdx + 1];
+                                                next[imgIdx + 1] = tempImg;
+                                                const tempCap = nextCaps[imgIdx];
+                                                nextCaps[imgIdx] = nextCaps[imgIdx + 1];
+                                                nextCaps[imgIdx + 1] = tempCap;
+                                                handleUpdateMediaBlockField(sec.id, block.id, "images", next);
+                                                handleUpdateMediaBlockField(sec.id, block.id, "captions", nextCaps);
+                                              }}
+                                              disabled={imgIdx === blockImages.length - 1}
+                                              className="text-[11px] text-gray-500 hover:text-black cursor-pointer disabled:opacity-30 p-[4px]"
+                                            >
+                                              ▼
+                                            </button>
+                                            <button
+                                              onClick={() => {
+                                                const next = blockImages.filter((_, idx) => idx !== imgIdx);
+                                                const nextCaps = block.captions ? block.captions.filter((_, idx) => idx !== imgIdx) : [];
+                                                handleUpdateMediaBlockField(sec.id, block.id, "images", next);
+                                                handleUpdateMediaBlockField(sec.id, block.id, "captions", nextCaps);
+                                              }}
+                                              className="text-[11px] text-red-500 hover:text-red-700 font-semibold cursor-pointer ml-[8px]"
+                                            >
+                                              Delete
+                                            </button>
+                                          </div>
+                                        </div>
+
+                                        {/* Image Caption */}
+                                        <input
+                                          type="text"
+                                          value={block.captions?.[imgIdx] || ""}
+                                          placeholder="Mockup Caption..."
+                                          onChange={(e) => {
+                                            const nextCaps = block.captions ? [...block.captions] : [];
+                                            while (nextCaps.length <= imgIdx) {
+                                              nextCaps.push("");
+                                            }
+                                            nextCaps[imgIdx] = e.target.value;
+                                            handleUpdateMediaBlockField(sec.id, block.id, "captions", nextCaps);
+                                          }}
+                                          className="border border-[#e0e0e0] rounded-[6px] px-[8px] py-[4px] text-[12px] outline-none focus:border-black bg-white transition-colors"
+                                        />
+                                      </div>
+                                    ))}
+
+                                    <input
+                                      type="file"
+                                      accept="image/*"
+                                      multiple
+                                      onChange={async (e) => {
+                                        const files = Array.from(e.target.files || []);
+                                        if (files.length === 0) return;
+                                        try {
+                                          const uploadedPaths: string[] = [];
+                                          for (const file of files) {
+                                            const filePath = await optimizeAndUploadImage(file);
+                                            uploadedPaths.push(filePath);
+                                          }
+                                          const nextImages = [...blockImages, ...uploadedPaths];
+                                          const nextCaps = block.captions ? [...block.captions] : [];
+                                          while (nextCaps.length < nextImages.length) {
+                                            nextCaps.push("");
+                                          }
+                                          handleUpdateMediaBlockField(sec.id, block.id, "images", nextImages);
+                                          handleUpdateMediaBlockField(sec.id, block.id, "captions", nextCaps);
+                                        } catch (err: any) {
+                                          alert(`Upload failed: ${err.message}`);
+                                        }
+                                      }}
+                                      className="text-[12px] mt-[4px]"
+                                    />
+                                  </div>
+
+                                  {/* Paragraphs Below this media group */}
+                                  <div className="flex flex-col gap-[8px] border-t border-[#f0f0f0] pt-[12px]">
+                                    <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                                      Paragraphs Below These Images
+                                    </label>
+                                    {(block.postParagraphs || []).map((pText, pIdx) => (
+                                      <div key={pIdx} className="flex gap-[8px] items-start">
+                                        <textarea
+                                          value={pText}
+                                          rows={2}
+                                          onChange={(e) => {
+                                            const nextParas = [...(block.postParagraphs || [])];
+                                            nextParas[pIdx] = e.target.value;
+                                            handleUpdateMediaBlockField(sec.id, block.id, "postParagraphs", nextParas);
+                                          }}
+                                          className="flex-1 border border-[#e0e0e0] rounded-[6px] px-[10px] py-[6px] text-[12px] outline-none focus:border-black bg-white transition-colors resize-none"
+                                        />
+                                        <button
+                                          onClick={() => {
+                                            const nextParas = (block.postParagraphs || []).filter((_, idx) => idx !== pIdx);
+                                            handleUpdateMediaBlockField(sec.id, block.id, "postParagraphs", nextParas.length > 0 ? nextParas : undefined);
+                                          }}
+                                          className="text-red-500 hover:text-red-700 text-[11px] font-semibold mt-[6px] cursor-pointer"
+                                        >
+                                          Remove
+                                        </button>
+                                      </div>
+                                    ))}
+                                    <button
+                                      onClick={() => {
+                                        handleUpdateMediaBlockField(sec.id, block.id, "postParagraphs", [...(block.postParagraphs || []), ""]);
+                                      }}
+                                      className="text-[10px] font-semibold text-[#f25c0c] hover:underline cursor-pointer self-start"
+                                    >
+                                      + Add Paragraph Below Images
+                                    </button>
+                                  </div>
+
+                                </div>
+                              );
+                            })}
+                          </div>
+                        )}
+
+                        <button
+                          onClick={() => handleAddMediaBlock(sec.id)}
+                          className="bg-[#f9f9f9] hover:bg-gray-100 text-black border border-[#e0e0e0] font-semibold text-[12px] py-[8px] px-[16px] rounded-[6px] transition-colors cursor-pointer self-start"
+                        >
+                          + Add Image & Paragraph Stack Group
                         </button>
                       </div>
 
