@@ -408,6 +408,18 @@ export default function AdminDashboard() {
     handleUpdateSections(sections);
   };
 
+  const handleUpdateMediaBlockFields = (sectionId: string, blockId: string, fields: Partial<SectionMediaBlock>) => {
+    const sections = getActiveProjectSections().map(s => {
+      if (s.id !== sectionId || !s.mediaBlocks) return s;
+      const mediaBlocks = s.mediaBlocks.map(b => {
+        if (b.id !== blockId) return b;
+        return { ...b, ...fields };
+      });
+      return { ...s, mediaBlocks };
+    });
+    handleUpdateSections(sections);
+  };
+
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-[#fafafa] flex items-center justify-center p-[24px] font-['Manrope',sans-serif]">
@@ -1167,8 +1179,10 @@ export default function AdminDashboard() {
                                                 const tempCap = nextCaps[imgIdx];
                                                 nextCaps[imgIdx] = nextCaps[imgIdx - 1];
                                                 nextCaps[imgIdx - 1] = tempCap;
-                                                handleUpdateMediaBlockField(sec.id, block.id, "images", next);
-                                                handleUpdateMediaBlockField(sec.id, block.id, "captions", nextCaps);
+                                                handleUpdateMediaBlockFields(sec.id, block.id, {
+                                                  images: next,
+                                                  captions: nextCaps
+                                                });
                                               }}
                                               disabled={imgIdx === 0}
                                               className="text-[11px] text-gray-500 hover:text-black cursor-pointer disabled:opacity-30 p-[4px]"
@@ -1186,8 +1200,10 @@ export default function AdminDashboard() {
                                                 const tempCap = nextCaps[imgIdx];
                                                 nextCaps[imgIdx] = nextCaps[imgIdx + 1];
                                                 nextCaps[imgIdx + 1] = tempCap;
-                                                handleUpdateMediaBlockField(sec.id, block.id, "images", next);
-                                                handleUpdateMediaBlockField(sec.id, block.id, "captions", nextCaps);
+                                                handleUpdateMediaBlockFields(sec.id, block.id, {
+                                                  images: next,
+                                                  captions: nextCaps
+                                                });
                                               }}
                                               disabled={imgIdx === blockImages.length - 1}
                                               className="text-[11px] text-gray-500 hover:text-black cursor-pointer disabled:opacity-30 p-[4px]"
@@ -1198,8 +1214,10 @@ export default function AdminDashboard() {
                                               onClick={() => {
                                                 const next = blockImages.filter((_, idx) => idx !== imgIdx);
                                                 const nextCaps = block.captions ? block.captions.filter((_, idx) => idx !== imgIdx) : [];
-                                                handleUpdateMediaBlockField(sec.id, block.id, "images", next);
-                                                handleUpdateMediaBlockField(sec.id, block.id, "captions", nextCaps);
+                                                handleUpdateMediaBlockFields(sec.id, block.id, {
+                                                  images: next,
+                                                  captions: nextCaps
+                                                });
                                               }}
                                               className="text-[11px] text-red-500 hover:text-red-700 font-semibold cursor-pointer ml-[8px]"
                                             >
@@ -1244,8 +1262,10 @@ export default function AdminDashboard() {
                                           while (nextCaps.length < nextImages.length) {
                                             nextCaps.push("");
                                           }
-                                          handleUpdateMediaBlockField(sec.id, block.id, "images", nextImages);
-                                          handleUpdateMediaBlockField(sec.id, block.id, "captions", nextCaps);
+                                          handleUpdateMediaBlockFields(sec.id, block.id, {
+                                            images: nextImages,
+                                            captions: nextCaps
+                                          });
                                         } catch (err: any) {
                                           alert(`Upload failed: ${err.message}`);
                                         }

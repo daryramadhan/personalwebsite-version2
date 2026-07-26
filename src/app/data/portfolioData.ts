@@ -755,21 +755,29 @@ export const projects: Project[] = [
           id: "overview",
           heading: "Overview",
           paragraphs: [
-            "An overview of the design challenges and results for the Sentra Landing Page project."
+            "PT Pupuk Indonesia (Persero) is Indonesia's largest state-owned fertilizer company and serves as the holding group for over 10 subsidiaries — including PT Petrokimia Gresik, PT Pupuk Kalimantan Timur, PT Pupuk Sriwidjaja Palembang, and several others spanning fertilizer production, logistics, engineering, and trade. As a BUMN (state-owned enterprise), Pupuk Indonesia operates at a national scale with thousands of employees spread across its group companies."
           ],
           images: [
-            "/uploads/uploaded_1785056710988.webp"
+            "/uploads/uploaded_1785057882483.webp"
           ],
-          image: "/uploads/uploaded_1785056710988.webp",
+          image: "/uploads/uploaded_1785057882483.webp",
           captions: [
             ""
+          ],
+          mediaBlocks: [
+            {
+              id: "block-1785057574916",
+              images: [],
+              layout: "1-column",
+              captions: [],
+              postParagraphs: []
+            }
           ]
         },
         {
           id: "section-1785056515647",
           heading: "Project Background",
           paragraphs: [
-            "PT Pupuk Indonesia (Persero) is Indonesia's largest state-owned fertilizer company and serves as the holding group for over 10 subsidiaries — including PT Petrokimia Gresik, PT Pupuk Kalimantan Timur, PT Pupuk Sriwidjaja Palembang, and several others spanning fertilizer production, logistics, engineering, and trade. As a BUMN (state-owned enterprise), Pupuk Indonesia operates at a national scale with thousands of employees spread across its group companies.",
             "Sentra is Pupuk Indonesia's internal digital workplace platform — built to centralize and digitize all employee activities across the group. From legal submissions and vehicle bookings to consumption orders and risk management, every daily work process runs through Sentra. This makes the landing page not just an entry point, but a tool employees return to every single working day."
           ],
           navTitle: "Background "
@@ -796,6 +804,75 @@ export const projects: Project[] = [
             "/uploads/uploaded_1785056625041.webp"
           ],
           image: "/uploads/uploaded_1785056625041.webp",
+          captions: [
+            "The old landing page design"
+          ],
+          postImageParagraphs: [
+            "From there, I moved into research: studying Sentra's existing design system to understand its behaviors, component patterns, and visual language. This was critical — any new design needed to feel like it belonged in Sentra, not bolted on from the outside."
+          ],
+          mediaBlocks: [
+            {
+              id: "block-1785057638024",
+              images: [],
+              layout: "1-column",
+              captions: [
+                ""
+              ],
+              postParagraphs: [
+                "With that foundation, I explored multiple design options for each problem area, then iterated based on continued feedback until the solutions felt right for real users, not just on paper."
+              ]
+            }
+          ],
+          caption: "The old landing page design"
+        },
+        {
+          id: "section-1785057699811",
+          heading: "Discussion & Iteration",
+          paragraphs: [
+            "One of the more interesting design decisions happened around the quick access customization feature. My initial approach used a modal — a common pattern for this kind of management UI. But in discussion with Pupuk Indonesia's internal development team, we explored whether the modal was the right fit for something users would interact with regularly.",
+            "The outcome: we moved toward an inline edit mode that lives directly within the section itself. Users click \"Kelola akses cepat,\" the section enters edit mode in place, and they can drag to reorder, tap to remove, and add new actions from an expandable panel — all without leaving the page context. No overlay, no interruption."
+          ],
+          navTitle: "Iteration",
+          images: [
+            "/uploads/uploaded_1785057734940.webp"
+          ],
+          image: "/uploads/uploaded_1785057734940.webp",
+          captions: [
+            ""
+          ],
+          postImageParagraphs: [
+            "These kinds of discussions were genuinely enjoyable. Working directly with the dev team meant design decisions were grounded in both user experience and technical reality."
+          ]
+        },
+        {
+          id: "section-1785057750653",
+          heading: "Deliverables",
+          paragraphs: [
+            "As the sole designer on this project — handling everything from initial discovery and design exploration to stakeholder presentations and final handoff — I made sure every deliverable was built to serve the developers as much as the users.",
+            "Because Sentra already has an established design system, my deliverables were tightly aligned to its existing component library and interaction patterns. Annotations, interaction states, edge cases, and component behavior were all documented clearly — so the gap between design and implementation stayed as small as possible."
+          ],
+          navTitle: "Deliverables",
+          images: [
+            "/uploads/uploaded_1785057781084.webp"
+          ],
+          image: "/uploads/uploaded_1785057781084.webp",
+          captions: [
+            ""
+          ],
+          postImageParagraphs: [
+            "- Personalized quick access with inline edit mode, drag-to-reorder, and an expandable action picker supporting 20+ services\n- Improved empty state for the Favorites section with clear, minimal guidance directing users to the star icon\n- Contextual activity tracker and daily agenda on the landing page\n- Seamless integration with Sentra's existing design system"
+          ]
+        },
+        {
+          id: "section-1785057805941",
+          heading: "The Final Design",
+          paragraphs: [
+            ""
+          ],
+          images: [
+            "/uploads/uploaded_1785057828823.webp"
+          ],
+          image: "/uploads/uploaded_1785057828823.webp",
           captions: [
             ""
           ]
