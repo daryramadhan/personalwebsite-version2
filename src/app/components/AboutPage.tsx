@@ -181,6 +181,27 @@ export default function AboutPage() {
             </div>
           </section>
 
+          {/* Tools Section */}
+          <section className="flex flex-col gap-[16px]">
+            <h2 className="font-medium text-[24px] leading-[1.2] tracking-[-0.5px] text-black border-b border-[#f4f4f4] pb-[8px]">
+              Tools & Stack
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-[24px] pt-[8px]">
+              <div className="flex flex-col gap-[6px]">
+                <p className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">Design & Motion</p>
+                <p className="text-[14px] font-light leading-[1.5] text-black">Figma, Framer, Principle, Adobe Creative Suite</p>
+              </div>
+              <div className="flex flex-col gap-[6px]">
+                <p className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">Development & Code</p>
+                <p className="text-[14px] font-light leading-[1.5] text-black">Xcode, Swift/SwiftUI, React, VS Code, Git, HTML/CSS/JS</p>
+              </div>
+              <div className="flex flex-col gap-[6px]">
+                <p className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">Productivity & Ops</p>
+                <p className="text-[14px] font-light leading-[1.5] text-black">Notion, Slack, Linear, Jira</p>
+              </div>
+            </div>
+          </section>
+
           {/* Volunteering Section */}
           <section className="flex flex-col gap-[20px]">
             <h2 className="font-medium text-[24px] leading-[1.2] tracking-[-0.5px] text-black border-b border-[#f4f4f4] pb-[8px]">
