@@ -57,7 +57,7 @@ export default function LeftPanel() {
       </div>
 
       {/* Social links at the bottom */}
-      <div className="flex flex-wrap gap-[16px] items-center font-['Manrope',sans-serif] font-normal text-[12px] leading-[1.4] text-black">
+      <div className="flex flex-wrap gap-[16px] items-center font-['Manrope',sans-serif] font-light text-[14px] leading-[1.4] text-black">
         {socialLinks.map((link) => (
           <a
             key={link.label}

@@ -133,6 +133,7 @@ export default function AdminDashboard() {
   // Create Project Modal state
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [newProjTitle, setNewProjTitle] = useState("");
+  const [newProjClient, setNewProjClient] = useState("");
   const [newProjRole, setNewProjRole] = useState("Product Designer");
   const [newProjCategory, setNewProjCategory] = useState("AI SaaS");
   const [newProjTimeline, setNewProjTimeline] = useState("2 Months (Q4 2025)");
@@ -173,6 +174,7 @@ export default function AdminDashboard() {
       const newProject: Project = {
         id: finalId,
         title: newProjTitle,
+        client: newProjClient.trim() || undefined,
         category: newProjCategory,
         role: newProjRole,
         year: new Date().getFullYear().toString(),
@@ -202,6 +204,7 @@ export default function AdminDashboard() {
       setIsCreateModalOpen(false);
 
       setNewProjTitle("");
+      setNewProjClient("");
       setNewProjRole("Product Designer");
       setNewProjCategory("AI SaaS");
       setNewProjTimeline("2 Months (Q4 2025)");
@@ -596,6 +599,18 @@ export default function AdminDashboard() {
                     className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black transition-colors"
                   />
                 </div>
+              </div>
+              <div className="flex flex-col gap-[6px]">
+                <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                  Company / Client Name
+                </label>
+                <input
+                  type="text"
+                  placeholder="e.g. TRD Studio (leave blank to use Project Title)"
+                  value={activeProject.client || ""}
+                  onChange={(e) => updateProjectField("client", e.target.value)}
+                  className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black transition-colors"
+                />
               </div>
 
               <div className="grid grid-cols-2 gap-[16px]">
@@ -1189,6 +1204,19 @@ export default function AdminDashboard() {
                   placeholder="e.g. Resumify, DescAd"
                   value={newProjTitle}
                   onChange={(e) => setNewProjTitle(e.target.value)}
+                  className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black bg-white transition-colors"
+                />
+              </div>
+
+              <div className="flex flex-col gap-[6px]">
+                <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                  Company / Client Name
+                </label>
+                <input
+                  type="text"
+                  placeholder="e.g. TRD Studio (leave blank to use Project Title)"
+                  value={newProjClient}
+                  onChange={(e) => setNewProjClient(e.target.value)}
                   className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black bg-white transition-colors"
                 />
               </div>

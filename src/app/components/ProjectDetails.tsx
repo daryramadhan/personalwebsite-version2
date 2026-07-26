@@ -134,7 +134,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
         </div>
 
         {/* Right Content Stream */}
-        <div className="flex-1 flex flex-col gap-[48px] w-full">
+        <div className="flex-1 flex flex-col gap-[24px] w-full">
           {projectSections.map((sec, idx) => (
             <section key={sec.id} id={sec.id} className="flex flex-col gap-[16px] scroll-mt-[64px]">
               {idx === 0 ? (
@@ -165,11 +165,11 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
 
                 return (
                   <div className="flex flex-col gap-[8px] w-full">
-                    <div className={`grid gap-[8px] w-full ${isTwoColumn ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"}`}>
+                    <div className={`grid gap-[32px] w-full ${isTwoColumn ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"}`}>
                       {secImages.map((imgSrc, imgIdx) => {
                         const specificCaption = sec.captions?.[imgIdx] || (imgIdx === 0 ? sec.caption : undefined);
                         return (
-                          <div key={imgIdx} className="flex flex-col gap-[8px] w-full animate-fade-in">
+                          <div key={imgIdx} className="flex flex-col gap-[16px] w-full animate-fade-in">
                             <div className="w-full rounded-[8px] bg-[#f9f9f9] flex items-center justify-center p-[16px] md:p-[24px]">
                               <img
                                 src={imgSrc}
@@ -199,7 +199,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                         Company/Client
                       </p>
                       <p className="font-medium text-[14px] leading-[1.4] text-black">
-                        {project.title}
+                        {project.client || project.title}
                       </p>
                     </div>
                     <div>

@@ -47,6 +47,7 @@ export interface Project {
   category?: string;
   role?: string;
   year?: string;
+  client?: string;
   url?: string;
   caseStudy?: CaseStudy;
 }
