@@ -69,7 +69,7 @@ export default function LeftPanel() {
             >
               <div className="size-[120px] rounded-full border-2 border-white shadow-lg overflow-hidden bg-gray-100">
                 <img
-                  src="/avatar.png"
+                  src="/avatar.webp"
                   alt="Dary Ramadhan"
                   className="size-full object-cover"
                 />

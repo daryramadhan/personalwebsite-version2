@@ -48,7 +48,7 @@ const optimizeAndUploadImage = (file: File): Promise<string> => {
           return;
         }
 
-        const maxW = 1600;
+        const maxW = 2560;
         let w = img.width;
         let h = img.height;
         if (w > maxW) {
@@ -87,7 +87,7 @@ const optimizeAndUploadImage = (file: File): Promise<string> => {
             }
           },
           "image/webp",
-          0.8
+          0.92
         );
       };
       img.onerror = () => reject(new Error("Image rendering failed"));

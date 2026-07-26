@@ -75,7 +75,7 @@ export default function AboutPage() {
           <div className="flex flex-row lg:flex-col items-center lg:items-start gap-[16px] lg:gap-[24px] mt-[16px] lg:mt-[32px]">
             <div className="size-[80px] lg:size-[100px] rounded-full overflow-hidden bg-gray-50 shrink-0">
               <img
-                src="/avatar.png"
+                src="/avatar.webp"
                 alt="Dary Ramadhan"
                 className="size-full object-cover"
               />

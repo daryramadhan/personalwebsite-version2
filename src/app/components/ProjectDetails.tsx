@@ -164,8 +164,8 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                 if (secImages.length === 0) return null;
 
                 return (
-                  <div className="flex flex-col gap-[8px] w-full">
-                    <div className={`grid gap-[32px] w-full ${isTwoColumn ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"}`}>
+                  <div className="flex flex-col gap-[8x] w-full">
+                    <div className={`grid gap-[8px] w-full ${isTwoColumn ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"}`}>
                       {secImages.map((imgSrc, imgIdx) => {
                         const specificCaption = sec.captions?.[imgIdx] || (imgIdx === 0 ? sec.caption : undefined);
                         return (
@@ -178,7 +178,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                               />
                             </div>
                             {specificCaption && (
-                              <p className="font-light text-[14px] leading-[1.4] text-[#b4b4b4] mt-[4px] text-center">
+                              <p className="font-light text-[14px] leading-[1.4] text-[#b4b4b4] mt-[4px] text-center mb-[24px]">
                                 {specificCaption}
                               </p>
                             )}
