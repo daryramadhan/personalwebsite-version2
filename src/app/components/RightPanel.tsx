@@ -29,17 +29,17 @@ export default function RightPanel() {
               <h2 className="text-[20px] md:text-[22px] font-medium tracking-[-0.5px] text-black">
                 Thanks for exploring my work!
               </h2>
-              <p className="font-light text-[13px] md:text-[14px] leading-[1.5] text-gray-600 max-w-[480px]">
+              <p className="font-light text-[14px] md:text-[14px] leading-[1.5] max-w-[480px]">
                 Have a project or opportunity in mind? Book a free 30-minute discovery call or send me the project details.
               </p>
 
               {/* Bottom block (Selected companies and logos) */}
               {clients && clients.length > 0 && (
                 <div className="flex flex-col gap-[20px] w-full pt-[24px]">
-                  <p className="text-[11px] font-medium text-gray-400 uppercase tracking-[0.5px]">
-                    Selected companies and teams I've worked with
+                  <p className="text-[14px] font-regular">
+                    Selected companies and teams I've worked with,
                   </p>
-                  <div className="flex flex-wrap items-center gap-x-[48px] gap-y-[24px]">
+                  <div className="flex flex-wrap items-center gap-x-[32px] gap-y-[16px]">
                     {clients.map((c) => (
                       <img
                         key={c.id}
