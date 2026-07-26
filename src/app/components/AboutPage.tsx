@@ -61,19 +61,19 @@ export default function AboutPage() {
     <div className="bg-white min-h-screen font-['Manrope',sans-serif] text-black flex flex-col justify-between">
       {/* Main Content Column */}
       <div className="max-w-[1000px] mx-auto px-[24px] md:px-[50px] py-[64px] flex flex-col lg:flex-row gap-[48px] lg:gap-[64px] items-start w-full flex-1">
-        
+
         {/* Left Sticky Column */}
-        <div className="w-full lg:w-[220px] shrink-0 lg:sticky lg:top-[64px] lg:self-start flex flex-col gap-[32px] h-fit">
+        <div className="w-full lg:w-[220px] shrink-0 lg:sticky lg:top-[64px] lg:self-start flex flex-col gap-[16px] h-fit">
           <a
             href="#/"
             className="bg-[#f25c0c] hover:bg-[#e0540b] text-white font-regular text-[14px] leading-[1.4] px-[20px] py-[8px] rounded-full inline-flex items-center gap-[6px] transition-colors cursor-pointer w-fit"
           >
-            <span>←</span> Back Home
+            <span>←</span> Back to Portfolio
           </a>
 
           {/* Profile Circle Frame */}
-          <div className="flex flex-col gap-[16px]">
-            <div className="size-[120px] rounded-full border border-[#f0f0f0] overflow-hidden bg-gray-50 shadow-md">
+          <div className="flex flex-col gap-[16px] mt-[32px]">
+            <div className="size-[100px] rounded-full overflow-hidden">
               <img
                 src="/avatar.png"
                 alt="Dary Ramadhan"
@@ -81,9 +81,9 @@ export default function AboutPage() {
               />
             </div>
             <div>
-              <h1 className="text-[20px] font-bold text-black tracking-tight">{portfolioInfo.author}</h1>
-              <p className="text-[13px] text-[#8e8e8e] mt-[2px]">High-Agency Product Designer</p>
-              <p className="text-[13px] text-[#8e8e8e] mt-[2px]">Based in Jakarta, ID</p>
+              <h1 className="text-[20px] font-medium text-black tracking-[-0.5px]">{portfolioInfo.author}</h1>
+              <p className="text-[14px] text-[#8e8e8e] mt-[2px]">High-Agency Product Designer</p>
+              <p className="text-[14px] text-[#8e8e8e] mt-[2px]">Based in Jakarta, ID</p>
             </div>
           </div>
 
@@ -91,11 +91,11 @@ export default function AboutPage() {
 
           {/* Education */}
           <div className="flex flex-col gap-[8px]">
-            <p className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[1px]">Education</p>
-            <div className="text-[13px] text-black">
-              <p className="font-bold">BINUS University</p>
+            <p className="text-[10px] font-semibold text-[#8e8e8e] uppercase tracking-[1px]">Education</p>
+            <div className="text-[14px] text-black">
+              <p className="font-medium">BINUS University</p>
               <p className="text-gray-500 text-[12px] mt-[1px]">B.S. in Computer Science</p>
-              <p className="text-gray-400 text-[11px] mt-[1px]">2020 — 2024</p>
+              <p className="text-gray-400 text-[12px] mt-[1px]">2020 — 2024</p>
             </div>
           </div>
 
@@ -103,7 +103,7 @@ export default function AboutPage() {
 
           {/* Contact Details */}
           <div className="flex flex-col gap-[12px]">
-            <p className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[1px]">Contact & Links</p>
+            <p className="text-[10px] font-semibold text-[#8e8e8e] uppercase tracking-[1px]">Contact & Links</p>
             <div className="flex flex-col gap-[8px] text-[13px] text-black">
               {socialLinks.map((link) => (
                 <a
@@ -127,14 +127,14 @@ export default function AboutPage() {
             <h2 className="font-medium text-[24px] leading-[1.2] tracking-[-0.5px] text-black">
               About Me
             </h2>
-            <p className="font-light text-[16px] leading-[1.6] text-black text-justify">
-              I am a **High-Agency Product Designer** with a background in Computer Science, combining technical structural 
-              precision with layout empathy. I specialize in designing web applications, enterprise dashboards, SaaS systems, 
+            <p className="font-light text-[16px] leading-[1.5] text-black text-justify">
+              I am a High-Agency Product Designer with a background in Computer Science, combining technical structural
+              precision with layout empathy. I specialize in designing web applications, enterprise dashboards, SaaS systems,
               and mobile apps that turn complex datasets and processes into simple, elegant digital workflows.
             </p>
-            <p className="font-light text-[16px] leading-[1.6] text-black text-justify">
-              Having trained at the **Apple Developer Academy** and led developers at the **Google Developer Student Club**, 
-              I excel at translating raw business logic into high-performing interfaces. My goal is to build clean, premium-tier 
+            <p className="font-light text-[16px] leading-[1.5] text-black text-justify">
+              Having trained at the Apple Developer Academy and led developers at the Google Developer Student Club,
+              I excel at translating raw business logic into high-performing interfaces. My goal is to build clean, premium-tier
               design solutions that feel outstanding and empower developers to execute quickly and efficiently.
             </p>
           </section>
@@ -149,10 +149,10 @@ export default function AboutPage() {
                 <div key={index} className="flex flex-col gap-[8px]">
                   <div className="flex justify-between items-start gap-[12px] flex-wrap">
                     <div>
-                      <h3 className="text-[16px] font-bold text-black">{exp.role}</h3>
-                      <p className="text-[14px] font-medium text-[#f25c0c] mt-[2px]">{exp.company}</p>
+                      <h3 className="text-[16px] font-medium text-black">{exp.role}</h3>
+                      <p className="text-[14px] font-regular text-[#f25c0c] mt-[2px]">{exp.company}</p>
                     </div>
-                    <span className="text-[12px] font-medium text-gray-400 bg-gray-50 border border-gray-100 rounded-full px-[10px] py-[3px]">
+                    <span className="text-[12px] font-medium text-gray-400 bg-gray-50 rounded-full px-[10px] py-[3px]">
                       {exp.period}
                     </span>
                   </div>

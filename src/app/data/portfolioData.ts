@@ -84,7 +84,7 @@ export interface PortfolioInfo {
 }
 
 export const portfolioInfo: PortfolioInfo = {
-  author: "DARY RAMADHAN",
+  author: "Dary Ramadhan",
   year: "2026",
   timezone: "13:31 JKT",
   availability: "Available for freelance projects and remote work",
