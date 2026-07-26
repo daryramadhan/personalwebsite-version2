@@ -293,7 +293,8 @@ export const projects: Project[] = [
           caption: "Figma Files Organization"
         }
       ]
-    }
+    },
+    client: "Resumify"
   },
   {
     id: "pos-system-mobile",
@@ -422,7 +423,8 @@ export const projects: Project[] = [
           caption: "Highlighted POS Mobile Screen Pages"
         }
       ]
-    }
+    },
+    client: "Exploration Design"
   },
   {
     id: "surveillance-system",
@@ -482,7 +484,8 @@ export const projects: Project[] = [
           ]
         }
       ]
-    }
+    },
+    client: "Exploration Design"
   },
   {
     id: "greenflags",
@@ -557,7 +560,8 @@ export const projects: Project[] = [
           caption: ""
         }
       ]
-    }
+    },
+    client: "Greenflags"
   },
   {
     id: "techhouse-software-house-ai-solutions-for-your-small-biz-until-enterprises",
@@ -609,7 +613,8 @@ export const projects: Project[] = [
           ]
         }
       ]
-    }
+    },
+    client: "TehcHouse"
   },
   {
     id: "e-recruitment-minimalits-end-to-end-hiring-pipeline-saas-web-app",
@@ -682,7 +687,8 @@ export const projects: Project[] = [
           ]
         }
       ]
-    }
+    },
+    client: "PT. Madhani Talatah Nusantara"
   },
   {
     id: "illustration",
@@ -712,7 +718,8 @@ export const projects: Project[] = [
           image: "/uploads/uploaded_1784986322779.webp",
           captions: [
             ""
-          ]
+          ],
+          navTitle: "Resumify"
         }
       ]
     }

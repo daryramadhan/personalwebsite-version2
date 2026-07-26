@@ -575,6 +575,20 @@ export default function AdminDashboard() {
           {activeProject && (
             <div className="flex flex-col gap-[32px]">
               <h2 className="text-[18px] font-bold tracking-[-0.3px]">Project Metadata</h2>
+
+              <div className="flex flex-col gap-[6px]">
+                <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                  Project Name / Title
+                </label>
+                <input
+                  type="text"
+                  required
+                  placeholder="e.g. Resumify, DescAd"
+                  value={activeProject.title || ""}
+                  onChange={(e) => updateProjectField("title", e.target.value)}
+                  className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black transition-colors"
+                />
+              </div>
               
               <div className="grid grid-cols-2 gap-[16px]">
                 <div className="flex flex-col gap-[6px]">
