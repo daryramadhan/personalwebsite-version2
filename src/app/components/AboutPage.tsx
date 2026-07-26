@@ -3,33 +3,58 @@ import { portfolioInfo, socialLinks } from "../data/portfolioData";
 export default function AboutPage() {
   const experiences = [
     {
-      role: "Lead Product Designer",
+      role: "Creative Director & Lead Product Designer",
       company: "TRD Creative Studio",
       period: "2025 — Present",
-      description: "Leading end-to-end design for complex enterprise software, SaaS platforms, and AI-powered interfaces. Establishing scalable design systems and collaborating with product teams to translate complex technical architectures into intuitive user workflows."
+      description: "Directing brand identity and UI/UX strategy for startups, SaaS platforms, and enterprise digital solutions. Partnering directly with founders to translate business models into high-agency, visually premium, and conversion-focused web layouts."
     },
     {
-      role: "Co-Founder & Lead Designer",
-      company: "Resumify",
-      period: "2025",
-      description: "Designed and launched an AI-powered resume builder helper, scaling it to 1,000+ users in the first month. Focused on user research, interactive suggestions, and crafting a distraction-free copywriting experience."
+      role: "UI/UX Designer",
+      company: "PT. Synapsis Sinergi Digital",
+      period: "Dec 2024 — Present",
+      description: "Designing end-to-end flows for complex enterprise applications and digital transformation software. Establishing consistent UI libraries, conducting heuristic audits, and aligning design outcomes with product engineering specifications."
     },
     {
-      role: "Freelance UI/UX Designer",
-      company: "Exploration Design & Client Projects",
-      period: "2023 — 2025",
-      description: "Collaborated with startups and local companies to design high-converting landing pages, point-of-sale mobile apps, and interactive SaaS platforms."
+      role: "Product Designer & iOS Developer",
+      company: "Apple Developer Academy (Cohort 6)",
+      period: "2023 — 2024",
+      description: "Researched, designed, and built interactive iOS applications under direct Apple mentorship. Conducted extensive target audience research, rapid interactive prototyping, and usability testing to craft accessible app experiences."
+    },
+    {
+      role: "Community Lead",
+      company: "Google Developer Student Club (BINUS Malang)",
+      period: "2022 — 2023",
+      description: "Led a developer community of 150+ student members. Organized design and coding workshops, speaker panels, and hackathons, advocating for user-centered design and bridging the gap between developers and designers."
+    },
+    {
+      role: "UI/UX Trainer",
+      company: "Bina Nusantara Computer Club (BNCC)",
+      period: "2021 — 2022",
+      description: "Mentored aspiring UI/UX designers, designed progressive training curricula, and instructed students in design fundamentals, typography, grid layouts, and Figma prototyping workflows."
     }
   ];
 
   const expertises = [
-    "Product Strategy & Research",
+    "Product Strategy & UX Research",
     "Figma Design Systems",
     "User Interface (UI) Design",
-    "User Experience (UX) Design",
-    "Interactive Prototyping",
-    "Web & App Development Layouts",
-    "Micro-Animations & Motion"
+    "Mobile & Web Prototyping",
+    "iOS Application Design",
+    "Front-End Engineering Alignment",
+    "Micro-Animations & Motion Design"
+  ];
+
+  const volunteering = [
+    {
+      role: "Media Creative Lead / Volunteer",
+      organization: "Google I/O Cloud Extended 2024",
+      period: "2024"
+    },
+    {
+      role: "Design Volunteer",
+      organization: "GoogleDevsID Community Projects",
+      period: "2023"
+    }
   ];
 
   return (
@@ -57,8 +82,20 @@ export default function AboutPage() {
             </div>
             <div>
               <h1 className="text-[20px] font-bold text-black tracking-tight">{portfolioInfo.author}</h1>
-              <p className="text-[13px] text-[#8e8e8e] mt-[2px]">Product Designer</p>
+              <p className="text-[13px] text-[#8e8e8e] mt-[2px]">High-Agency Product Designer</p>
               <p className="text-[13px] text-[#8e8e8e] mt-[2px]">Based in Jakarta, ID</p>
+            </div>
+          </div>
+
+          <hr className="border-[#f4f4f4]" />
+
+          {/* Education */}
+          <div className="flex flex-col gap-[8px]">
+            <p className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[1px]">Education</p>
+            <div className="text-[13px] text-black">
+              <p className="font-bold">BINUS University</p>
+              <p className="text-gray-500 text-[12px] mt-[1px]">B.S. in Computer Science</p>
+              <p className="text-gray-400 text-[11px] mt-[1px]">2020 — 2024</p>
             </div>
           </div>
 
@@ -91,14 +128,14 @@ export default function AboutPage() {
               About Me
             </h2>
             <p className="font-light text-[16px] leading-[1.6] text-black text-justify">
-              I am a digital product designer with a passion for designing workflows that make complex processes simple. 
-              By partnering with startups and enterprise companies, I help build clean, scalable web and mobile software 
-              products that address raw user challenges directly.
+              I am a **High-Agency Product Designer** with a background in Computer Science, combining technical structural 
+              precision with layout empathy. I specialize in designing web applications, enterprise dashboards, SaaS systems, 
+              and mobile apps that turn complex datasets and processes into simple, elegant digital workflows.
             </p>
             <p className="font-light text-[16px] leading-[1.6] text-black text-justify">
-              My methodology balances visual premium polish with strict logical structures. I believe that design should 
-              not only look visually outstanding, but must be built on unified systems that make engineering implementation 
-              and product growth seamless.
+              Having trained at the **Apple Developer Academy** and led developers at the **Google Developer Student Club**, 
+              I excel at translating raw business logic into high-performing interfaces. My goal is to build clean, premium-tier 
+              design solutions that feel outstanding and empower developers to execute quickly and efficiently.
             </p>
           </section>
 
@@ -140,6 +177,24 @@ export default function AboutPage() {
                 >
                   {skill}
                 </span>
+              ))}
+            </div>
+          </section>
+
+          {/* Volunteering Section */}
+          <section className="flex flex-col gap-[20px]">
+            <h2 className="font-medium text-[24px] leading-[1.2] tracking-[-0.5px] text-black border-b border-[#f4f4f4] pb-[8px]">
+              Community & Volunteering
+            </h2>
+            <div className="flex flex-col gap-[16px]">
+              {volunteering.map((vol, index) => (
+                <div key={index} className="flex justify-between items-center gap-[12px] flex-wrap text-[14px]">
+                  <div>
+                    <span className="font-bold text-black">{vol.role}</span>
+                    <span className="text-[#8e8e8e] font-light"> at {vol.organization}</span>
+                  </div>
+                  <span className="text-[12px] text-gray-400">{vol.period}</span>
+                </div>
               ))}
             </div>
           </section>
