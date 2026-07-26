@@ -12,13 +12,13 @@ export default function RightPanel() {
       </div>
 
       {/* Wide Thank you / CTA Footer */}
-      <div className="w-full px-[24px] md:px-[48px] py-[64px] border-t border-[#f4f4f4] bg-white flex flex-col gap-[48px] font-['Manrope',sans-serif]">
-        
+      <div className="w-full px-[24px] md:px-[48px] py-[64px] bg-white flex flex-col gap-[48px] font-['Manrope',sans-serif]">
+
         {/* Top block (Avatar + Text + Buttons) */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-[32px] w-full">
+        <div className="flex flex-col md:flex-row justify-between items-start gap-[48px] w-full">
           {/* Left Sub-block: Avatar + text info */}
-          <div className="flex flex-row items-center gap-[20px] max-w-[650px]">
-            <div className="size-[64px] md:size-[72px] rounded-full overflow-hidden bg-gray-50 shrink-0 shadow-sm border border-[#f0f0f0]">
+          <div className="flex flex-row items-start gap-[20px] max-w-[650px]">
+            <div className="size-[64px] md:size-[72px] rounded-full overflow-hidden shrink-0 mt-[4px]">
               <img
                 src="/avatar.png"
                 alt="Dary Ramadhan"
@@ -32,6 +32,25 @@ export default function RightPanel() {
               <p className="font-light text-[13px] md:text-[14px] leading-[1.5] text-gray-600 max-w-[480px]">
                 Have a project or opportunity in mind? Book a free 30-minute discovery call or send me the project details.
               </p>
+
+              {/* Bottom block (Selected companies and logos) */}
+              {clients && clients.length > 0 && (
+                <div className="flex flex-col gap-[20px] w-full pt-[24px]">
+                  <p className="text-[11px] font-medium text-gray-400 uppercase tracking-[0.5px]">
+                    Selected companies and teams I've worked with
+                  </p>
+                  <div className="flex flex-wrap items-center gap-x-[48px] gap-y-[24px]">
+                    {clients.map((c) => (
+                      <img
+                        key={c.id}
+                        src={c.logo}
+                        alt={c.name || "Client logo"}
+                        className="h-[20px] md:h-[24px] w-auto object-contain opacity-20 filter grayscale hover:opacity-40 transition-all duration-300"
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
@@ -52,24 +71,7 @@ export default function RightPanel() {
           </div>
         </div>
 
-        {/* Bottom block (Selected companies and logos) */}
-        {clients && clients.length > 0 && (
-          <div className="flex flex-col gap-[20px] w-full border-t border-[#fafafa] pt-[24px]">
-            <p className="text-[11px] font-medium text-gray-400 uppercase tracking-[0.5px]">
-              Selected companies and teams I've worked with
-            </p>
-            <div className="flex flex-wrap items-center gap-x-[48px] gap-y-[24px]">
-              {clients.map((c) => (
-                <img
-                  key={c.id}
-                  src={c.logo}
-                  alt={c.name || "Client logo"}
-                  className="h-[20px] md:h-[24px] w-auto object-contain opacity-20 filter grayscale hover:opacity-40 transition-all duration-300"
-                />
-              ))}
-            </div>
-          </div>
-        )}
+
       </div>
     </div>
   );
