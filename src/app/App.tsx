@@ -91,6 +91,14 @@ export default function App() {
     if (ogTitleMeta) {
       ogTitleMeta.setAttribute("content", title);
     }
+
+    // Track page view in Google Analytics
+    if (typeof (window as any).gtag === "function") {
+      (window as any).gtag("config", "G-K8072HFVWF", {
+        page_path: window.location.hash || "/",
+        page_title: title,
+      });
+    }
   }, [activeHash, activeProject, isAdminRoute, isAboutRoute]);
 
   return (

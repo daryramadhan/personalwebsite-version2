@@ -31,7 +31,7 @@ export default function LeftPanel() {
             {portfolioInfo.headline}
           </p>
           <p className="font-['Manrope',sans-serif] font-light text-[14px] leading-[1.4] text-black w-full">
-            {portfolioInfo.description}
+            {portfolioInfo.description}{" "}
           </p>
         </div>
 
