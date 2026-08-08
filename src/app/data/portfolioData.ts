@@ -97,9 +97,9 @@ export const portfolioInfo: PortfolioInfo = {
   author: "Dary Ramadhan",
   year: "2026",
   timezone: "13:31 JKT",
-  availability: "Available for freelance projects and remote work",
-  headline: "I design digital products that make complex workflows feel simple.",
-  description: "Product designer based in Jakarta, helping startups and enterprise teams turn complex requirements into clear, scalable product experiences.",
+  availability: "Available for remote & freelance projects",
+  headline: "Hi, I'm Dary. Your Product Design Partner.",
+  description: "I'd like to helping startups and enterprise teams turn complex requirements into clear, scalable product experiences.",
   ctas: {
     primary: {
       label: "Book a Call",
@@ -134,27 +134,37 @@ export const socialLinks: SocialLink[] = [
 export const clients: Client[] = [
   {
     id: 1,
-    logo: "/logos/metalindo.webp",
-    name: "Metalindo Multiperkasa"
+    logo: "/logos/logo-pupuk-indonesia.png",
+    name: "Pupuk Indonesia"
   },
   {
     id: 2,
-    logo: "/logos/synapsis.webp",
+    logo: "/logos/logo-synapsis.png",
     name: "Synapsis"
   },
   {
     id: 3,
-    logo: "/logos/ui-cepccit.webp",
-    name: "UI CEP-CCIT"
+    logo: "/logos/logo-tehchouse.png",
+    name: "Tehc House"
   },
   {
     id: 4,
-    logo: "/logos/apple-academy.webp",
-    name: "Apple Developer Academy"
+    logo: "/logos/logo-greenflags.png",
+    name: "Greenflags"
   },
   {
     id: 5,
-    logo: "/logos/nyambee.webp",
+    logo: "/logos/logo-metalindo.png",
+    name: "Metalindo Multiperkasa"
+  },
+  {
+    id: 6,
+    logo: "/logos/logo-junso.png",
+    name: "Junso"
+  },
+  {
+    id: 7,
+    logo: "/logos/logo-nyambee.png",
     name: "Nyambee"
   }
 ];

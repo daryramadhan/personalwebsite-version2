@@ -12,6 +12,8 @@ export default function App() {
   const [browserHash, setBrowserHash] = useState(window.location.hash);
   const [activeHash, setActiveHash] = useState(window.location.hash);
   const [curtainState, setCurtainState] = useState<"idle" | "sliding-in" | "sliding-out">("idle");
+  const [activeTab, setActiveTab] = useState<"showcase" | "shots">("showcase");
+
 
   // Check if hash matches project details page route format: #/project/:id
   const projectPrefix = "#/project/";
@@ -113,8 +115,8 @@ export default function App() {
         <ProjectDetails project={activeProject} />
       ) : (
         <>
-          <LeftPanel />
-          <RightPanel />
+          <LeftPanel activeTab={activeTab} setActiveTab={setActiveTab} />
+          <RightPanel activeTab={activeTab} />
         </>
       )}
 

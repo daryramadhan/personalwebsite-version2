@@ -1,37 +1,83 @@
 import { useState } from "react";
-import { portfolioInfo, socialLinks } from "../data/portfolioData";
+import { portfolioInfo, clients, socialLinks } from "../data/portfolioData";
 import AvailableDot from "./AvailableDot";
 
-export default function LeftPanel() {
+interface LeftPanelProps {
+  activeTab: "showcase" | "shots";
+  setActiveTab: (tab: "showcase" | "shots") => void;
+}
+
+export default function LeftPanel({ activeTab, setActiveTab }: LeftPanelProps) {
   const [isHovered, setIsHovered] = useState(false);
+
+  const renderHeadline = () => {
+    const headline = portfolioInfo.headline;
+    const dotIndex = headline.indexOf(".");
+    if (dotIndex !== -1) {
+      const part1 = headline.slice(0, dotIndex);
+      const part2 = headline.slice(dotIndex + 1).trim();
+      return (
+        <p className="font-['Manrope',sans-serif] font-medium text-[32px] lg:text-[36px] leading-[1.1] tracking-[-1.4px] text-black w-full">
+          {part1}👋
+          <span className="block mt-[6px]">{part2}</span>
+        </p>
+      );
+    }
+    return (
+      <p className="font-['Manrope',sans-serif] font-medium text-[32px] lg:text-[36px] leading-[1.1] tracking-[-1.4px] text-black w-full">
+        {headline}
+      </p>
+    );
+  };
+
   return (
     <div
-      className="lg:fixed lg:top-0 lg:left-0 lg:h-screen lg:w-[480px] relative w-full min-h-screen flex flex-col justify-between px-[24px] py-[40px] md:px-[50px] lg:py-[32px] bg-white gap-12 lg:gap-0"
+      className="lg:fixed lg:top-0 lg:left-0 lg:h-screen lg:w-[480px] relative w-full min-h-screen flex flex-col justify-between px-[24px] py-[32px] md:pl-[50px] lg:py-[32px] left-panel-bg z-10"
     >
       {/* Top bar */}
-      <div className="flex items-center justify-between w-full">
+      <div className="flex items-center justify-between w-full relative z-10 shrink-0">
         <p className="font-['Manrope',sans-serif] font-normal text-[12px] leading-[1.4] text-black whitespace-nowrap">
           {portfolioInfo.author} © {portfolioInfo.year}
         </p>
+
+        {/* Tab switch control */}
+        <div className="flex bg-[#F4F4F5] p-[2px] rounded-[8px] border border-black/[0.03]">
+          <button
+            onClick={() => setActiveTab("showcase")}
+            className={`px-[10px] py-[4px] text-[12px] font-regular rounded-[6px] transition-all duration-200 cursor-pointer ${activeTab === "showcase"
+              ? "bg-white text-black shadow-sm"
+              : "text-[#717182] hover:text-black"
+              }`}
+          >
+            Showcase
+          </button>
+          <button
+            onClick={() => setActiveTab("shots")}
+            className={`px-[10px] py-[4px] text-[12px] font-regular rounded-[6px] transition-all duration-200 cursor-pointer ${activeTab === "shots"
+              ? "bg-white text-black shadow-sm"
+              : "text-[#717182] hover:text-black"
+              }`}
+          >
+            Shots
+          </button>
+        </div>
       </div>
 
-      {/* Middle content */}
-      <div className="flex flex-col gap-[33px] flex-1 justify-center">
+      {/* Middle content (Bio & CTAs) */}
+      <div className="flex flex-col gap-[24px] relative z-10 w-full lg:my-auto py-[48px] lg:py-0 shrink-0">
         {/* Available badge */}
-        <div className="flex gap-[12px] items-center">
+        <div className="flex gap-[12px] items-center mb-4">
           <AvailableDot />
-          <p className="font-['Manrope',sans-serif] font-normal text-[14px] leading-[1.4] text-black whitespace-nowrap">
+          <p className="font-['Manrope',sans-serif] font-light text-[14px] leading-[1.4] text-black whitespace-nowrap">
             {portfolioInfo.availability}
           </p>
         </div>
 
         {/* Headline + description */}
         <div className="flex flex-col gap-[16px] w-full">
-          <p className="font-['Manrope',sans-serif] font-medium text-[36px] leading-[1.1] tracking-[-1.44px] text-black w-full">
-            {portfolioInfo.headline}
-          </p>
-          <p className="font-['Manrope',sans-serif] font-light text-[14px] leading-[1.4] text-black w-full">
-            {portfolioInfo.description}{" "}
+          {renderHeadline()}
+          <p className="font-['Manrope',sans-serif] font-light text-[14px] leading-[1.4] tracking-[0.1px] text-black w-full">
+            {portfolioInfo.description}
           </p>
         </div>
 
@@ -39,7 +85,7 @@ export default function LeftPanel() {
         <div className="flex gap-[24px] items-center">
           <a
             href={portfolioInfo.ctas.primary.url || "#"}
-            className="bg-[#f25c0c] text-white font-['Manrope',sans-serif] font-medium text-[14px] leading-[1.4] px-[20px] py-[10px] rounded-[8px] whitespace-nowrap cursor-pointer hover:bg-[#e0540b] transition-colors"
+            className="btn-primary"
           >
             {portfolioInfo.ctas.primary.label}
           </a>
@@ -73,20 +119,39 @@ export default function LeftPanel() {
         </div>
       </div>
 
-      {/* Social links at the bottom */}
-      <div className="flex flex-wrap gap-[16px] items-center font-['Manrope',sans-serif] font-light text-[14px] leading-[1.4] text-black">
-        {socialLinks.map((link) => (
-          <a
-            key={link.label}
-            href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:underline"
-          >
-            {link.label}
-          </a>
-        ))}
+      {/* Bottom Group: Client Logos and Social Links */}
+      <div className="flex flex-col gap-[40px] lg:gap-[48px] w-full relative z-10 shrink-0">
+        {/* Client Logos Grid */}
+        <div className="w-full mb-4">
+          <div className="grid grid-cols-4 gap-x-[2px] gap-y-[8px] items-center justify-center">
+            {clients.map((c) => (
+              <div key={c.id} className="flex items-center justify-center h-[32px] w-full">
+                <img
+                  src={c.logo}
+                  alt={c.name}
+                  className="h-full w-auto max-w-full object-contain opacity-50 grayscale hover:opacity-100 transition-opacity duration-300"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom Bar: Social Links */}
+        <div className="flex flex-wrap gap-[24px] items-center font-['Manrope',sans-serif] font-light text-[13px] text-[#8e8e8e] w-full">
+          {socialLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline hover:text-black transition-colors"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   );
 }
+

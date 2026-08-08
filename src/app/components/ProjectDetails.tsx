@@ -172,7 +172,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
         flushList(`list-${lineIdx}`);
         if (trimmed !== "") {
           renderedElements.push(
-            <p key={`p-${lineIdx}`} className="font-light text-[16px] text-black text-justify leading-[1.6] mb-[8px] last:mb-0">
+            <p key={`p-${lineIdx}`} className="font-light text-[15px] text-black text-justify leading-[1.8] tracking-[0.1px] mb-[8px] last:mb-0">
               {formatText(line)}
             </p>
           );
@@ -185,9 +185,9 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
   };
 
   return (
-    <div className="bg-white min-h-screen font-['Manrope',sans-serif] text-black flex flex-col justify-between">
+    <div className="min-h-screen font-['Manrope',sans-serif] text-black flex flex-col justify-between project-details-bg relative">
       {/* Main Column Container */}
-      <div className="max-w-[1000px] mx-auto px-[24px] md:px-[50px] py-[64px] flex flex-col lg:flex-row gap-[48px] lg:gap-[64px] items-start w-full flex-1">
+      <div className="relative z-10 max-w-[1000px] mx-auto px-[24px] md:px-[50px] py-[64px] flex flex-col lg:flex-row gap-[48px] lg:gap-[64px] items-start w-full flex-1">
 
         {/* Left Sticky Sidebar */}
         <div className="w-full lg:w-[100px] shrink-0 lg:sticky lg:top-[64px] lg:self-start flex flex-col items-start gap-[40px] h-fit">
@@ -213,7 +213,10 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
         </div>
 
         {/* Right Content Stream */}
-        <div className="flex-1 flex flex-col gap-[24px] w-full">
+        <div
+          className="flex flex-col items-start gap-[48px] p-[32px] rounded-[8px] border border-[#EBEBED] bg-[#FFF] shadow-[0_1px_0_0_rgba(0,0,0,0.15)] w-full"
+          style={{ flex: "1 0 0" }}
+        >
           {projectSections.map((sec, idx) => (
             <section key={sec.id} id={sec.id} className="flex flex-col gap-[16px] scroll-mt-[64px]">
               {idx === 0 ? (
@@ -286,9 +289,9 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                       ? sec.images
                       : (sec.image ? [sec.image] : []);
                     const isTwoColumn = sec.layout === "2-column";
-
+ 
                     if (secImages.length === 0) return null;
-
+ 
                     return (
                       <div className="flex flex-col gap-[8px] w-full">
                         <div className={`grid gap-[8px] w-full ${isTwoColumn ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"}`}>
@@ -315,7 +318,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                       </div>
                     );
                   })()}
-
+ 
                   {sec.postImageParagraphs && sec.postImageParagraphs.length > 0 && (
                     <div className="flex flex-col gap-[16px] mt-6 mb-4">
                       {sec.postImageParagraphs.map((para, pIdx) => (
@@ -374,7 +377,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
       </div>
 
       {/* Footer */}
-      <footer className="w-full border-t border-[#f4f4f4] py-[32px] px-[24px] md:px-[50px] bg-white">
+      <footer className="relative z-10 w-full border-t border-[#EBEBED] py-[32px] px-[24px] md:px-[50px] bg-transparent">
         <div className="max-w-[1000px] mx-auto flex flex-col md:flex-row justify-between items-center gap-[24px] w-full">
           <p className="font-normal text-[14px] leading-[1.4] text-black whitespace-nowrap">
             {portfolioInfo.author} © {portfolioInfo.year}

@@ -18,7 +18,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         <img
           src={project.src}
           alt={project.title || ""}
-          className="absolute inset-0 size-full object-cover pointer-events-none"
+          className="absolute inset-0 size-full object-cover pointer-events-none p-[8px] rounded-[12px]"
           style={{ objectPosition: project.fit === "top" ? "top center" : "center" }}
         />
       )}
@@ -33,14 +33,14 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
       {/* Hover Info Overlay */}
       {project.title && (
-        <div className="absolute bottom-0 left-0 w-full h-[55%] bg-[#f25c0c] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out flex flex-col justify-between p-[12px] text-white">
+        <div className="absolute bottom-0 left-0 w-full h-[40%] bg-[#f25c0c] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out flex flex-col justify-between p-[12px] text-white">
           {/* Info Section */}
           <div className="flex justify-between items-start w-full gap-[8px]">
             <div className="flex flex-col gap-[4px] min-w-0 flex-1">
               <p className="font-['Manrope',sans-serif] font-regular text-[18px] leading-[1.2] line-clamp-2">
                 {project.title}
               </p>
-              <p className="font-['Manrope',sans-serif] font-normal text-[12px] leading-[1.4] line-clamp-1">
+              <p className="font-['Manrope',sans-serif] font-normal text-[14px] leading-[1.4] line-clamp-1">
                 {project.role}
               </p>
             </div>
@@ -53,7 +53,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
           {/* Action Row */}
           <div className="flex justify-between items-end w-full">
-            <p className="font-['Manrope',sans-serif] font-light text-[12px] leading-[1.4]">
+            <p className="font-['Manrope',sans-serif] font-light text-[14px] leading-[1.4]">
               See Work Details
             </p>
             <div className="size-[16px] shrink-0">

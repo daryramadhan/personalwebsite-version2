@@ -1,12 +1,26 @@
-import { projects, portfolioInfo, clients } from "../data/portfolioData";
+import { useState } from "react";
+import { projects, portfolioInfo } from "../data/portfolioData";
 import ProjectCard from "./ProjectCard";
 
-export default function RightPanel() {
+interface RightPanelProps {
+  activeTab: "showcase" | "shots";
+}
+
+export default function RightPanel({ activeTab }: RightPanelProps) {
+  const [cols, setCols] = useState<2 | 3>(2);
+
+  const filteredProjects = projects.filter((project) => {
+    if (activeTab === "showcase") return true; // Showcase displays all projects, unfiltered
+    const isShot = project.category === "Exploration Design" || project.client === "Exploration Design";
+    return isShot;
+  });
+
   return (
-    <div className="lg:ml-[480px] min-h-screen bg-white flex flex-col justify-between">
+    <div className="lg:ml-[480px] min-h-screen bg-white flex flex-col justify-between relative">
       {/* Projects Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-[4px] p-[4px] md:p-[8px]">
-        {projects.map((project) => (
+      <div className={`grid grid-cols-1 gap-[8px] p-[8px] md:p-[8px] transition-all duration-300 ease-in-out ${cols === 2 ? "lg:grid-cols-2" : "lg:grid-cols-3"
+        }`}>
+        {filteredProjects.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
       </div>
@@ -32,25 +46,6 @@ export default function RightPanel() {
               <p className="font-light text-[14px] md:text-[14px] leading-[1.5] max-w-[480px]">
                 Have a project or opportunity in mind? Book a free 30-minute discovery call or send me the project details.
               </p>
-
-              {/* Bottom block (Selected companies and logos) */}
-              {clients && clients.length > 0 && (
-                <div className="flex flex-col gap-[20px] w-full pt-[24px]">
-                  <p className="text-[14px] font-regular">
-                    Selected companies and teams I've worked with,
-                  </p>
-                  <div className="flex flex-wrap items-center gap-x-[32px] gap-y-[16px]">
-                    {clients.map((c) => (
-                      <img
-                        key={c.id}
-                        src={c.logo}
-                        alt={c.name || "Client logo"}
-                        className="h-[20px] md:h-[24px] w-auto object-contain opacity-20 filter grayscale hover:opacity-40 transition-all duration-300"
-                      />
-                    ))}
-                  </div>
-                </div>
-              )}
             </div>
           </div>
 
@@ -58,7 +53,7 @@ export default function RightPanel() {
           <div className="flex flex-row items-center gap-[20px] sm:gap-[24px] shrink-0">
             <a
               href={portfolioInfo.ctas.primary.url || "#"}
-              className="bg-[#f25c0c] text-white font-medium text-[13px] md:text-[14px] leading-[1.4] px-[20px] py-[10px] rounded-[8px] whitespace-nowrap cursor-pointer hover:bg-[#e0540b] transition-colors"
+              className="btn-primary text-[13px] md:text-[14px]"
             >
               {portfolioInfo.ctas.primary.label}
             </a>
@@ -73,7 +68,28 @@ export default function RightPanel() {
           </div>
         </div>
 
+      </div>
 
+      {/* Grid columns switcher (floating at bottom right) */}
+      <div className="hidden lg:flex fixed bottom-6 right-6 z-40 bg-[#F4F4F5]/90 backdrop-blur-md p-[2px] rounded-[8px] border border-black/[0.03] shadow-sm items-center">
+        <button
+          onClick={() => setCols(2)}
+          className={`px-[10px] py-[4px] text-[12px] font-regular rounded-[6px] transition-all duration-200 cursor-pointer ${cols === 2
+            ? "bg-white text-black shadow-sm"
+            : "text-[#717182] hover:text-black"
+            }`}
+        >
+          2 Columns
+        </button>
+        <button
+          onClick={() => setCols(3)}
+          className={`px-[10px] py-[4px] text-[12px] font-regular rounded-[6px] transition-all duration-200 cursor-pointer ${cols === 3
+            ? "bg-white text-black shadow-sm"
+            : "text-[#717182] hover:text-black"
+            }`}
+        >
+          3 Columns
+        </button>
       </div>
     </div>
   );
