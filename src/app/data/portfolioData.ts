@@ -1089,5 +1089,75 @@ export const projects: Project[] = [
       ]
     },
     client: "Exploration Design"
+  },
+  {
+    id: "mobile-pos-system",
+    title: "Mobile POS System",
+    client: "Exploration Design",
+    category: "Exploration Design",
+    role: "UI/UX Designer",
+    year: "2026",
+    url: "#/project/mobile-pos-system",
+    src: "/uploads/uploaded_1786302136259.png",
+    badge: false,
+    fit: "top",
+    isEmpty: false,
+    caseStudy: {
+      challenge: "",
+      solution: "",
+      timeline: "",
+      sections: [
+        {
+          id: "section-1786302136291",
+          heading: "Overview",
+          paragraphs: [
+            ""
+          ],
+          navTitle: "Overview",
+          images: [
+            "/uploads/uploaded_1786302136259.png"
+          ],
+          image: "/uploads/uploaded_1786302136259.png",
+          captions: [
+            ""
+          ]
+        }
+      ]
+    }
+  },
+  {
+    id: "e-recruitment",
+    title: "E-recruitment",
+    client: "Exploration Design",
+    category: "Exploration Design",
+    role: "UI/UX Designer",
+    year: "2026",
+    url: "#/project/e-recruitment",
+    src: "/uploads/uploaded_1786302398964.png",
+    badge: false,
+    fit: "top",
+    isEmpty: false,
+    caseStudy: {
+      challenge: "",
+      solution: "",
+      timeline: "",
+      sections: [
+        {
+          id: "section-1786302398974",
+          heading: "Overview",
+          paragraphs: [
+            ""
+          ],
+          navTitle: "Overview",
+          images: [
+            "/uploads/uploaded_1786302398964.png"
+          ],
+          image: "/uploads/uploaded_1786302398964.png",
+          captions: [
+            ""
+          ]
+        }
+      ]
+    }
   }
 ];

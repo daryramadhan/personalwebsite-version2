@@ -142,6 +142,7 @@ export default function AdminDashboard() {
   const [newProjCoverFile, setNewProjCoverFile] = useState<File | null>(null);
   const [newProjCoverPreview, setNewProjCoverPreview] = useState("");
   const [isCreating, setIsCreating] = useState(false);
+  const [newProjType, setNewProjType] = useState<"showcase" | "shot">("showcase");
 
   const slugify = (text: string): string => {
     return text
@@ -154,6 +155,11 @@ export default function AdminDashboard() {
     e.preventDefault();
     if (!newProjTitle.trim()) {
       alert("Project Title is required");
+      return;
+    }
+
+    if (newProjType === "shot" && !newProjCoverFile) {
+      alert("An image is required to create a Shot.");
       return;
     }
 
@@ -172,33 +178,67 @@ export default function AdminDashboard() {
         counter++;
       }
 
-      const newProject: Project = {
-        id: finalId,
-        title: newProjTitle,
-        client: newProjClient.trim() || undefined,
-        category: newProjCategory,
-        role: newProjRole,
-        year: new Date().getFullYear().toString(),
-        url: `#/project/${finalId}`,
-        src: coverPath || undefined,
-        badge: false,
-        fit: newProjFit,
-        isEmpty: false,
-        caseStudy: {
-          challenge: "",
-          solution: "",
-          timeline: newProjTimeline,
-          sections: [
-            {
-              id: "overview",
-              heading: "Overview",
-              paragraphs: [
-                `An overview of the design challenges and results for the ${newProjTitle} project.`
-              ]
-            }
-          ]
-        }
-      };
+      let newProject: Project;
+
+      if (newProjType === "shot") {
+        newProject = {
+          id: finalId,
+          title: newProjTitle,
+          client: "Exploration Design",
+          category: "Exploration Design",
+          role: "UI/UX Designer",
+          year: new Date().getFullYear().toString(),
+          url: `#/project/${finalId}`,
+          src: coverPath || undefined,
+          badge: false,
+          fit: "top",
+          isEmpty: false,
+          caseStudy: {
+            challenge: "",
+            solution: "",
+            timeline: "",
+            sections: [
+              {
+                id: `section-${Date.now()}`,
+                heading: "Overview",
+                paragraphs: [""],
+                navTitle: "Overview",
+                images: coverPath ? [coverPath] : [],
+                image: coverPath || undefined,
+                captions: [""]
+              }
+            ]
+          }
+        };
+      } else {
+        newProject = {
+          id: finalId,
+          title: newProjTitle,
+          client: newProjClient.trim() || undefined,
+          category: newProjCategory,
+          role: newProjRole,
+          year: new Date().getFullYear().toString(),
+          url: `#/project/${finalId}`,
+          src: coverPath || undefined,
+          badge: false,
+          fit: newProjFit,
+          isEmpty: false,
+          caseStudy: {
+            challenge: "",
+            solution: "",
+            timeline: newProjTimeline,
+            sections: [
+              {
+                id: "overview",
+                heading: "Overview",
+                paragraphs: [
+                  `An overview of the design challenges and results for the ${newProjTitle} project.`
+                ]
+              }
+            ]
+          }
+        };
+      }
 
       setProjectsList(prev => [...prev, newProject]);
       setSelectedProjectId(finalId);
@@ -212,6 +252,7 @@ export default function AdminDashboard() {
       setNewProjFit("center");
       setNewProjCoverFile(null);
       setNewProjCoverPreview("");
+      setNewProjType("showcase");
     } catch (err: any) {
       alert(`Failed to create project: ${err.message}`);
     } finally {
@@ -237,6 +278,7 @@ export default function AdminDashboard() {
   };
 
   const activeProject = projectsList.find(p => p.id === selectedProjectId);
+  const isActiveProjectShot = !!(activeProject && !activeProject.badge);
 
   // Save edits back to the local file
   const handleSave = async () => {
@@ -273,7 +315,29 @@ export default function AdminDashboard() {
   // Helper to update specific active project fields
   const updateProjectField = (field: keyof Project, value: any) => {
     setProjectsList(prev =>
-      prev.map(p => (p.id === selectedProjectId ? { ...p, [field]: value } : p))
+      prev.map(p => {
+        if (p.id === selectedProjectId) {
+          const updated = { ...p, [field]: value };
+          const isShot = !p.badge;
+          if (isShot && field === "src") {
+            const cs = p.caseStudy || { challenge: "", solution: "" };
+            const sections = cs.sections || [];
+            if (sections.length > 0) {
+              const firstSec = {
+                ...sections[0],
+                image: value,
+                images: [value]
+              };
+              updated.caseStudy = {
+                ...cs,
+                sections: [firstSec, ...sections.slice(1)]
+              };
+            }
+          }
+          return updated;
+        }
+        return p;
+      })
     );
   };
 
@@ -640,71 +704,75 @@ export default function AdminDashboard() {
                 />
               </div>
               
-              <div className="grid grid-cols-2 gap-[16px]">
-                <div className="flex flex-col gap-[6px]">
-                  <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
-                    Role
-                  </label>
-                  <input
-                    type="text"
-                    value={activeProject.role || ""}
-                    onChange={(e) => updateProjectField("role", e.target.value)}
-                    className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black transition-colors"
-                  />
-                </div>
-                <div className="flex flex-col gap-[6px]">
-                  <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
-                    Year
-                  </label>
-                  <input
-                    type="text"
-                    value={activeProject.year || ""}
-                    onChange={(e) => updateProjectField("year", e.target.value)}
-                    className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black transition-colors"
-                  />
-                </div>
-              </div>
+              {!isActiveProjectShot && (
+                <>
+                  <div className="grid grid-cols-2 gap-[16px]">
+                    <div className="flex flex-col gap-[6px]">
+                      <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                        Role
+                      </label>
+                      <input
+                        type="text"
+                        value={activeProject.role || ""}
+                        onChange={(e) => updateProjectField("role", e.target.value)}
+                        className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black transition-colors"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-[6px]">
+                      <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                        Year
+                      </label>
+                      <input
+                        type="text"
+                        value={activeProject.year || ""}
+                        onChange={(e) => updateProjectField("year", e.target.value)}
+                        className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black transition-colors"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-[6px]">
+                    <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                      Company / Client Name
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. TRD Studio (leave blank to use Project Title)"
+                      value={activeProject.client || ""}
+                      onChange={(e) => updateProjectField("client", e.target.value)}
+                      className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black transition-colors"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-[16px]">
+                    <div className="flex flex-col gap-[6px]">
+                      <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                        Timeline
+                      </label>
+                      <input
+                        type="text"
+                        value={activeProject.caseStudy?.timeline || ""}
+                        onChange={(e) => updateCaseStudyField("timeline", e.target.value)}
+                        className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black transition-colors"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-[6px]">
+                      <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                        Platform / Category
+                      </label>
+                      <input
+                        type="text"
+                        value={activeProject.category || ""}
+                        onChange={(e) => updateProjectField("category", e.target.value)}
+                        className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black transition-colors"
+                      />
+                    </div>
+                  </div>
+                </>
+              )}
+
               <div className="flex flex-col gap-[6px]">
                 <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
-                  Company / Client Name
-                </label>
-                <input
-                  type="text"
-                  placeholder="e.g. TRD Studio (leave blank to use Project Title)"
-                  value={activeProject.client || ""}
-                  onChange={(e) => updateProjectField("client", e.target.value)}
-                  className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black transition-colors"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-[16px]">
-                <div className="flex flex-col gap-[6px]">
-                  <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
-                    Timeline
-                  </label>
-                  <input
-                    type="text"
-                    value={activeProject.caseStudy?.timeline || ""}
-                    onChange={(e) => updateCaseStudyField("timeline", e.target.value)}
-                    className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black transition-colors"
-                  />
-                </div>
-                <div className="flex flex-col gap-[6px]">
-                  <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
-                    Platform / Category
-                  </label>
-                  <input
-                    type="text"
-                    value={activeProject.category || ""}
-                    onChange={(e) => updateProjectField("category", e.target.value)}
-                    className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black transition-colors"
-                  />
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-[6px]">
-                <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
-                  Project Cover Image (Auto-Optimized WebP)
+                  {isActiveProjectShot ? "Shot Image *" : "Project Cover Image (Auto-Optimized WebP)"}
                 </label>
                 <div className="flex items-center gap-[12px]">
                   {activeProject.src && (
@@ -728,8 +796,10 @@ export default function AdminDashboard() {
                 </div>
               </div>
 
-              {/* Cover Aspect Fit & Show Case Study Tag */}
-              <div className="grid grid-cols-2 gap-[16px]">
+              {!isActiveProjectShot && (
+                <>
+                  {/* Cover Aspect Fit & Show Case Study Tag */}
+                  <div className="grid grid-cols-2 gap-[16px]">
                 <div className="flex flex-col gap-[6px]">
                   <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
                     Cover Fit Aspect
@@ -1331,6 +1401,8 @@ export default function AdminDashboard() {
                   ))}
                 </div>
               </div>
+            </>
+          )}
 
             </div>
           )}
@@ -1522,6 +1594,37 @@ export default function AdminDashboard() {
 
             {/* Modal Form */}
             <form onSubmit={handleCreateProject} className="p-[24px] flex flex-col gap-[16px] overflow-y-auto max-h-[80vh]">
+              {/* Category / Project Type Switcher */}
+              <div className="flex flex-col gap-[6px]">
+                <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                  Project Type
+                </label>
+                <div className="flex gap-[4px] p-[2px] bg-[#f4f4f5] rounded-[8px] border border-black/[0.03]">
+                  <button
+                    type="button"
+                    onClick={() => setNewProjType("showcase")}
+                    className={`flex-1 py-[6px] text-[12px] font-semibold rounded-[6px] transition-all duration-200 cursor-pointer ${
+                      newProjType === "showcase"
+                        ? "bg-white text-black shadow-sm"
+                        : "text-[#717182] hover:text-black"
+                    }`}
+                  >
+                    Showcase (Case Study)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setNewProjType("shot")}
+                    className={`flex-1 py-[6px] text-[12px] font-semibold rounded-[6px] transition-all duration-200 cursor-pointer ${
+                      newProjType === "shot"
+                        ? "bg-white text-black shadow-sm"
+                        : "text-[#717182] hover:text-black"
+                    }`}
+                  >
+                    Shot (Single Image)
+                  </button>
+                </div>
+              </div>
+
               <div className="flex flex-col gap-[6px]">
                 <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
                   Project Title *
@@ -1536,60 +1639,64 @@ export default function AdminDashboard() {
                 />
               </div>
 
-              <div className="flex flex-col gap-[6px]">
-                <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
-                  Company / Client Name
-                </label>
-                <input
-                  type="text"
-                  placeholder="e.g. TRD Studio (leave blank to use Project Title)"
-                  value={newProjClient}
-                  onChange={(e) => setNewProjClient(e.target.value)}
-                  className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black bg-white transition-colors"
-                />
-              </div>
+              {newProjType === "showcase" && (
+                <>
+                  <div className="flex flex-col gap-[6px]">
+                    <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                      Company / Client Name
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. TRD Studio (leave blank to use Project Title)"
+                      value={newProjClient}
+                      onChange={(e) => setNewProjClient(e.target.value)}
+                      className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black bg-white transition-colors"
+                    />
+                  </div>
 
-              <div className="grid grid-cols-2 gap-[12px]">
-                <div className="flex flex-col gap-[6px]">
-                  <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
-                    Role
-                  </label>
-                  <input
-                    type="text"
-                    value={newProjRole}
-                    onChange={(e) => setNewProjRole(e.target.value)}
-                    className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black bg-white transition-colors"
-                  />
-                </div>
-                <div className="flex flex-col gap-[6px]">
-                  <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
-                    Platform / Category
-                  </label>
-                  <input
-                    type="text"
-                    value={newProjCategory}
-                    onChange={(e) => setNewProjCategory(e.target.value)}
-                    className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black bg-white transition-colors"
-                  />
-                </div>
-              </div>
+                  <div className="grid grid-cols-2 gap-[12px]">
+                    <div className="flex flex-col gap-[6px]">
+                      <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                        Role
+                      </label>
+                      <input
+                        type="text"
+                        value={newProjRole}
+                        onChange={(e) => setNewProjRole(e.target.value)}
+                        className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black bg-white transition-colors"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-[6px]">
+                      <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                        Platform / Category
+                      </label>
+                      <input
+                        type="text"
+                        value={newProjCategory}
+                        onChange={(e) => setNewProjCategory(e.target.value)}
+                        className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black bg-white transition-colors"
+                      />
+                    </div>
+                  </div>
 
-              <div className="flex flex-col gap-[6px]">
-                <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
-                  Case Study Timeline
-                </label>
-                <input
-                  type="text"
-                  value={newProjTimeline}
-                  onChange={(e) => setNewProjTimeline(e.target.value)}
-                  className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black bg-white transition-colors"
-                />
-              </div>
+                  <div className="flex flex-col gap-[6px]">
+                    <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                      Case Study Timeline
+                    </label>
+                    <input
+                      type="text"
+                      value={newProjTimeline}
+                      onChange={(e) => setNewProjTimeline(e.target.value)}
+                      className="border border-[#e0e0e0] rounded-[8px] px-[12px] py-[8px] text-[13px] outline-none focus:border-black bg-white transition-colors"
+                    />
+                  </div>
+                </>
+              )}
 
               {/* Cover Image Upload */}
               <div className="flex flex-col gap-[6px]">
                 <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
-                  Card Cover Image (WebP Auto-Optimized)
+                  {newProjType === "shot" ? "Shot Image *" : "Card Cover Image (WebP Auto-Optimized)"}
                 </label>
                 {newProjCoverPreview ? (
                   <div className="relative group h-[120px] w-full border border-[#e0e0e0] rounded-[8px] overflow-hidden bg-[#fafafa]">
@@ -1626,33 +1733,35 @@ export default function AdminDashboard() {
               </div>
 
               {/* Fit Option */}
-              <div className="flex flex-col gap-[6px]">
-                <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
-                  Cover Image Aspect Fit
-                </label>
-                <div className="flex gap-[16px]">
-                  <label className="flex items-center gap-[6px] text-[13px] font-medium cursor-pointer">
-                    <input
-                      type="radio"
-                      name="fit"
-                      checked={newProjFit === "center"}
-                      onChange={() => setNewProjFit("center")}
-                      className="cursor-pointer accent-[#f25c0c]"
-                    />
-                    Center (Fill)
+              {newProjType === "showcase" && (
+                <div className="flex flex-col gap-[6px]">
+                  <label className="text-[11px] font-semibold text-[#8e8e8e] uppercase tracking-[0.5px]">
+                    Cover Image Aspect Fit
                   </label>
-                  <label className="flex items-center gap-[6px] text-[13px] font-medium cursor-pointer">
-                    <input
-                      type="radio"
-                      name="fit"
-                      checked={newProjFit === "top"}
-                      onChange={() => setNewProjFit("top")}
-                      className="cursor-pointer accent-[#f25c0c]"
-                    />
-                    Top (Aligned)
-                  </label>
+                  <div className="flex gap-[16px]">
+                    <label className="flex items-center gap-[6px] text-[13px] font-medium cursor-pointer">
+                      <input
+                        type="radio"
+                        name="fit"
+                        checked={newProjFit === "center"}
+                        onChange={() => setNewProjFit("center")}
+                        className="cursor-pointer accent-[#f25c0c]"
+                      />
+                      Center (Fill)
+                    </label>
+                    <label className="flex items-center gap-[6px] text-[13px] font-medium cursor-pointer">
+                      <input
+                        type="radio"
+                        name="fit"
+                        checked={newProjFit === "top"}
+                        onChange={() => setNewProjFit("top")}
+                        className="cursor-pointer accent-[#f25c0c]"
+                      />
+                      Top (Aligned)
+                    </label>
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Actions */}
               <div className="flex gap-[12px] border-t border-[#f0f0f0] pt-[16px] mt-[8px]">

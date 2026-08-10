@@ -10,9 +10,9 @@ export default function RightPanel({ activeTab }: RightPanelProps) {
   const [cols, setCols] = useState<2 | 3>(2);
 
   const filteredProjects = projects.filter((project) => {
-    if (activeTab === "showcase") return true; // Showcase displays all projects, unfiltered
-    const isShot = project.category === "Exploration Design" || project.client === "Exploration Design";
-    return isShot;
+    const isShot = !project.badge;
+    if (activeTab === "showcase") return !isShot; // Showcase displays only projects with the "Case Study" badge
+    return isShot; // Shots displays all projects without the badge
   });
 
   return (
