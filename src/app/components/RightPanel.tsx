@@ -20,8 +20,14 @@ export default function RightPanel({ activeTab }: RightPanelProps) {
       {/* Projects Grid */}
       <div className={`grid grid-cols-1 gap-[8px] p-[8px] md:p-[8px] transition-all duration-300 ease-in-out ${cols === 2 ? "lg:grid-cols-2" : "lg:grid-cols-3"
         }`}>
-        {filteredProjects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
+        {filteredProjects.map((project, index) => (
+          <div
+            key={project.id}
+            className="animate-reveal-up"
+            style={{ animationDelay: `${index * 80}ms` }}
+          >
+            <ProjectCard project={project} />
+          </div>
         ))}
       </div>
 

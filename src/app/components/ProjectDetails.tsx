@@ -1,5 +1,6 @@
 import { useEffect, useState, useMemo, Fragment } from "react";
 import { Project, projects, socialLinks, portfolioInfo, CaseStudySection } from "../data/portfolioData";
+import LuxuryImage from "./LuxuryImage";
 
 interface ProjectDetailsProps {
   project: Project;
@@ -190,7 +191,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
       <div className="relative z-10 max-w-[1000px] mx-auto px-[24px] md:px-[50px] py-[64px] flex flex-col lg:flex-row gap-[48px] lg:gap-[64px] items-start w-full flex-1">
 
         {/* Left Sticky Sidebar */}
-        <div className="w-full lg:w-[100px] shrink-0 lg:sticky lg:top-[64px] lg:self-start flex flex-col items-start gap-[40px] h-fit">
+        <div className="w-full lg:w-[100px] shrink-0 lg:sticky lg:top-[64px] lg:self-start flex flex-col items-start gap-[40px] h-fit animate-reveal-right delay-100">
           <a
             href="#/"
             className="bg-[#f25c0c] hover:bg-[#e0540b] text-white font-regular text-[14px] leading-[1.4] px-[20px] py-[8px] rounded-full inline-flex items-center gap-[6px] transition-colors cursor-pointer"
@@ -214,7 +215,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
 
         {/* Right Content Stream */}
         <div
-          className="flex flex-col items-start gap-[48px] p-[32px] rounded-[8px] border border-[#EBEBED] bg-[#FFF] shadow-[0_1px_0_0_rgba(0,0,0,0.15)] w-full"
+          className="flex flex-col items-start gap-[48px] p-[32px] rounded-[8px] border border-[#EBEBED] bg-[#FFF] shadow-[0_1px_0_0_rgba(0,0,0,0.15)] w-full animate-reveal-up delay-150"
           style={{ flex: "1 0 0" }}
         >
           {projectSections.map((sec, idx) => (
@@ -252,7 +253,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                               return (
                                 <div key={imgIdx} className="flex flex-col gap-[16px] w-full animate-fade-in">
                                   <div className="w-full rounded-[8px] bg-[#f9f9f9] flex items-center justify-center p-[16px] md:p-[24px]">
-                                    <img
+                                    <LuxuryImage
                                       src={imgSrc}
                                       alt={`${sec.heading} mockup ${bIdx + 1}-${imgIdx + 1}`}
                                       className="w-full h-auto rounded-[6px] block"
@@ -300,7 +301,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                             return (
                               <div key={imgIdx} className="flex flex-col gap-[16px] w-full animate-fade-in">
                                 <div className="w-full rounded-[8px] bg-[#f9f9f9] flex items-center justify-center p-[16px] md:p-[24px]">
-                                  <img
+                                  <LuxuryImage
                                     src={imgSrc}
                                     alt={`${sec.heading} mockup ${imgIdx + 1}`}
                                     className="w-full h-auto rounded-[6px] block"

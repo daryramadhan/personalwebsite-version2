@@ -112,7 +112,7 @@ export default function App() {
       ) : isAboutRoute ? (
         <AboutPage />
       ) : activeProject ? (
-        <ProjectDetails project={activeProject} />
+        <ProjectDetails key={activeProject.id} project={activeProject} />
       ) : (
         <>
           <LeftPanel activeTab={activeTab} setActiveTab={setActiveTab} />

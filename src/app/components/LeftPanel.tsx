@@ -35,7 +35,7 @@ export default function LeftPanel({ activeTab, setActiveTab }: LeftPanelProps) {
       className="lg:fixed lg:top-0 lg:left-0 lg:h-screen lg:w-[480px] relative w-full min-h-screen flex flex-col justify-between px-[24px] py-[32px] md:pl-[50px] lg:py-[32px] left-panel-bg z-10"
     >
       {/* Top bar */}
-      <div className="flex items-center justify-between w-full relative z-10 shrink-0">
+      <div className="flex items-center justify-between w-full relative z-10 shrink-0 animate-reveal-right delay-100">
         <p className="font-['Manrope',sans-serif] font-normal text-[12px] leading-[1.4] text-black whitespace-nowrap">
           {portfolioInfo.author} © {portfolioInfo.year}
         </p>
@@ -66,7 +66,7 @@ export default function LeftPanel({ activeTab, setActiveTab }: LeftPanelProps) {
       {/* Middle content (Bio & CTAs) */}
       <div className="flex flex-col gap-[24px] relative z-10 w-full lg:my-auto py-[48px] lg:py-0 shrink-0">
         {/* Available badge */}
-        <div className="flex gap-[12px] items-center mb-4">
+        <div className="flex gap-[12px] items-center mb-4 animate-reveal-right delay-200">
           <AvailableDot />
           <p className="font-['Manrope',sans-serif] font-light text-[14px] leading-[1.4] text-black whitespace-nowrap">
             {portfolioInfo.availability}
@@ -74,7 +74,7 @@ export default function LeftPanel({ activeTab, setActiveTab }: LeftPanelProps) {
         </div>
 
         {/* Headline + description */}
-        <div className="flex flex-col gap-[16px] w-full">
+        <div className="flex flex-col gap-[16px] w-full animate-reveal-right delay-300">
           {renderHeadline()}
           <p className="font-['Manrope',sans-serif] font-light text-[14px] leading-[1.4] tracking-[0.1px] text-black w-full">
             {portfolioInfo.description}
@@ -82,7 +82,7 @@ export default function LeftPanel({ activeTab, setActiveTab }: LeftPanelProps) {
         </div>
 
         {/* CTA buttons */}
-        <div className="flex gap-[24px] items-center">
+        <div className="flex gap-[24px] items-center animate-reveal-right delay-400">
           <a
             href={portfolioInfo.ctas.primary.url || "#"}
             className="btn-primary"
@@ -120,7 +120,7 @@ export default function LeftPanel({ activeTab, setActiveTab }: LeftPanelProps) {
       </div>
 
       {/* Bottom Group: Client Logos and Social Links */}
-      <div className="flex flex-col gap-[40px] lg:gap-[48px] w-full relative z-10 shrink-0">
+      <div className="flex flex-col gap-[40px] lg:gap-[48px] w-full relative z-10 shrink-0 animate-reveal-right delay-500">
         {/* Client Logos Grid */}
         <div className="w-full mb-4">
           <div className="grid grid-cols-4 gap-x-[2px] gap-y-[8px] items-center justify-center">

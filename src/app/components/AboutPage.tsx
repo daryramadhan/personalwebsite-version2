@@ -1,4 +1,5 @@
 import { portfolioInfo, socialLinks } from "../data/portfolioData";
+import LuxuryImage from "./LuxuryImage";
 
 export default function AboutPage() {
   const experiences = [
@@ -63,7 +64,7 @@ export default function AboutPage() {
       <div className="max-w-[1000px] mx-auto px-[24px] md:px-[50px] py-[32px] md:py-[64px] flex flex-col lg:flex-row gap-[40px] lg:gap-[64px] items-start w-full flex-1">
 
         {/* Left Sticky Column */}
-        <div className="w-full lg:w-[220px] shrink-0 lg:sticky lg:top-[64px] lg:self-start flex flex-col gap-[24px] lg:gap-[16px] h-fit">
+        <div className="w-full lg:w-[220px] shrink-0 lg:sticky lg:top-[64px] lg:self-start flex flex-col gap-[24px] lg:gap-[16px] h-fit animate-reveal-right delay-100">
           <a
             href="#/"
             className="bg-[#f25c0c] hover:bg-[#e0540b] text-white font-regular text-[14px] leading-[1.4] px-[20px] py-[8px] rounded-full inline-flex items-center gap-[6px] transition-colors cursor-pointer w-fit"
@@ -74,7 +75,7 @@ export default function AboutPage() {
           {/* Profile Circle Frame */}
           <div className="flex flex-row lg:flex-col items-center lg:items-start gap-[16px] lg:gap-[24px] mt-[16px] lg:mt-[32px]">
             <div className="size-[80px] lg:size-[100px] rounded-full overflow-hidden bg-gray-50 shrink-0">
-              <img
+              <LuxuryImage
                 src="/avatar.webp"
                 alt="Dary Ramadhan"
                 className="size-full object-cover"
@@ -124,7 +125,7 @@ export default function AboutPage() {
         </div>
 
         {/* Right Details Stream */}
-        <div className="flex-1 flex flex-col gap-[48px] w-full">
+        <div className="flex-1 flex flex-col gap-[48px] w-full animate-reveal-up delay-150">
           {/* About Section */}
           <section className="flex flex-col gap-[16px]">
             <h2 className="font-medium text-[24px] leading-[1.2] tracking-[-0.5px] text-black">

@@ -1,4 +1,5 @@
 import { Project } from "../data/portfolioData";
+import LuxuryImage from "./LuxuryImage";
 
 interface ProjectCardProps {
   project: Project;
@@ -15,11 +16,15 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       className="group block bg-[#f4f4f4] aspect-[336/250] overflow-hidden relative rounded-[4px] w-full cursor-pointer"
     >
       {project.src && (
-        <img
+        <LuxuryImage
           src={project.src}
           alt={project.title || ""}
-          className="absolute inset-0 size-full object-cover pointer-events-none p-[8px] rounded-[12px]"
-          style={{ objectPosition: project.fit === "top" ? "top center" : "center" }}
+          className="size-full object-cover pointer-events-none p-[8px] rounded-[12px]"
+          style={{ 
+            position: "absolute",
+            inset: 0,
+            objectPosition: project.fit === "top" ? "top center" : "center" 
+          }}
         />
       )}
 
