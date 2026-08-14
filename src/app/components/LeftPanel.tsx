@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { portfolioInfo, clients, socialLinks } from "../data/portfolioData";
 import AvailableDot from "./AvailableDot";
 
@@ -9,6 +9,42 @@ interface LeftPanelProps {
 
 export default function LeftPanel({ activeTab, setActiveTab }: LeftPanelProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [showCoachMark, setShowCoachMark] = useState(false);
+  const [showMobileDot, setShowMobileDot] = useState(false);
+
+  useEffect(() => {
+    const hasSeen = localStorage.getItem("has_seen_shots_coachmark");
+    if (!hasSeen) {
+      // 1200ms delay to let initial entry animations complete first
+      const timer = setTimeout(() => {
+        setShowCoachMark(true);
+      }, 1200);
+      setShowMobileDot(true);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  // Dismiss if user switches tab to shots elsewhere
+  useEffect(() => {
+    if (activeTab === "shots") {
+      localStorage.setItem("has_seen_shots_coachmark", "true");
+      setShowCoachMark(false);
+      setShowMobileDot(false);
+    }
+  }, [activeTab]);
+
+  const handleCloseCoachMark = () => {
+    localStorage.setItem("has_seen_shots_coachmark", "true");
+    setShowCoachMark(false);
+    setShowMobileDot(false);
+  };
+
+  const handleSeeShots = () => {
+    localStorage.setItem("has_seen_shots_coachmark", "true");
+    setShowCoachMark(false);
+    setShowMobileDot(false);
+    setActiveTab("shots");
+  };
 
   const renderHeadline = () => {
     const headline = portfolioInfo.headline;
@@ -35,13 +71,13 @@ export default function LeftPanel({ activeTab, setActiveTab }: LeftPanelProps) {
       className="lg:fixed lg:top-0 lg:left-0 lg:h-screen lg:w-[480px] relative w-full min-h-screen flex flex-col justify-between px-[24px] py-[32px] md:pl-[50px] lg:py-[32px] left-panel-bg z-10"
     >
       {/* Top bar */}
-      <div className="flex items-center justify-between w-full relative z-10 shrink-0 animate-reveal-right delay-100">
+      <div className="flex items-center justify-between w-full relative z-20 shrink-0 animate-reveal-right delay-100">
         <p className="font-['Manrope',sans-serif] font-normal text-[12px] leading-[1.4] text-black whitespace-nowrap">
           {portfolioInfo.author} © {portfolioInfo.year}
         </p>
 
-        {/* Tab switch control */}
-        <div className="flex bg-[#F4F4F5] p-[2px] rounded-[8px] border border-black/[0.03]">
+        {/* Tab switch control (Desktop Only) */}
+        <div className="relative hidden lg:flex bg-[#F4F4F5] p-[2px] rounded-[8px] border border-black/[0.03]">
           <button
             onClick={() => setActiveTab("showcase")}
             className={`px-[10px] py-[4px] text-[12px] font-regular rounded-[6px] transition-all duration-200 cursor-pointer ${activeTab === "showcase"
@@ -60,6 +96,37 @@ export default function LeftPanel({ activeTab, setActiveTab }: LeftPanelProps) {
           >
             Shots
           </button>
+
+          {/* Coach Mark Tooltip */}
+          {showCoachMark && (
+            <div className="absolute right-[2px] top-full mt-[12px] w-[220px] bg-white border border-black/[0.08] shadow-[0_10px_30px_rgba(0,0,0,0.08)] rounded-[12px] p-[12px] z-50 animate-reveal-scale flex flex-col gap-[4px]">
+              {/* Arrow pointing directly up to the Shots button */}
+              <div className="absolute top-0 right-[24px] w-[10px] h-[10px] bg-white border-t border-l border-black/[0.08] -translate-y-1/2 rotate-45" />
+
+              {/* Close Button 'x' */}
+              <button
+                onClick={handleCloseCoachMark}
+                aria-label="Close tooltip"
+                className="absolute top-[10px] right-[10px] text-[#717182] hover:text-black transition-colors cursor-pointer"
+              >
+                <svg className="w-[12px] h-[12px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+
+              <div className="flex flex-col gap-[2px]">
+                <p className="font-['Manrope',sans-serif] font-medium text-[13px] leading-[1.4] text-black pr-[16px]">
+                  View design explorations
+                </p>
+                <button
+                  onClick={handleSeeShots}
+                  className="font-['Manrope',sans-serif] font-medium text-[12px] text-[#F25C0C] hover:text-[#e0540b] underline transition-colors cursor-pointer self-start"
+                >
+                  See shots
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -150,6 +217,34 @@ export default function LeftPanel({ activeTab, setActiveTab }: LeftPanelProps) {
             </a>
           ))}
         </div>
+      </div>
+
+      {/* Tab switch control (Mobile Floating - Outside animated Top Bar container to prevent stacking context bug) */}
+      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 flex lg:hidden bg-[#F4F4F5] p-[2px] rounded-[8px] border border-black/[0.03] shadow-lg">
+        <button
+          onClick={() => setActiveTab("showcase")}
+          className={`px-[10px] py-[4px] text-[12px] font-regular rounded-[6px] transition-all duration-200 cursor-pointer ${activeTab === "showcase"
+            ? "bg-white text-black shadow-sm"
+            : "text-[#717182] hover:text-black"
+            }`}
+        >
+          Showcase
+        </button>
+        <button
+          onClick={() => setActiveTab("shots")}
+          className={`relative px-[10px] py-[4px] text-[12px] font-regular rounded-[6px] transition-all duration-200 cursor-pointer ${activeTab === "shots"
+            ? "bg-white text-black shadow-sm"
+            : "text-[#717182] hover:text-black"
+            }`}
+        >
+          Shots
+          {showMobileDot && (
+            <>
+              <span className="absolute top-[4px] right-[2px] w-[5px] h-[5px] bg-[#F25C0C] rounded-full animate-ping" style={{ animationDuration: "1.5s" }} />
+              <span className="absolute top-[4px] right-[2px] w-[5px] h-[5px] bg-[#F25C0C] rounded-full" />
+            </>
+          )}
+        </button>
       </div>
     </div>
   );
