@@ -109,7 +109,7 @@ export default function LeftPanel({ activeTab, setActiveTab }: LeftPanelProps) {
             >
               <div className="size-[120px] rounded-full border-1 border-white shadow-lg overflow-hidden bg-gray-100">
                 <img
-                  src="/avatar.png"
+                  src="/potrait.png"
                   alt="Dary Ramadhan"
                   className="size-full object-cover"
                 />

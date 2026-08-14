@@ -40,7 +40,7 @@ export default function RightPanel({ activeTab }: RightPanelProps) {
           <div className="flex flex-row items-start gap-[20px] max-w-[650px]">
             <div className="size-[64px] md:size-[72px] rounded-full overflow-hidden shrink-0 mt-[4px]">
               <img
-                src="/avatar.webp"
+                src="/potrait.png"
                 alt="Dary Ramadhan"
                 className="size-full object-cover"
               />
