@@ -4,57 +4,123 @@ import LuxuryImage from "./LuxuryImage";
 export default function AboutPage() {
   const experiences = [
     {
-      role: "Creative Director & Lead Product Designer",
+      role: "UI/UX Designer (Freelance)",
+      company: "PT. Pupuk Indonesia",
+      period: "Apr 2026 — Present",
+      description: [
+        "Designed Sentra’s landing page as a centralized entry point for employees across Pupuk Indonesia’s subsidiaries to access internal corporate services.",
+        "Redesigned the existing Document of Files platform within Sentra’s design system, improving complex role-based workflows for drafters, reviewers, approvers, and recipients.",
+        "Collaborated closely with Pupuk Indonesia’s internal product and development teams to align operational requirements, design decisions, and implementation constraints."
+      ]
+    },
+    {
+      role: "Co-Founder & Product Designer",
       company: "TRD Creative Studio",
-      period: "2025 — Present",
-      description: "Directing brand identity and UI/UX strategy for startups, SaaS platforms, and enterprise digital solutions. Partnering directly with founders to translate business models into high-agency, visually premium, and conversion-focused web layouts."
+      period: "Jan 2024 — Present",
+      description: [
+        "Co-founded a creative design studio focused on UI/UX, product strategy, and digital experience design for startups and small businesses.",
+        "Designed and delivered 20+ digital product concepts and client projects, including websites, mobile apps, and design systems.",
+        "Worked directly with founders and stakeholders to define product direction, user flows, and interaction design."
+      ]
+    },
+    {
+      role: "UI/UX Designer Lead",
+      company: "PT. Synapsis Sinergi Digital (Synapsis)",
+      period: "Apr 2025 — May 2026",
+      description: [
+        "Given the trust from the company to step into a UI/UX Lead role early in my career journey.",
+        "Focused on improving team workflows through design playbooks, better documentation, weekly learning sessions, and fostering a high-agency design culture. Also helped introduce AI-enabled workflows for designers."
+      ]
     },
     {
       role: "UI/UX Designer",
-      company: "PT. Synapsis Sinergi Digital",
-      period: "Dec 2024 — Present",
-      description: "Designing end-to-end flows for complex enterprise applications and digital transformation software. Establishing consistent UI libraries, conducting heuristic audits, and aligning design outcomes with product engineering specifications."
+      company: "PT. Synapsis Sinergi Digital (Synapsis)",
+      period: "Apr 2025 — Feb 2026",
+      description: [
+        "Responsible for end-to-end product design within the mining sector, starting from UX research, client collaboration, wireframing, prototyping, to delivering high-fidelity UI and work closely with PM, BSA, QA Engineers, and Developers.",
+        "Key Projects: PT Madhani Talatah Nusantara (e-Recruitment Platform, Learning Management System (LMS), Employee Self Service (ESS), AI Hub Platform, Design System), Surveillance Dashboard System."
+      ]
     },
     {
-      role: "Product Designer & iOS Developer",
-      company: "Apple Developer Academy (Cohort 6)",
-      period: "2023 — 2024",
-      description: "Researched, designed, and built interactive iOS applications under direct Apple mentorship. Conducted extensive target audience research, rapid interactive prototyping, and usability testing to craft accessible app experiences."
+      role: "UI/UX Designer Internship",
+      company: "PT. Synapsis Sinergi Digital (Synapsis)",
+      period: "Dec 2024 — Apr 2025",
+      description: [
+        "Key Projects: Synapsis Website 2.0 (https://synapsis.id), Nearon Dashboard."
+      ]
     },
     {
-      role: "Community Lead",
-      company: "Google Developer Student Club (BINUS Malang)",
-      period: "2022 — 2023",
-      description: "Led a developer community of 150+ student members. Organized design and coding workshops, speaker panels, and hackathons, advocating for user-centered design and bridging the gap between developers and designers."
+      role: "Product Designer",
+      company: "Resumify",
+      period: "Apr 2025 — Sep 2025",
+      description: [
+        "Leading the end-to-end product design for Resumify, a resume optimization tool powered by AI, from ideation to pre-launch.",
+        "Established the brand’s visual identity from scratch, including logo, typography, and UI components.",
+        "Collaborating closely with the founder and engineers to align product vision with technical feasibility and UX best practices."
+      ]
     },
     {
-      role: "UI/UX Trainer",
-      company: "Bina Nusantara Computer Club (BNCC)",
-      period: "2021 — 2022",
-      description: "Mentored aspiring UI/UX designers, designed progressive training curricula, and instructed students in design fundamentals, typography, grid layouts, and Figma prototyping workflows."
+      role: "UI/UX Design Lecturer (Contract)",
+      company: "CCIT-CEP FT Universitas Indonesia",
+      period: "Feb 2025 — Jun 2025",
+      description: [
+        "Delivered comprehensive UI/UX curriculum to 30+ students, covering design systems, Figma, usability testing, and visual hierarchy.",
+        "Mentored students on their capstone projects, guiding them from research to high-fidelity prototyping and design handoffs.",
+        "Conducted interactive design critiques and workshops, fostering a collaborative and growth-oriented learning environment."
+      ]
     }
   ];
 
   const expertises = [
-    "Product Strategy & UX Research",
-    "Figma Design Systems",
-    "User Interface (UI) Design",
-    "Mobile & Web Prototyping",
-    "iOS Application Design",
-    "Front-End Engineering Alignment",
-    "Micro-Animations & Motion Design"
+    "UI/UX Design",
+    "Product Design",
+    "UX Research",
+    "Figma",
+    "Web Development",
+    "Collaboration",
+    "Teamwork",
+    "Leadership"
   ];
 
   const volunteering = [
     {
-      role: "Media Creative Lead / Volunteer",
+      role: "Media Creative – GDG Cloud @Jakarta",
       organization: "Google I/O Cloud Extended 2024",
-      period: "2024"
+      period: "July 2024",
+      description: "Achieved over 700+ user interactions through engaging, clean, and informative social media content that successfully promoted event visibility and participation for @gdgcloudjakarta."
     },
     {
-      role: "Design Volunteer",
-      organization: "GoogleDevsID Community Projects",
-      period: "2023"
+      role: "Community Lead",
+      organization: "Google Developer Students Club @BINUS Malang",
+      period: "Oct 2022 — July 2023",
+      description: "Pioneered a groundbreaking international event, collaborating with three countries (Philippines, South Korea, and Japan). Organized 12+ events and workshops on UI/UX, Website Development, and Mobile Development."
+    }
+  ];
+
+  const honors = [
+    {
+      title: "Participant",
+      event: "International Joint Student Research Symposium (IJSRS) 2025",
+      period: "Sep 2025"
+    },
+    {
+      title: "2nd Winner",
+      event: "Computerun 2022 (International Web Design Competition)",
+      period: "Jan 2022"
+    },
+    {
+      title: "Duta Binusian Awardee",
+      event: "Bina Nusantara University",
+      period: "Jul 2021"
+    }
+  ];
+
+  const certifications = [
+    {
+      name: "App Development with Swift - Associate",
+      issuer: "Certiport – A Pearson VUE Business",
+      period: "Dec 2023",
+      credentialId: "wULv9-2F9B"
     }
   ];
 
@@ -95,10 +161,22 @@ export default function AboutPage() {
             {/* Education */}
             <div className="flex-1 flex flex-col gap-[8px]">
               <p className="text-[10px] font-semibold text-[#8e8e8e] uppercase tracking-[1px]">Education</p>
-              <div className="text-[14px] text-black">
-                <p className="font-medium">BINUS University</p>
-                <p className="text-gray-500 text-[12px] mt-[1px]">B.S. in Computer Science</p>
-                <p className="text-gray-400 text-[11px] mt-[1px]">2020 — 2024</p>
+              <div className="flex flex-col gap-[12px] text-[13px] text-black">
+                <div>
+                  <p className="font-semibold text-[13px]">Apple Developer Academy @BINUS</p>
+                  <p className="text-gray-500 text-[11px] mt-[1px]">iOS Application Development</p>
+                  <p className="text-gray-400 text-[10px] mt-[1px]">Feb 2025 — Jun 2025</p>
+                </div>
+                <div className="border-t border-gray-100 pt-[8px]">
+                  <p className="font-semibold text-[13px]">Bina Nusantara University</p>
+                  <p className="text-gray-500 text-[11px] mt-[1px]">B.S. in Computer Science (GPA 3.64/4.00)</p>
+                  <p className="text-gray-400 text-[10px] mt-[1px]">Sep 2020 — Nov 2024</p>
+                </div>
+                <div className="border-t border-gray-100 pt-[8px]">
+                  <p className="font-semibold text-[13px]">Bina Nusantara University</p>
+                  <p className="text-gray-500 text-[11px] mt-[1px]">UI/UX Designer, KMMI Program</p>
+                  <p className="text-gray-400 text-[10px] mt-[1px]">Jul 2021 — Sep 2021</p>
+                </div>
               </div>
             </div>
 
@@ -132,14 +210,15 @@ export default function AboutPage() {
               About Me
             </h2>
             <p className="font-light text-[16px] leading-[1.5] text-black text-justify">
-              I am a High-Agency Product Designer with a background in Computer Science, combining technical structural
-              precision with layout empathy. I specialize in designing web applications, enterprise dashboards, SaaS systems,
-              and mobile apps that turn complex datasets and processes into simple, elegant digital workflows.
+              I am a Product Designer with 2+ years of experience focused on designing with empathy and helping teams
+              turn complex ideas into impactful digital products. Combining technical structural precision (with a
+              background in Computer Science) and layout empathy, I bring a strong sense of ownership, clear communication,
+              and a collaborative approach to every project.
             </p>
             <p className="font-light text-[16px] leading-[1.5] text-black text-justify">
-              Having trained at the Apple Developer Academy and led developers at the Google Developer Student Club,
-              I excel at translating raw business logic into high-performing interfaces. My goal is to build clean, premium-tier
-              design solutions that feel outstanding and empower developers to execute quickly and efficiently.
+              Having trained at the Apple Developer Academy and led developer communities, I excel at translating raw
+              business logic and enterprise requirements into high-performing, clean design solutions. I currently leverage
+              AI to sharpen my creative process, optimize workflows, and deliver outstanding, premium-tier digital experiences.
             </p>
           </section>
 
@@ -174,9 +253,17 @@ export default function AboutPage() {
                       {exp.period}
                     </span>
                   </div>
-                  <p className="font-light text-[14px] leading-[1.6] text-gray-600 text-justify mt-[4px]">
-                    {exp.description}
-                  </p>
+                  {Array.isArray(exp.description) ? (
+                    <ul className="list-disc list-outside pl-[16px] font-light text-[14px] leading-[1.6] text-gray-600 flex flex-col gap-[6px] mt-[4px]">
+                      {exp.description.map((bullet, bIdx) => (
+                        <li key={bIdx} className="text-justify">{bullet}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="font-light text-[14px] leading-[1.6] text-gray-600 text-justify mt-[4px]">
+                      {exp.description}
+                    </p>
+                  )}
                 </div>
               ))}
             </div>
@@ -225,14 +312,65 @@ export default function AboutPage() {
             <h2 className="font-medium text-[24px] leading-[1.2] tracking-[-0.5px] text-black border-b border-[#f4f4f4] pb-[8px]">
               Community & Volunteering
             </h2>
-            <div className="flex flex-col gap-[16px]">
+            <div className="flex flex-col gap-[20px]">
               {volunteering.map((vol, index) => (
-                <div key={index} className="flex justify-between items-center gap-[12px] flex-wrap text-[14px]">
-                  <div>
-                    <span className="font-bold text-black">{vol.role}</span>
-                    <span className="text-[#8e8e8e] font-light"> at {vol.organization}</span>
+                <div key={index} className="flex flex-col gap-[6px] text-[14px]">
+                  <div className="flex justify-between items-start gap-[12px] flex-wrap">
+                    <div>
+                      <span className="font-semibold text-black">{vol.role}</span>
+                      <span className="text-[#8e8e8e] font-light"> at {vol.organization}</span>
+                    </div>
+                    <span className="text-[12px] text-gray-400 bg-gray-50 border border-gray-100 rounded-full px-[10px] py-[3px]">
+                      {vol.period}
+                    </span>
                   </div>
-                  <span className="text-[12px] text-gray-400">{vol.period}</span>
+                  {vol.description && (
+                    <p className="font-light text-[14px] leading-[1.6] text-gray-600 text-justify">
+                      {vol.description}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Honors & Scholarship Section */}
+          <section className="flex flex-col gap-[20px]">
+            <h2 className="font-medium text-[24px] leading-[1.2] tracking-[-0.5px] text-black border-b border-[#f4f4f4] pb-[8px]">
+              Honors & Scholarship
+            </h2>
+            <div className="flex flex-col gap-[16px]">
+              {honors.map((honor, index) => (
+                <div key={index} className="flex justify-between items-start gap-[12px] flex-wrap text-[14px]">
+                  <div>
+                    <span className="font-semibold text-black">{honor.title}</span>
+                    <span className="text-gray-600 font-light"> — {honor.event}</span>
+                  </div>
+                  <span className="text-[12px] text-gray-400 bg-gray-50 border border-gray-100 rounded-full px-[10px] py-[3px]">
+                    {honor.period}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Certifications Section */}
+          <section className="flex flex-col gap-[20px]">
+            <h2 className="font-medium text-[24px] leading-[1.2] tracking-[-0.5px] text-black border-b border-[#f4f4f4] pb-[8px]">
+              Certifications
+            </h2>
+            <div className="flex flex-col gap-[16px]">
+              {certifications.map((cert, index) => (
+                <div key={index} className="flex justify-between items-start gap-[12px] flex-wrap text-[14px]">
+                  <div>
+                    <span className="font-semibold text-black">{cert.name}</span>
+                    <p className="text-[12px] text-[#8e8e8e] mt-[2px]">
+                      {cert.issuer} {cert.credentialId && `• Credential ID: ${cert.credentialId}`}
+                    </p>
+                  </div>
+                  <span className="text-[12px] text-gray-400 bg-gray-50 border border-gray-100 rounded-full px-[10px] py-[3px]">
+                    {cert.period}
+                  </span>
                 </div>
               ))}
             </div>

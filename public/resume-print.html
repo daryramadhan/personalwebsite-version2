@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dary Ramadhan Fajar - Resume</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @page {
+      size: letter;
+      margin: 0;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      color: #000000;
+      background-color: #ffffff;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .page {
+      width: 8.5in;
+      height: 11in;
+      padding: 0.6in 0.65in;
+      position: relative;
+      page-break-after: always;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    
+    /* Typography */
+    h1 {
+      font-size: 20pt;
+      font-weight: 700;
+      margin: 0 0 6px 0;
+      color: #000000;
+      letter-spacing: -0.5px;
+    }
+    
+    .contact-links {
+      font-size: 9pt;
+      margin-bottom: 14px;
+      color: #111111;
+      word-spacing: 1px;
+    }
+    .contact-links a {
+      color: #0066cc;
+      text-decoration: underline;
+    }
+    
+    .summary {
+      font-size: 9pt;
+      line-height: 1.45;
+      margin-bottom: 18px;
+      text-align: justify;
+      color: #111111;
+    }
+    
+    .section-title {
+      font-size: 10pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-top: 14px;
+      margin-bottom: 4px;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid #000000;
+      padding-bottom: 3px;
+    }
+    
+    /* Experience & lists */
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 9.5pt;
+      font-weight: 700;
+      margin-top: 10px;
+    }
+    
+    .item-subheader {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 9pt;
+      font-weight: 500;
+      margin-top: 2px;
+      margin-bottom: 4px;
+    }
+    
+    .location {
+      font-weight: 400;
+      font-size: 9pt;
+    }
+    .location em {
+      font-style: italic;
+      color: #555555;
+    }
+    
+    .date {
+      font-weight: 400;
+      font-size: 9pt;
+      white-space: nowrap;
+    }
+    
+    ul {
+      margin: 0 0 8px 0;
+      padding-left: 20px;
+      list-style-type: disc;
+    }
+    
+    li {
+      font-size: 9pt;
+      line-height: 1.4;
+      margin-bottom: 4px;
+      text-align: justify;
+      color: #222222;
+    }
+    
+    /* Nested list for Synapsis */
+    .nested-list {
+      list-style-type: none;
+      padding-left: 15px;
+      margin-bottom: 6px;
+    }
+    .nested-list > li {
+      margin-bottom: 8px;
+    }
+    .nested-list .role-title-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+    
+    /* Page 2 Specifics */
+    .edu-item {
+      margin-bottom: 10px;
+    }
+    .edu-details {
+      font-size: 9pt;
+      line-height: 1.4;
+      margin-top: 3px;
+      color: #333333;
+    }
+    
+    .volunteer-item {
+      margin-bottom: 10px;
+    }
+    
+    .honor-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 9pt;
+      margin-top: 6px;
+      margin-bottom: 2px;
+    }
+    .honor-title {
+      font-weight: 700;
+    }
+    .honor-event {
+      font-weight: 400;
+      color: #333333;
+    }
+    
+    .cert-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 9pt;
+      margin-top: 6px;
+      margin-bottom: 2px;
+    }
+    .cert-name {
+      font-weight: 700;
+    }
+    .cert-details {
+      font-size: 8.5pt;
+      color: #555555;
+      margin-top: 1px;
+    }
+    
+    .skills-text {
+      font-size: 9pt;
+      line-height: 1.4;
+      margin-top: 6px;
+      color: #111111;
+    }
+    
+  </style>
+</head>
+<body>
+
+  <!-- PAGE 1 -->
+  <div class="page">
+    <h1>Dary Ramadhan Fajar</h1>
+    <div class="contact-links">
+      <a href="https://daryramadhan.com" target="_blank">daryramadhan.com</a> | 
+      <a href="https://linkedin.com/in/daryramadhan" target="_blank">LinkedIn</a> | 
+      <a href="https://dribbble.com/daryramadhan" target="_blank">Dribbble</a> | 
+      <a href="mailto:daryramadhan23@gmail.com">daryramadhan23@gmail.com</a> | Jakarta, Indonesia
+    </div>
+    
+    <div class="summary">
+      I’m a Product Designer with 2+ years experience focused on designing with empathy and helping teams turn complex ideas into impactful digital products. I bring a strong sense of ownership, clear communication, and a collaborative approach to every project. Currently leveraging AI to sharpen my creative process and deliver more impactful work, faster.
+    </div>
+    
+    <div class="section-title">Experience</div>
+    
+    <!-- Pupuk Indonesia -->
+    <div class="item-header">
+      <span>PT. Pupuk Indonesia</span>
+      <span class="location">Indonesia <em>(Remote)</em></span>
+    </div>
+    <div class="item-subheader">
+      <span>UI/UX Designer (Freelance)</span>
+      <span class="date">Apr 2026 - present</span>
+    </div>
+    <ul>
+      <li>Designed Sentra’s landing page as a centralized entry point for employees across Pupuk Indonesia’s subsidiaries to access internal corporate services.</li>
+      <li>Redesigned the existing Document of Files platform within Sentra’s design system, improving complex role-based workflows for drafters, reviewers, approvers, and recipients.</li>
+      <li>Collaborated closely with Pupuk Indonesia’s internal product and development teams to align operational requirements, design decisions, and implementation constraints.</li>
+    </ul>
+
+    <!-- TRD Creative -->
+    <div class="item-header">
+      <span>TRD Creative Studio</span>
+      <span class="location">Indonesia <em>(Remote)</em></span>
+    </div>
+    <div class="item-subheader">
+      <span>Co-Founder & Product Designer</span>
+      <span class="date">Jan 2024 - present</span>
+    </div>
+    <ul>
+      <li>Co-founded a creative design studio focused on UI/UX, product strategy, and digital experience design for startups and small businesses.</li>
+      <li>Designed and delivered 20+ digital product concepts and client projects, including websites, mobile apps, and design systems.</li>
+      <li>Worked directly with founders and stakeholders to define product direction, user flows, and interaction design.</li>
+    </ul>
+
+    <!-- Synapsis -->
+    <div class="item-header">
+      <span>PT. Synapsis Sinergi Digital (Synapsis)</span>
+      <span class="location">Jakarta</span>
+    </div>
+    <ul class="nested-list" style="margin-top: 6px;">
+      <li>
+        <div class="role-title-line">
+          <span>&bull;&nbsp;&nbsp;UI/UX Designer Lead</span>
+          <span class="date">Apr 2025 - May 2026</span>
+        </div>
+        <ul style="margin-bottom: 4px;">
+          <li>Given the trust from the company to step into a UI/UX Lead role early in my career journey.</li>
+          <li>Focused on improving team workflows through design playbooks, better documentation, weekly learning sessions, and fostering a high-agency design culture. Also helped introduce AI-enabled workflows for designers.</li>
+        </ul>
+      </li>
+      <li>
+        <div class="role-title-line">
+          <span>&bull;&nbsp;&nbsp;UI/UX Designer</span>
+          <span class="date">Apr 2025 - Feb 2026</span>
+        </div>
+        <ul style="margin-bottom: 4px;">
+          <li>Responsible for end-to-end product design within the mining sector, starting from UX research, client collaboration, wireframing, prototyping, to delivering high-fidelity UI and work closely with PM, BSA, QA Engineers, and Developers</li>
+          <li>Key Projects: PT Madhani Talatah Nusantara (e-Recruitment Platform, Learning Management System (LMS), Employee Self Service (ESS), AI Hub Platform, Design System), Surveillance Dashboard System</li>
+        </ul>
+      </li>
+      <li>
+        <div class="role-title-line">
+          <span>&bull;&nbsp;&nbsp;UI/UX Designer Internship</span>
+          <span class="date">Dec 2024 - Apr 2025</span>
+        </div>
+        <ul style="margin-bottom: 0;">
+          <li>Key Projects: Synapsis Website 2.0 (<a href="https://synapsis.id" target="_blank" style="color: #0066cc;">https://synapsis.id</a>), Nearon Dashboard</li>
+        </ul>
+      </li>
+    </ul>
+
+    <!-- Resumify -->
+    <div class="item-header">
+      <span>Resumify</span>
+      <span class="location">UK, London <em>(Remote)</em></span>
+    </div>
+    <div class="item-subheader">
+      <span>Product Designer</span>
+      <span class="date">Apr 2025 - Sep 2025</span>
+    </div>
+    <ul>
+      <li>Leading the end-to-end product design for Resumify, a resume optimization tool powered by AI, from ideation to pre-launch</li>
+      <li>Established the brand’s visual identity from scratch, including logo, typography, and UI components</li>
+      <li>Collaborating closely with the founder and engineers to align product vision with technical feasibility and UX best practices</li>
+    </ul>
+
+    <!-- CCIT-CEP -->
+    <div class="item-header">
+      <span>CCIT-CEP FT Universitas Indonesia</span>
+      <span class="location">Depok, West Java <em>(on-site)</em></span>
+    </div>
+    <div class="item-subheader">
+      <span>UI/UX Design Lecturer (Contract)</span>
+      <span class="date">Feb 2025 - Jun 2025</span>
+    </div>
+    <ul>
+      <li>Delivered comprehensive UI/UX curriculum to 30+ students, covering design systems, Figma, usability testing, and visual hierarchy</li>
+      <li>Mentored students on their capstone projects, guiding them from research to high-fidelity prototyping and design handoffs</li>
+      <li>Conducted interactive design critiques and workshops, fostering a collaborative and growth-oriented learning environment</li>
+    </ul>
+  </div>
+
+  <!-- PAGE 2 -->
+  <div class="page">
+    <div class="section-title" style="margin-top: 0;">Education</div>
+    
+    <!-- Apple Developer Academy -->
+    <div class="edu-item">
+      <div class="item-header">
+        <span>Apple Developer Academy @BINUS</span>
+        <span class="date">Feb 2025 - Jun 2025</span>
+      </div>
+      <div class="item-subheader">
+        <span>Accepted with only a 2.5% acceptance rate</span>
+        <span class="location">BSD, Tangerang</span>
+      </div>
+      <div class="edu-details">
+        Activities and societies: Developed 6 collaborative iOS applications and 1 game using diverse apple technology frameworks. Utilized Challenge-based Learning (CBL)
+      </div>
+    </div>
+
+    <!-- BINUS CS -->
+    <div class="edu-item">
+      <div class="item-header">
+        <span>Bina Nusantara University (GPA 3.64/4.00)</span>
+        <span class="date">Sep 2020 - Nov 2024</span>
+      </div>
+      <div class="item-subheader">
+        <span>School of Computer Science, minor in Artificial Intelligence</span>
+        <span class="location">Jakarta</span>
+      </div>
+      <div class="edu-details">
+        Activities and societies: HIMTI, Project Officer of TECHFEST 2020, Bina Nusantara Computer Club, UI/UX Trainer, Community Lead of GDSC Binus Malang, Duta Binusian
+      </div>
+    </div>
+
+    <!-- BINUS KMMI -->
+    <div class="edu-item">
+      <div class="item-header">
+        <span>Bina Nusantara University (Grade 99/100)</span>
+        <span class="date">Jul 2021 - Sep 2021</span>
+      </div>
+      <div class="item-subheader">
+        <span>UI/UX Designer, KMMI Program</span>
+        <span class="location">Online</span>
+      </div>
+    </div>
+
+    <div class="section-title">Volunteer Experience</div>
+    
+    <!-- Google I/O Cloud Extended -->
+    <div class="volunteer-item">
+      <div class="item-header">
+        <span>Google I/O Cloud Extended 2024</span>
+        <span class="location">Jakarta <em>(Hybrid)</em></span>
+      </div>
+      <div class="item-subheader">
+        <span>Media Creative – GDG Cloud @Jakarta</span>
+        <span class="date">July 2024</span>
+      </div>
+      <ul>
+        <li>Achieved over 700+ user interactions through engaging, clean, and informative social media content that successfully promoted event visibility and participation for @gdgcloudjakarta</li>
+      </ul>
+    </div>
+
+    <!-- GDSC -->
+    <div class="volunteer-item">
+      <div class="item-header">
+        <span>Google Developer Students Club @BINUS Malang</span>
+        <span class="location">Malang</span>
+      </div>
+      <div class="item-subheader">
+        <span>Community Lead</span>
+        <span class="date">Oct 2022 - July 2023</span>
+      </div>
+      <ul>
+        <li>Pioneered a groundbreaking international event, collaborating with three countries (Philippines, South Korea, and Japan). Facilitated discussions on emerging technologies, attracting an audience of 200+ participants from around the world</li>
+        <li>Organized 12+ events and workshops on UI/UX, Website Development, and Mobile Development</li>
+      </ul>
+    </div>
+
+    <div class="section-title">Honors & Scholarship</div>
+    
+    <!-- IJSRS -->
+    <div class="honor-item">
+      <div>
+        <span class="honor-title">International Joint Student Research Symposium (IJSRS) 2025</span>
+        <span class="honor-event"> — Participant</span>
+      </div>
+      <span class="date">Sep 2025</span>
+    </div>
+    
+    <!-- Computerun -->
+    <div class="honor-item">
+      <div>
+        <span class="honor-title">Computerun 2022</span>
+        <span class="honor-event"> — 2nd Winner of International Web Design Competition</span>
+      </div>
+      <span class="date">Jan 2022</span>
+    </div>
+    
+    <!-- Duta Binusian -->
+    <div class="honor-item">
+      <div>
+        <span class="honor-title">Bina Nusantara University</span>
+        <span class="honor-event"> — Duta Binusian Awardee</span>
+      </div>
+      <span class="date">Jul 2021</span>
+    </div>
+
+    <div class="section-title" style="margin-top: 18px;">Certifications</div>
+    
+    <!-- Swift Cert -->
+    <div class="cert-item">
+      <div>
+        <span class="cert-name">App Development with Swift - Associate</span>
+        <span class="honor-event"> — Certiport – A Pearson VUE Business</span>
+        <div class="cert-details">Credential ID wULv9-2F9B</div>
+      </div>
+      <span class="date">Issued Dec 2023</span>
+    </div>
+
+    <div class="section-title" style="margin-top: 18px;">Keyskills</div>
+    <div class="skills-text">
+      UI/UX Design, Product Design, UX Research, Figma, Web Development, Collaboration, Teamwork, Leadership
+    </div>
+  </div>
+
+</body>
+</html>
