@@ -719,164 +719,36 @@ export const projects: Project[] = [
     }
   },
   {
-    id: "greenflags",
-    title: "Greenflags Landing Page",
-    category: "Landing Page",
+    id: "mobile-pos-system",
+    title: "Mobile POS System",
+    client: "Exploration Design",
+    category: "Exploration Design",
     role: "UI/UX Designer",
     year: "2026",
-    url: "#/project/greenflags",
-    src: "/uploads/uploaded_1785059266560.png",
+    url: "#/project/mobile-pos-system",
+    src: "/uploads/uploaded_1786302136259.png",
     badge: false,
     fit: "top",
     isEmpty: false,
     caseStudy: {
       challenge: "",
       solution: "",
-      timeline: "3 weeks",
+      timeline: "",
       sections: [
         {
-          id: "overview",
+          id: "section-1786302136291",
           heading: "Overview",
           paragraphs: [
-            "Greenflags — Your journey to finding love with us is simple and meaningful, in just three steps: apply for access, receive curated matches, and build real connections."
+            ""
           ],
           navTitle: "Overview",
           images: [
-            "/uploads/uploaded_1785059289651.png"
+            "/uploads/uploaded_1786302136259.png"
           ],
-          image: "/uploads/uploaded_1785059289651.png",
-          captions: [
-            "Showcase Greenflags Landing Page"
-          ],
-          caption: "Showcase Greenflags Landing Page"
-        },
-        {
-          id: "section-1784976045166",
-          heading: "Project Background",
-          paragraphs: [
-            "The brand needs to be optimized for stronger positioning. We helped Greenflags define their brand position: Greenflags — Your journey to finding love with us is simple and meaningful, in just three steps: apply for access, receive curated matches, and build real connections."
-          ],
-          navTitle: "Background",
-          images: [
-            "/uploads/uploaded_1784976159218.webp",
-            "/uploads/uploaded_1784976248267.webp",
-            "/uploads/uploaded_1784976248320.webp",
-            "/uploads/uploaded_1784983210728.webp",
-            "/uploads/uploaded_1784983245244.webp"
-          ],
-          image: "/uploads/uploaded_1784976159218.webp",
-          captions: [
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        },
-        {
-          id: "section-1784983278143",
-          heading: "Gallery",
-          paragraphs: [
-            ""
-          ],
-          images: [
-            "/uploads/uploaded_1784983367353.webp",
-            "/uploads/uploaded_1784983299931.webp"
-          ],
-          image: "/uploads/uploaded_1784983367353.webp",
-          captions: [
-            "",
-            "Landing page for Greenflags"
-          ],
-          caption: ""
-        }
-      ]
-    },
-    client: "Greenflags"
-  },
-  {
-    id: "techhouse-software-house-ai-solutions-for-your-small-biz-until-enterprises",
-    title: "TechHouse Brand Design",
-    category: "Software",
-    role: "Brand Designer",
-    year: "2026",
-    url: "#/project/techhouse-software-house-ai-solutions-for-your-small-biz-until-enterprises",
-    src: "/uploads/uploaded_1784985969372.webp",
-    badge: false,
-    fit: "center",
-    isEmpty: false,
-    caseStudy: {
-      challenge: "",
-      solution: "",
-      timeline: "1 month",
-      sections: [
-        {
-          id: "overview",
-          heading: "Overview",
-          paragraphs: [
-            "We’ve been quietly building something with purpose.  Not just software, but solutions designed with care,  crafted by people who believe in excellence through detail. This is TEHC House. A collective built to redefine how technology feels."
-          ],
-          images: [
-            "/uploads/uploaded_1784986102013.webp"
-          ],
-          image: "/uploads/uploaded_1784986102013.webp",
+          image: "/uploads/uploaded_1786302136259.png",
           captions: [
             ""
           ]
-        },
-        {
-          id: "section-1784985868160",
-          heading: "Why This Project Exists",
-          paragraphs: [
-            "This project exists to create a brand identity that reflects the client’s vision of empowering enterprises through AI-driven innovation."
-          ],
-          navTitle: "Background",
-          images: [
-            "/uploads/uploaded_1784985916413.webp",
-            "/uploads/uploaded_1784986042624.webp",
-            "/uploads/uploaded_1784986042673.webp"
-          ],
-          image: "/uploads/uploaded_1784985916413.webp",
-          captions: [
-            "",
-            "",
-            ""
-          ]
-        }
-      ]
-    },
-    client: "TehcHouse"
-  },
-  {
-    id: "illustration",
-    title: "Illustration Design for Resumify",
-    category: "AI SaaS",
-    role: "Product Designer",
-    year: "2026",
-    url: "#/project/illustration",
-    src: "/uploads/uploaded_1784986270100.webp",
-    badge: false,
-    fit: "center",
-    isEmpty: false,
-    caseStudy: {
-      challenge: "",
-      solution: "",
-      timeline: "2 Months (Q4 2025)",
-      sections: [
-        {
-          id: "overview",
-          heading: "Overview",
-          paragraphs: [
-            "This project started after observing how many fresh graduates struggle to create a strong resume. Most resumes are text-heavy, unstructured, and fail ATS checks. Job seekers often don't know how to phrase achievements, quantify impact, or highlight strengths."
-          ],
-          images: [
-            "/uploads/uploaded_1784986322779.webp"
-          ],
-          image: "/uploads/uploaded_1784986322779.webp",
-          captions: [
-            ""
-          ],
-          navTitle: "Resumify"
         }
       ]
     }
@@ -954,6 +826,239 @@ export const projects: Project[] = [
       ]
     },
     client: "PT. Madhani Talatah Nusantara"
+  },
+  {
+    id: "greenflags",
+    title: "Greenflags Landing Page",
+    category: "Landing Page",
+    role: "UI/UX Designer",
+    year: "2026",
+    url: "#/project/greenflags",
+    src: "/uploads/uploaded_1785059266560.png",
+    badge: false,
+    fit: "top",
+    isEmpty: false,
+    caseStudy: {
+      challenge: "",
+      solution: "",
+      timeline: "3 weeks",
+      sections: [
+        {
+          id: "overview",
+          heading: "Overview",
+          paragraphs: [
+            "Greenflags — Your journey to finding love with us is simple and meaningful, in just three steps: apply for access, receive curated matches, and build real connections."
+          ],
+          navTitle: "Overview",
+          images: [
+            "/uploads/uploaded_1785059289651.png"
+          ],
+          image: "/uploads/uploaded_1785059289651.png",
+          captions: [
+            "Showcase Greenflags Landing Page"
+          ],
+          caption: "Showcase Greenflags Landing Page"
+        },
+        {
+          id: "section-1784976045166",
+          heading: "Project Background",
+          paragraphs: [
+            "The brand needs to be optimized for stronger positioning. We helped Greenflags define their brand position: Greenflags — Your journey to finding love with us is simple and meaningful, in just three steps: apply for access, receive curated matches, and build real connections."
+          ],
+          navTitle: "Background",
+          images: [
+            "/uploads/uploaded_1784976159218.webp",
+            "/uploads/uploaded_1784976248267.webp",
+            "/uploads/uploaded_1784976248320.webp",
+            "/uploads/uploaded_1784983210728.webp",
+            "/uploads/uploaded_1784983245244.webp"
+          ],
+          image: "/uploads/uploaded_1784976159218.webp",
+          captions: [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          id: "section-1784983278143",
+          heading: "Gallery",
+          paragraphs: [
+            ""
+          ],
+          images: [
+            "/uploads/uploaded_1784983367353.webp",
+            "/uploads/uploaded_1784983299931.webp"
+          ],
+          image: "/uploads/uploaded_1784983367353.webp",
+          captions: [
+            "",
+            "Landing page for Greenflags"
+          ],
+          caption: ""
+        }
+      ]
+    },
+    client: "Greenflags"
+  },
+  {
+    id: "puranawa-jewelry",
+    title: "Puranawa Jewelry",
+    client: "Exploration Design",
+    category: "Exploration Design",
+    role: "UI/UX Designer",
+    year: "2026",
+    url: "#/project/puranawa-jewelry",
+    src: "/uploads/uploaded_1790584718995.png",
+    badge: false,
+    fit: "top",
+    isEmpty: false,
+    caseStudy: {
+      challenge: "",
+      solution: "",
+      timeline: "",
+      sections: [
+        {
+          id: "section-1790584719033",
+          heading: "Overview",
+          paragraphs: [
+            ""
+          ],
+          navTitle: "Overview",
+          images: [
+            "/uploads/uploaded_1790584718995.png"
+          ],
+          image: "/uploads/uploaded_1790584718995.png",
+          captions: [
+            ""
+          ]
+        }
+      ]
+    }
+  },
+  {
+    id: "techhouse-software-house-ai-solutions-for-your-small-biz-until-enterprises",
+    title: "TechHouse Brand Design",
+    category: "Software",
+    role: "Brand Designer",
+    year: "2026",
+    url: "#/project/techhouse-software-house-ai-solutions-for-your-small-biz-until-enterprises",
+    src: "/uploads/uploaded_1784985969372.webp",
+    badge: false,
+    fit: "center",
+    isEmpty: false,
+    caseStudy: {
+      challenge: "",
+      solution: "",
+      timeline: "1 month",
+      sections: [
+        {
+          id: "overview",
+          heading: "Overview",
+          paragraphs: [
+            "We’ve been quietly building something with purpose.  Not just software, but solutions designed with care,  crafted by people who believe in excellence through detail. This is TEHC House. A collective built to redefine how technology feels."
+          ],
+          images: [
+            "/uploads/uploaded_1784986102013.webp"
+          ],
+          image: "/uploads/uploaded_1784986102013.webp",
+          captions: [
+            ""
+          ]
+        },
+        {
+          id: "section-1784985868160",
+          heading: "Why This Project Exists",
+          paragraphs: [
+            "This project exists to create a brand identity that reflects the client’s vision of empowering enterprises through AI-driven innovation."
+          ],
+          navTitle: "Background",
+          images: [
+            "/uploads/uploaded_1784985916413.webp",
+            "/uploads/uploaded_1784986042624.webp",
+            "/uploads/uploaded_1784986042673.webp"
+          ],
+          image: "/uploads/uploaded_1784985916413.webp",
+          captions: [
+            "",
+            "",
+            ""
+          ]
+        }
+      ]
+    },
+    client: "TehcHouse"
+  },
+  {
+    id: "e-recruitment",
+    title: "E-recruitment",
+    client: "Exploration Design",
+    category: "Exploration Design",
+    role: "UI/UX Designer",
+    year: "2026",
+    url: "#/project/e-recruitment",
+    src: "/uploads/uploaded_1786302398964.png",
+    badge: false,
+    fit: "top",
+    isEmpty: false,
+    caseStudy: {
+      challenge: "",
+      solution: "",
+      timeline: "",
+      sections: [
+        {
+          id: "section-1786302398974",
+          heading: "Overview",
+          paragraphs: [
+            ""
+          ],
+          navTitle: "Overview",
+          images: [
+            "/uploads/uploaded_1786302398964.png"
+          ],
+          image: "/uploads/uploaded_1786302398964.png",
+          captions: [
+            ""
+          ]
+        }
+      ]
+    }
+  },
+  {
+    id: "illustration",
+    title: "Illustration Design for Resumify",
+    category: "AI SaaS",
+    role: "Product Designer",
+    year: "2026",
+    url: "#/project/illustration",
+    src: "/uploads/uploaded_1784986270100.webp",
+    badge: false,
+    fit: "center",
+    isEmpty: false,
+    caseStudy: {
+      challenge: "",
+      solution: "",
+      timeline: "2 Months (Q4 2025)",
+      sections: [
+        {
+          id: "overview",
+          heading: "Overview",
+          paragraphs: [
+            "This project started after observing how many fresh graduates struggle to create a strong resume. Most resumes are text-heavy, unstructured, and fail ATS checks. Job seekers often don't know how to phrase achievements, quantify impact, or highlight strengths."
+          ],
+          images: [
+            "/uploads/uploaded_1784986322779.webp"
+          ],
+          image: "/uploads/uploaded_1784986322779.webp",
+          captions: [
+            ""
+          ],
+          navTitle: "Resumify"
+        }
+      ]
+    }
   },
   {
     id: "junso-landing-page",
@@ -1089,75 +1194,5 @@ export const projects: Project[] = [
       ]
     },
     client: "Exploration Design"
-  },
-  {
-    id: "mobile-pos-system",
-    title: "Mobile POS System",
-    client: "Exploration Design",
-    category: "Exploration Design",
-    role: "UI/UX Designer",
-    year: "2026",
-    url: "#/project/mobile-pos-system",
-    src: "/uploads/uploaded_1786302136259.png",
-    badge: false,
-    fit: "top",
-    isEmpty: false,
-    caseStudy: {
-      challenge: "",
-      solution: "",
-      timeline: "",
-      sections: [
-        {
-          id: "section-1786302136291",
-          heading: "Overview",
-          paragraphs: [
-            ""
-          ],
-          navTitle: "Overview",
-          images: [
-            "/uploads/uploaded_1786302136259.png"
-          ],
-          image: "/uploads/uploaded_1786302136259.png",
-          captions: [
-            ""
-          ]
-        }
-      ]
-    }
-  },
-  {
-    id: "e-recruitment",
-    title: "E-recruitment",
-    client: "Exploration Design",
-    category: "Exploration Design",
-    role: "UI/UX Designer",
-    year: "2026",
-    url: "#/project/e-recruitment",
-    src: "/uploads/uploaded_1786302398964.png",
-    badge: false,
-    fit: "top",
-    isEmpty: false,
-    caseStudy: {
-      challenge: "",
-      solution: "",
-      timeline: "",
-      sections: [
-        {
-          id: "section-1786302398974",
-          heading: "Overview",
-          paragraphs: [
-            ""
-          ],
-          navTitle: "Overview",
-          images: [
-            "/uploads/uploaded_1786302398964.png"
-          ],
-          image: "/uploads/uploaded_1786302398964.png",
-          captions: [
-            ""
-          ]
-        }
-      ]
-    }
   }
 ];
