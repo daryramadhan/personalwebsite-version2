@@ -3,17 +3,30 @@ import LeftPanel from "./components/LeftPanel";
 import RightPanel from "./components/RightPanel";
 import ProjectDetails from "./components/ProjectDetails";
 import AboutPage from "./components/AboutPage";
+import NewLandingPage from "./components/NewLandingPage";
 import { projects } from "./data/portfolioData";
 
 // Lazy load AdminDashboard to keep production bundle light and tree-shaken
 const AdminDashboard = lazy(() => import("./components/AdminDashboard"));
 
 export default function App() {
+  const [pathname, setPathname] = useState(window.location.pathname);
   const [browserHash, setBrowserHash] = useState(window.location.hash);
   const [activeHash, setActiveHash] = useState(window.location.hash);
   const [curtainState, setCurtainState] = useState<"idle" | "sliding-in" | "sliding-out">("idle");
   const [activeTab, setActiveTab] = useState<"showcase" | "shots">("showcase");
 
+  // Determine if user is accessing the showcase/portfolio version
+  const isShowcaseRoute =
+    pathname === "/showcase" ||
+    pathname.startsWith("/showcase/") ||
+    activeHash === "#/showcase" ||
+    activeHash.startsWith("#/project/") ||
+    activeHash === "#/about" ||
+    activeHash === "#/resume" ||
+    activeHash === "#about" ||
+    activeHash === "#resume" ||
+    activeHash === "#/admin";
 
   // Check if hash matches project details page route format: #/project/:id
   const projectPrefix = "#/project/";
@@ -24,11 +37,17 @@ export default function App() {
   const isAboutRoute = activeHash === "#/about" || activeHash === "#/resume" || activeHash === "#about" || activeHash === "#resume";
 
   useEffect(() => {
-    const handleHashChange = () => {
+    const handleLocationChange = () => {
+      setPathname(window.location.pathname);
       setBrowserHash(window.location.hash);
     };
-    window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
+
+    window.addEventListener("hashchange", handleLocationChange);
+    window.addEventListener("popstate", handleLocationChange);
+    return () => {
+      window.removeEventListener("hashchange", handleLocationChange);
+      window.removeEventListener("popstate", handleLocationChange);
+    };
   }, []);
 
   useEffect(() => {
@@ -71,6 +90,9 @@ export default function App() {
       if (activeProject.caseStudy?.challenge) {
         desc = activeProject.caseStudy.challenge;
       }
+    } else if (!isShowcaseRoute) {
+      title = "TRD Creative Studio | Dary Ramadhan";
+      desc = "Digital design and product experience studio.";
     }
 
     // Set document title
@@ -97,15 +119,17 @@ export default function App() {
     // Track page view in Google Analytics
     if (typeof (window as any).gtag === "function") {
       (window as any).gtag("config", "G-K8072HFVWF", {
-        page_path: window.location.hash || "/",
+        page_path: window.location.pathname + window.location.hash || "/",
         page_title: title,
       });
     }
-  }, [activeHash, activeProject, isAdminRoute, isAboutRoute]);
+  }, [activeHash, activeProject, isAdminRoute, isAboutRoute, isShowcaseRoute]);
 
   return (
-    <div className={`bg-white min-h-screen font-['Manrope',sans-serif] relative ${activeProject || isAdminRoute || isAboutRoute ? "" : "overflow-x-hidden"}`}>
-      {isAdminRoute ? (
+    <div className={`bg-white min-h-screen font-['Manrope',sans-serif] relative ${activeProject || isAdminRoute || isAboutRoute || !isShowcaseRoute ? "" : "overflow-x-hidden"}`}>
+      {!isShowcaseRoute ? (
+        <NewLandingPage />
+      ) : isAdminRoute ? (
         <Suspense fallback={null}>
           <AdminDashboard />
         </Suspense>
@@ -134,3 +158,4 @@ export default function App() {
     </div>
   );
 }
+

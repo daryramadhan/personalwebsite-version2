@@ -15,10 +15,13 @@ export default function LuxuryImage({ src, alt, className = "", style }: LuxuryI
     setLoaded(false);
   }, [src]);
 
+  // Separate container styles from image objectPosition styles
+  const { objectPosition, ...containerStyle } = style || {};
+
   return (
     <div 
       className="w-full h-full relative overflow-hidden bg-gray-50 flex items-center justify-center"
-      style={style}
+      style={containerStyle}
     >
       {/* Shimmer skeleton screen */}
       {!loaded && (
@@ -29,6 +32,7 @@ export default function LuxuryImage({ src, alt, className = "", style }: LuxuryI
         src={src}
         alt={alt}
         onLoad={() => setLoaded(true)}
+        style={{ objectPosition }}
         className={`${className} transition-all duration-1200 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           loaded 
             ? "opacity-100 blur-0 scale-100" 

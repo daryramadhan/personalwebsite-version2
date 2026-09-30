@@ -13,17 +13,17 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <a
       href={project.url || "#"}
-      className="group block bg-[#f4f4f4] aspect-[336/250] overflow-hidden relative rounded-[4px] w-full cursor-pointer"
+      className="group block bg-[#f4f4f4] aspect-[336/250] overflow-hidden relative rounded-xl w-full cursor-pointer"
     >
       {project.src && (
         <LuxuryImage
           src={project.src}
           alt={project.title || ""}
-          className="size-full object-cover pointer-events-none p-[8px] rounded-[12px]"
+          className="size-full object-contain pointer-events-none p-4 rounded-lg"
           style={{ 
             position: "absolute",
             inset: 0,
-            objectPosition: project.fit === "top" ? "top center" : "center" 
+            objectPosition: "center"
           }}
         />
       )}
