@@ -2,15 +2,18 @@ import { useState, useEffect } from "react";
 import { portfolioInfo, socialLinks, clients, projects } from "../data/portfolioData";
 
 interface SkillChipProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
+  icon?: string;
+  name?: string;
   className?: string;
 }
 
 // Single central component for styling all Skill Chips
-function SkillChip({ children, className = "" }: SkillChipProps) {
+function SkillChip({ children, icon, name, className = "" }: SkillChipProps) {
   return (
     <div className={`px-4 py-2 rounded-md bg-white text-sm font-medium text-[#18181b] flex items-center gap-2.5 transition-all hover:shadow-md cursor-default ${className}`}>
-      {children}
+      {icon && <img src={icon} alt={name || ""} className="w-4 h-4 object-contain shrink-0" />}
+      {name ? <span>{name}</span> : children}
     </div>
   );
 }
@@ -119,7 +122,7 @@ export default function NewLandingPage() {
             </div>
           </div>
         </header>
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-8 lg:px-12">
+        <div className="max-w-[1240px] mx-auto px-8 sm:px-8 lg:px-12">
 
           {/* Hero Banner Section */}
           <section className="pt-20 pb-16 md:pt-28 md:pb-24 flex flex-col items-center text-center animate-reveal-up">
@@ -132,13 +135,13 @@ export default function NewLandingPage() {
             </div>
 
             {/* Hero Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-medium text-black leading-[1.12] tracking-[-2px] max-w-4xl mb-6">
-              High-Agency Product Designer with Empathy currently based in Jakarta
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-medium text-black leading-[1.125] sm:tracking-[-3px] tracking-[-1.4px] max-w-4xl mb-6">
+              UX/UI Designer who thinks beyond the interface
             </h1>
 
             {/* Hero Subtitle */}
-            <p className="text-base sm:text-lg text-black/65 font-normal leading-[1.5] max-w-2xl mb-10">
-              Dary Ramadhan is an Indonesian-based product designer with 2 years of experience focused on helping startups and enterprise teams to simplify complex requirements.
+            <p className="text-base sm:text-md text-black/65 font-normal leading-[1.5] sm:max-w-3xl mb-10">
+              Dary is a high-agency UX/UI designer who combines product thinking, UX/UI, design engineering, AI, and business understanding to take complex ideas from problem to shipped product.
             </p>
 
             {/* Hero CTA Buttons */}
@@ -205,7 +208,7 @@ export default function NewLandingPage() {
                 Selected Works
               </h2>
               <p className="text-sm md:text-base text-black/60">
-                We adapt to the tools and stack your team already uses, keeping the path from design to implementation clear.
+                A selection of products I've worked on across enterprise platforms, AI products, web experiences, and digital products.
               </p>
               <div className="pt-2">
                 <a
@@ -269,11 +272,9 @@ export default function NewLandingPage() {
                 Shots
               </span>
               <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-black">
-                Wide design variations.
-              </h2>
+                A collection of UI design</h2>
               <p className="text-sm md:text-base text-black/60 leading-relaxed">
-                We adapt to the tools and stack your team already uses, keeping the path from design to implementation clear.
-              </p>
+                A collection of UI screens, components, interactions, and design explorations from my projects.</p>
             </div>
 
             {/* Right Column (2-Column Grid of Design Variations / Shots) */}
@@ -303,15 +304,12 @@ export default function NewLandingPage() {
           VALUE PROPOSITION & STATS SECTION (FULL WIDTH DARK BLOCK)
          ========================================================================= */}
       <section className="w-full bg-[#18181b] text-white py-20 md:py-[150px] relative z-20 overflow-hidden">
-        {/* Subtle Gradient Accent */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#f25c0c]/10 rounded-full filter blur-3xl pointer-events-none" />
-
         <div className="max-w-[1240px] mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
           {/* Header Split Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-16">
             <div className="lg:col-span-7">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium leading-[1.1] tracking-tight text-white">
-                As your design partner, I help founders and business owners build great, scalable products.
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium leading-[1.1] tracking-tight text-white max-w-sm">
+                Built across products, teams, and industries.
               </h2>
             </div>
             <div className="lg:col-span-5 flex items-center lg:justify-end">
@@ -326,20 +324,20 @@ export default function NewLandingPage() {
             {/* Stat 1 */}
             <div className="bg-[#242427]/80 rounded-sm p-6 sm:p-8 text-center hover:border-white/15 transition-colors">
               <div className="text-4xl sm:text-5xl font-regular tracking-tight text-white mb-2">
-                8+
+                16+
               </div>
               <div className="text-[11px] font-mono tracking-widest text-zinc-400 uppercase">
-                COLLABORATION
+                PROJECTS SHIPPED
               </div>
             </div>
 
             {/* Stat 2 */}
             <div className="bg-[#242427]/80 rounded-sm p-6 sm:p-8 text-center hover:border-white/15 transition-colors">
               <div className="text-4xl sm:text-5xl font-regular tracking-tight text-white mb-2">
-                16+
+                8+
               </div>
               <div className="text-[11px] font-mono tracking-widest text-zinc-400 uppercase">
-                PROJECTS SHIPPED
+                COLLABORATIONS
               </div>
             </div>
 
@@ -370,20 +368,19 @@ export default function NewLandingPage() {
           TOOLS & SKILLS SECTION (FULL WIDTH BG #F8F8FA)
          ========================================================================= */}
       <section className="w-full bg-[#f9f9f9] md:py-28 relative z-20">
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-8 lg:px-12">
+        <div className="max-w-[1240px] mx-auto px-5 py-24 sm:py-1 sm:px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             {/* Left Column Sidebar */}
             <div className="lg:col-span-4 lg:sticky lg:top-24 space-y-4 self-start">
 
               <span className="inline-block px-3 py-1 mb-10 bg-white text-xs font-mono font-medium text-black/70 rounded-sm">
-                WHAT I WORK WITH DAY-TO-DAY
+                TOOLS
               </span>
               <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-[#18181b]">
                 Tools &amp; Skills
               </h2>
               <p className="text-sm md:text-base text-black/60 leading-relaxed max-w-sm">
-                I adapt to the tools and stack your team already uses, keeping the path from design to implementation clear.
-              </p>
+                I adapt to the tools and stack your team already uses, keeping the path from design to implementation clear.</p>
             </div>
 
             {/* Right Column Skills Badges */}
@@ -394,133 +391,13 @@ export default function NewLandingPage() {
                   DESIGN
                 </div>
                 <div className="flex flex-wrap gap-3">
-                  {/* Figma */}
-                  <SkillChip>
-                    <svg className="w-4 h-4 text-[#18181b] shrink-0" fill="currentColor" viewBox="0 0 38 57">
-                      <path d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38H19V28.5Z" />
-                      <path d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z" />
-                      <path d="M19 0V19H28.5C33.7467 19 38 14.7467 38 9.5C38 4.25329 33.7467 0 28.5 0H19Z" />
-                      <path d="M0 9.5C0 14.7467 4.25329 19 9.5 19H19V0H9.5C4.25329 0 0 4.25329 0 9.5Z" />
-                      <path d="M0 28.5C0 33.7467 4.25329 38 9.5 38H19V19H9.5C4.25329 19 0 23.2533 0 28.5Z" />
-                    </svg>
-                    <span>Figma</span>
-                  </SkillChip>
-
-                  {/* Adobe Illustrator */}
-                  <SkillChip>
-                    <span className="w-4 h-4 bg-[#18181b] text-white text-[9px] font-bold font-mono rounded flex items-center justify-center shrink-0">Ai</span>
-                    <span>Adobe Illustrator</span>
-                  </SkillChip>
-
-                  {/* Adobe Photoshop */}
-                  <SkillChip>
-                    <span className="w-4 h-4 bg-[#18181b] text-white text-[9px] font-bold font-mono rounded flex items-center justify-center shrink-0">Ps</span>
-                    <span>Adobe Photoshop</span>
-                  </SkillChip>
-
-                  {/* Lottie */}
-                  <SkillChip>
-                    <svg className="w-4 h-4 text-[#18181b] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span>Lottie</span>
-                  </SkillChip>
-
-                  {/* Framer */}
-                  <SkillChip>
-                    <svg className="w-4 h-4 text-[#18181b] shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M4 0h16v8h-8zM4 8h8l8 8H4zM4 16h8v8z" />
-                    </svg>
-                    <span>Framer</span>
-                  </SkillChip>
-
-                  {/* ChatGPT */}
-                  <SkillChip>
-                    <svg className="w-4 h-4 text-[#18181b] shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M22.28 10.37c-.36-1.57-1.34-2.88-2.73-3.61.16-.7.09-1.46-.22-2.14a3.84 3.84 0 0 0-2.88-2.16 3.92 3.92 0 0 0-3.32.96 3.83 3.83 0 0 0-3.92-.37C8.17 3.63 7.42 4.49 7.15 5.6a3.86 3.86 0 0 0-2.71 2.21c-.4.99-.34 2.1.16 3.05-.9.77-1.41 1.9-1.39 3.08.03 1.25.61 2.41 1.62 3.16a3.84 3.84 0 0 0 1.66 2.97 3.89 3.89 0 0 0 3.73.47c.56.76 1.39 1.3 2.33 1.54a3.91 3.91 0 0 0 3.32-.97 3.82 3.82 0 0 0 3.91.36c1.04-.58 1.79-1.44 2.06-2.55.99-.2 1.9-.77 2.54-1.6.64-.83.94-1.89.84-2.94a3.84 3.84 0 0 0-1.04-3.08z" />
-                    </svg>
-                    <span>ChatGPT</span>
-                  </SkillChip>
-
-                  {/* Claude */}
-                  <SkillChip>
-                    <svg className="w-4 h-4 text-[#18181b] shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2L9.5 9.5 2 12l7.5 2.5L12 22l2.5-7.5L22 12l-7.5-2.5z" />
-                    </svg>
-                    <span>Claude</span>
-                  </SkillChip>
-                </div>
-              </div>
-
-              {/* Category: RESEARCH */}
-              <div className="space-y-3">
-                <div className="text-[11px] font-mono font-semibold tracking-widest text-black/45 uppercase">
-                  RESEARCH
-                </div>
-                <div className="flex flex-wrap gap-3">
-                  {/* User Interview */}
-                  <SkillChip>
-                    <svg className="w-4 h-4 text-[#18181b] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                    <span>User Interview</span>
-                  </SkillChip>
-
-                  {/* Competitive Analysis */}
-                  <SkillChip>
-                    <svg className="w-4 h-4 text-[#18181b] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
-                    </svg>
-                    <span>Competitive Analysis</span>
-                  </SkillChip>
-
-                  {/* Design Thinking */}
-                  <SkillChip>
-                    <svg className="w-4 h-4 text-[#18181b] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 01-2 2h-0a2 2 0 01-2-2v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                    </svg>
-                    <span>Design Thinking</span>
-                  </SkillChip>
-                </div>
-              </div>
-
-              {/* Category: COLLABORATION */}
-              <div className="space-y-3">
-                <div className="text-[11px] font-mono font-semibold tracking-widest text-black/45 uppercase">
-                  COLLABORATION
-                </div>
-                <div className="flex flex-wrap gap-3">
-                  {/* Slack */}
-                  <SkillChip>
-                    <svg className="w-4 h-4 text-[#18181b] shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.527 2.527 0 0 1 2.52-2.52h6.313A2.528 2.528 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z" />
-                    </svg>
-                    <span>Slack</span>
-                  </SkillChip>
-
-                  {/* Google Meet */}
-                  <SkillChip>
-                    <svg className="w-4 h-4 text-[#18181b] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                    </svg>
-                    <span>Google Meet</span>
-                  </SkillChip>
-
-                  {/* Notion */}
-                  <SkillChip>
-                    <svg className="w-4 h-4 text-[#18181b] shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.047-.326L17.86 1.868c-.42-.326-.98-.513-1.631-.466L3.62 2.474c-.42.047-.56.28-.373.513l1.212 1.221zm.326 3.498v14.133c0 .746.42 1.026 1.166.98l14.755-.886c.746-.047.886-.606.886-1.352V6.446c0-.653-.326-.886-.84-.84L5.672 6.446c-.653.047-.887.326-.887.886zm14.153 1.258c.093.42.093.746-.233.793l-1.073.187v10.31c-.513.28-1.026.42-1.493.42-.746 0-1.026-.233-1.586-.933l-4.572-6.904v6.858l1.773.373c.093.373-.187.746-.7.793l-4.01.233c-.093-.373.14-.746.56-.793l1.166-.233V9.658L7.26 9.425c-.093-.373.187-.746.7-.793l4.384-.28 4.759 7.091V9.285l-1.446-.187c-.093-.42.233-.746.746-.793l3.541-.233z" />
-                    </svg>
-                    <span>Notion</span>
-                  </SkillChip>
-
-                  {/* Figjam */}
-                  <SkillChip>
-                    <svg className="w-4 h-4 text-[#18181b] shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                    </svg>
-                    <span>Figjam</span>
-                  </SkillChip>
+                  <SkillChip icon="/icon-tools/icon-figma.svg" name="Figma" />
+                  <SkillChip icon="/icon-tools/icon-illustrator.svg" name="Adobe Illustrator" />
+                  <SkillChip icon="/icon-tools/icon-photoshop.svg" name="Adobe Photoshop" />
+                  <SkillChip icon="/icon-tools/icon-lottie.svg" name="Lottie" />
+                  <SkillChip icon="/icon-tools/icon-framer.svg" name="Framer" />
+                  <SkillChip icon="/icon-tools/icon-chatgpt.svg" name="ChatGPT" />
+                  <SkillChip icon="/icon-tools/icon-claude.svg" name="Claude" />
                 </div>
               </div>
 
@@ -530,60 +407,40 @@ export default function NewLandingPage() {
                   DEVELOPMENT
                 </div>
                 <div className="flex flex-wrap gap-3">
-                  {/* React */}
-                  <SkillChip>
-                    <svg className="w-4 h-4 text-[#18181b] shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                      <circle cx="12" cy="12" r="2" />
-                      <g fill="none" stroke="currentColor" strokeWidth="1.5">
-                        <ellipse cx="12" cy="12" rx="10" ry="4.5" />
-                        <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(60 12 12)" />
-                        <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(120 12 12)" />
-                      </g>
-                    </svg>
-                    <span>React</span>
-                  </SkillChip>
-
-                  {/* Tailwind */}
-                  <SkillChip>
-                    <svg className="w-4 h-4 text-[#18181b] shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C7.666 17.818 9.027 19.2 12.001 19.2c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z" />
-                    </svg>
-                    <span>Tailwind</span>
-                  </SkillChip>
-
-                  {/* Webflow */}
-                  <SkillChip>
-                    <svg className="w-4 h-4 text-[#18181b] shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M18.8 6.4c-1.6 0-3 .9-3.7 2.2V6.4H12v6.6c0 1.9 1.5 3.4 3.4 3.4 1.6 0 3-.9 3.7-2.2v2.2h3.1V6.4h-3.4zm-1.8 7.4c-1 0-1.8-.8-1.8-1.8s.8-1.8 1.8-1.8 1.8.8 1.8 1.8-.8 1.8-1.8 1.8zM6.9 6.4H3.5v10.1h3.4V6.4zm3.4 0H6.9v10.1h3.4V6.4z" />
-                    </svg>
-                    <span>Webflow</span>
-                  </SkillChip>
-
-                  {/* Wordpress */}
-                  <SkillChip>
-                    <svg className="w-4 h-4 text-[#18181b] shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12.158 0C5.457 0 0 5.457 0 12.158c0 6.701 5.457 12.158 12.158 12.158 6.701 0 12.158-5.457 12.158-12.158C24 5.457 18.859 0 12.158 0zm0 1.157c6.071 0 11.001 4.93 11.001 11.001 0 6.071-4.93 11.001-11.001 11.001C6.087 23.159 1.157 18.229 1.157 12.158 1.157 6.087 6.087 1.157 12.158 1.157z" />
-                    </svg>
-                    <span>Wordpress</span>
-                  </SkillChip>
-
-                  {/* Elementor */}
-                  <SkillChip>
-                    <svg className="w-4 h-4 text-[#18181b] shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-3 6h2v12H9V6zm6 0h2v3h-2V6zm0 4.5h2v3h-2v-3zm0 4.5h2v3h-2v-3z" />
-                    </svg>
-                    <span>Elementor</span>
-                  </SkillChip>
-
-                  {/* Antigravity */}
-                  <SkillChip>
-                    <svg className="w-4 h-4 text-[#18181b] shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2L2 22h20L12 2zm0 4.5L18.5 19.5h-13L12 6.5z" />
-                    </svg>
-                    <span>Antigravity</span>
-                  </SkillChip>
+                  <SkillChip icon="/icon-tools/icon-react.svg" name="React" />
+                  <SkillChip icon="/icon-tools/icon-tailwind.svg" name="Tailwind" />
+                  <SkillChip icon="/icon-tools/icon-webflow.svg" name="Webflow" />
+                  <SkillChip icon="/icon-tools/icon-wordpress.svg" name="Wordpress" />
+                  <SkillChip icon="/icon-tools/icon-elementor.svg" name="Elementor" />
+                  <SkillChip icon="/icon-tools/icon-antigravity.svg" name="Antigravity" />
                 </div>
               </div>
+
+              {/* Category: RESEARCH */}
+              <div className="space-y-3">
+                <div className="text-[11px] font-mono font-semibold tracking-widest text-black/45 uppercase">
+                  RESEARCH
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  <SkillChip icon="/icon-tools/icon-userinterview.svg" name="User Interview" />
+                  <SkillChip icon="/icon-tools/icon-competitive.svg" name="Competitive Analysis" />
+                  <SkillChip icon="/icon-tools/icon-designthinking.svg" name="Design Thinking" />
+                </div>
+              </div>
+
+              {/* Category: COLLABORATION */}
+              <div className="space-y-3">
+                <div className="text-[11px] font-mono font-semibold tracking-widest text-black/45 uppercase">
+                  COLLABORATION
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  <SkillChip icon="/icon-tools/icon-slack.svg" name="Slack" />
+                  <SkillChip icon="/icon-tools/icon-meet.svg" name="Google Meet" />
+                  <SkillChip icon="/icon-tools/icon-notion.svg" name="Notion" />
+                  <SkillChip icon="/icon-tools/icon-figjam.svg" name="Figjam" />
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -652,7 +509,7 @@ export default function NewLandingPage() {
 
             <div className="flex items-center gap-6">
               <div className="hidden md:block font-mono">
-                {currentTime || "13:31:59"} JKT | Indonesia
+                {currentTime || "13:31:59"} JKT | Indonesia | Available for remote collaboration
               </div>
               <div className="flex items-center gap-3 text-black/70">
                 <a
