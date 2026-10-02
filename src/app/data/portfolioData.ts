@@ -50,6 +50,7 @@ export interface CaseStudy {
 export interface Project {
   id: string | number;
   src?: string;
+  coverImages?: string[];
   badge?: boolean;
   fit?: "top" | "center";
   isEmpty?: boolean;
@@ -178,7 +179,15 @@ export const projects: Project[] = [
     role: "Product Designer",
     year: "2026",
     url: "#/project/sentra-landing-page",
-    src: "/uploads/uploaded_1785059197708.png",
+    src: "/uploads/sentra-cover-1.jpg",
+    coverImages: [
+      "/uploads/sentra-cover-1.jpg",
+      "/uploads/sentra-cover-2.jpg",
+      "/uploads/sentra-cover-3.jpg",
+      "/uploads/sentra-cover-4.jpg",
+      "/uploads/sentra-cover-5.jpg",
+      "/uploads/sentra-cover-6.jpg"
+    ],
     badge: true,
     fit: "top",
     isEmpty: false,
@@ -318,7 +327,16 @@ export const projects: Project[] = [
     role: "Brand & Product Designer",
     year: "2026",
     url: "#/project/resumify-ai-powered-resume-builder",
-    src: "/uploads/uploaded_1784983523166.webp",
+    src: "/uploads/resumify-cover-1.jpg",
+    coverImages: [
+      "/uploads/resumify-cover-1.jpg",
+      "/uploads/resumify-cover-2.jpg",
+      "/uploads/resumify-cover-3.jpg",
+      "/uploads/resumify-cover-4.jpg",
+      "/uploads/resumify-cover-5.jpg",
+      "/uploads/resumify-cover-6.jpg",
+      "/uploads/resumify-cover-7.jpg"
+    ],
     badge: true,
     fit: "center",
     isEmpty: false,

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { portfolioInfo, socialLinks, clients, projects } from "../data/portfolioData";
+import ProjectCoverSlideshow from "./ProjectCoverSlideshow";
 
 interface SkillChipProps {
   children?: React.ReactNode;
@@ -232,14 +233,14 @@ export default function NewLandingPage() {
                   className="block group space-y-4 cursor-pointer"
                 >
                   {/* Card Media Preview */}
-                  <div className="p-2 sm:p-3 relative w-full aspect-[16/10] bg-[#f4f4f6] rounded-sm overflow-hidden transition-all duration-300 flex items-center justify-center">
-                    <div className="w-full h-full rounded-sm overflow-hidden relative">
-                      <img
-                        src={project.src || "/uploads/uploaded_1785059197708.png"}
-                        alt={project.title || "Project Case Study"}
-                        className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
-                      />
-                    </div>
+                  <div className="relative w-full aspect-[16/10] bg-[#f4f4f6] rounded-sm overflow-hidden transition-all duration-300">
+                    <ProjectCoverSlideshow
+                      coverImages={project.coverImages}
+                      src={project.src || "/uploads/uploaded_1785059197708.png"}
+                      alt={project.title || "Project Case Study"}
+                      className="w-full h-full relative overflow-hidden"
+                      imgClassName="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
+                    />
                   </div>
 
                   {/* Card Meta Info */}
