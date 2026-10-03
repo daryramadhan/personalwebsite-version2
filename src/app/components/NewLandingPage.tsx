@@ -131,7 +131,7 @@ export default function NewLandingPage() {
         <header className="sticky top-0 z-50 w-full bg-transparent py-4 transition-all duration-300">
           <div className="max-w-[1240px] mx-auto px-5 sm:px-8 lg:px-12 flex items-center justify-between">
             {/* Author Branding */}
-            <a href="#" className="flex items-center gap-2 group">
+            <a href="#" className="flex items-center gap-2 group animate-reveal-up delay-100">
               <span className="font-medium text-sm text-black/90 group-hover:text-[#f25c0c] transition-colors">
                 {portfolioInfo.author} © {portfolioInfo.year}
               </span>
@@ -139,18 +139,18 @@ export default function NewLandingPage() {
 
             {/* Right Controls: Live Clock, Socials, CTA */}
             <div className="flex items-center gap-3 sm:gap-6">
-              <div className="hidden md:flex items-center gap-2 text-xs font-mono text-blackpx-3 py-1.5">
+              <div className="hidden md:flex items-center gap-2 text-xs font-mono text-black px-3 py-1.5 animate-reveal-up delay-150">
                 <span>{currentTime || "13:31:59"} JKT</span>
                 <span className="text-black/30">|</span>
                 <span>Indonesia</span>
               </div>
 
               {/* Social Icons */}
-              <div className="flex items-center gap-1.5 text-black/70">
+              <div className="flex items-center gap-1.5 text-black/70 animate-reveal-up delay-200">
                 <a
                   href="mailto:daryramadhan23@gmail.com"
                   title="Email Dary"
-                  className="p-1.5 hover:text-[#f25c0c] hover:bg-black/5 rounded-md transition-colors"
+                  className="p-1.5 hover:text-[#f25c0c] hover:bg-black/5 rounded-md transition-all hover:scale-110"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -161,7 +161,7 @@ export default function NewLandingPage() {
                   target="_blank"
                   rel="noreferrer"
                   title="Dribbble Profile"
-                  className="p-1.5 hover:text-[#f25c0c] hover:bg-black/5 rounded-md transition-colors"
+                  className="p-1.5 hover:text-[#f25c0c] hover:bg-black/5 rounded-md transition-all hover:scale-110"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <circle cx="12" cy="12" r="10" strokeWidth="1.8" />
@@ -173,7 +173,7 @@ export default function NewLandingPage() {
                   target="_blank"
                   rel="noreferrer"
                   title="LinkedIn Profile"
-                  className="p-1.5 hover:text-[#f25c0c] hover:bg-black/5 rounded-md transition-colors"
+                  className="p-1.5 hover:text-[#f25c0c] hover:bg-black/5 rounded-md transition-all hover:scale-110"
                 >
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.72a1.48 1.48 0 1 0 0 2.96 1.48 1.48 0 0 0 0-2.96z" />
@@ -186,37 +186,42 @@ export default function NewLandingPage() {
                 href={bookingUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="btn-primary py-2 px-5 text-xs sm:text-sm"
+                className="btn-primary py-2 px-5 text-xs sm:text-sm animate-reveal-up delay-250 hover:-translate-y-0.5 hover:shadow-md hover:shadow-[#f25c0c]/30 active:translate-y-0 transition-all duration-300"
               >
                 Book a Call
               </a>
             </div>
           </div>
         </header>
-        <div className="max-w-[1240px] mx-auto px-8 sm:px-8 lg:px-12">
+        <div className="max-w-[1240px] mx-auto px-8 sm:px-8 lg:px-12 relative">
+          {/* Subtle Ambient Radial Light Glow */}
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-[#f25c0c]/8 via-[#f25c0c]/4 to-transparent blur-[140px] rounded-full pointer-events-none" />
 
           {/* Hero Banner Section */}
-          <section className="pt-20 pb-16 md:pt-28 md:pb-24 flex flex-col items-center text-center animate-reveal-up">
+          <section className="pt-20 pb-16 md:pt-28 md:pb-24 flex flex-col items-center text-center relative z-10">
             {/* Availability Pill */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white shadow-xs mb-8">
-              <span className="w-2 h-2 rounded-full bg-[#f25c0c] animate-pulse" />
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-sm border border-black/5 shadow-xs mb-8 animate-reveal-up delay-100 hover:scale-[1.02] hover:border-[#f25c0c]/30 hover:shadow-md transition-all duration-300 cursor-default">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#f25c0c] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#f25c0c]"></span>
+              </span>
               <span className="text-xs md:text-sm font-medium text-black/80">
                 Available for freelance projects and remote work
               </span>
             </div>
 
             {/* Hero Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-medium text-black leading-[1.125] sm:tracking-[-3px] tracking-[-1.4px] max-w-4xl mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-medium text-black leading-[1.125] sm:tracking-[-3px] tracking-[-1.4px] max-w-4xl mb-6 animate-reveal-up delay-200">
               UX/UI Designer who thinks beyond the interface
             </h1>
 
             {/* Hero Subtitle */}
-            <p className="text-base sm:text-md text-black/65 font-normal leading-[1.5] sm:max-w-3xl mb-10">
+            <p className="text-base sm:text-md text-black/65 font-normal leading-[1.5] sm:max-w-3xl mb-10 animate-reveal-up delay-300">
               Dary is a high-agency UX/UI designer who combines product thinking, UX/UI, design engineering, AI, and business understanding to take complex ideas from problem to shipped product.
             </p>
 
             {/* Hero CTA Buttons */}
-            <div className="flex flex-wrap items-center justify-center gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-4 animate-reveal-up delay-400">
               <a
                 href="#selected-works"
                 onClick={(e) => {
@@ -226,7 +231,7 @@ export default function NewLandingPage() {
                     el.scrollIntoView({ behavior: "smooth" });
                   }
                 }}
-                className="btn-primary px-7 py-3.5 text-base cursor-pointer"
+                className="btn-primary px-7 py-3.5 text-base cursor-pointer hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#f25c0c]/25 active:translate-y-0 transition-all duration-300"
               >
                 View Projects
               </a>
@@ -234,9 +239,9 @@ export default function NewLandingPage() {
                 href="/resume.pdf"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/80 hover:bg-white text-black font-medium text-sm transition-all hover:border-black/30"
+                className="group inline-flex items-center gap-2 px-5 py-3.5 rounded-lg bg-white/80 hover:bg-white text-black font-medium text-base transition-all hover:border-black/30 hover:-translate-y-0.5 hover:shadow-sm"
               >
-                <svg className="w-4 h-4 text-black/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-black/70 group-hover:translate-y-0.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
                 <span>Download Resume</span>
@@ -244,17 +249,17 @@ export default function NewLandingPage() {
             </div>
 
             {/* Client Logos Strip */}
-            <div className="mt-20 md:mt-24 w-full pt-10">
+            <div className="mt-20 md:mt-24 w-full pt-10 animate-reveal-up delay-500">
               <p className="text-xs font-medium text-black/45 tracking-wide mb-8">
                 Got experience with all kinds of companies
               </p>
-              <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-10 opacity-80 grayscale hover:grayscale-0 transition-all">
+              <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-10 opacity-80 grayscale hover:grayscale-0 transition-all duration-500">
                 {clients.map((client) => (
                   <img
                     key={client.id}
                     src={client.logo}
                     alt={client.name}
-                    className="h-7 md:h-10 object-contain max-w-[120px] transition-transform hover:scale-105"
+                    className="h-7 md:h-10 object-contain max-w-[120px] transition-all duration-300 hover:scale-110 hover:opacity-100"
                   />
                 ))}
               </div>
