@@ -1,6 +1,76 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { portfolioInfo, socialLinks, clients, projects } from "../data/portfolioData";
 import ProjectCoverSlideshow from "./ProjectCoverSlideshow";
+
+interface CounterNumberProps {
+  end: number;
+  duration?: number;
+  decimals?: number;
+  suffix?: string;
+  prefix?: string;
+}
+
+function CounterNumber({
+  end,
+  duration = 1800,
+  decimals = 0,
+  suffix = "",
+  prefix = "",
+}: CounterNumberProps) {
+  const [count, setCount] = useState(0);
+  const elementRef = useRef<HTMLSpanElement>(null);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    const node = elementRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+          let startTime: number | null = null;
+
+          const step = (timestamp: number) => {
+            if (!startTime) startTime = timestamp;
+            const elapsed = timestamp - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+
+            // Smooth cubic ease-out
+            const easeProgress = 1 - Math.pow(1 - progress, 3);
+            const currentVal = easeProgress * end;
+
+            setCount(currentVal);
+
+            if (progress < 1) {
+              requestAnimationFrame(step);
+            } else {
+              setCount(end);
+            }
+          };
+
+          requestAnimationFrame(step);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(node);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [end, duration]);
+
+  return (
+    <span ref={elementRef}>
+      {prefix}
+      {count.toFixed(decimals)}
+      {suffix}
+    </span>
+  );
+}
 
 interface SkillChipProps {
   children?: React.ReactNode;
@@ -325,7 +395,7 @@ export default function NewLandingPage() {
             {/* Stat 1 */}
             <div className="bg-[#242427]/80 rounded-sm p-6 sm:p-8 text-center hover:border-white/15 transition-colors">
               <div className="text-4xl sm:text-5xl font-regular tracking-tight text-white mb-2">
-                16+
+                <CounterNumber end={16} suffix="+" />
               </div>
               <div className="text-[11px] font-mono tracking-widest text-zinc-400 uppercase">
                 PROJECTS SHIPPED
@@ -335,7 +405,7 @@ export default function NewLandingPage() {
             {/* Stat 2 */}
             <div className="bg-[#242427]/80 rounded-sm p-6 sm:p-8 text-center hover:border-white/15 transition-colors">
               <div className="text-4xl sm:text-5xl font-regular tracking-tight text-white mb-2">
-                8+
+                <CounterNumber end={8} suffix="+" />
               </div>
               <div className="text-[11px] font-mono tracking-widest text-zinc-400 uppercase">
                 COLLABORATIONS
@@ -345,7 +415,7 @@ export default function NewLandingPage() {
             {/* Stat 3 */}
             <div className="bg-[#242427]/80 rounded-sm p-6 sm:p-8 text-center hover:border-white/15 transition-colors">
               <div className="text-4xl sm:text-5xl font-regular tracking-tight text-white mb-2">
-                4
+                <CounterNumber end={4} />
               </div>
               <div className="text-[11px] font-mono tracking-widest text-zinc-400 uppercase">
                 INDUSTRIES
@@ -355,7 +425,7 @@ export default function NewLandingPage() {
             {/* Stat 4 */}
             <div className="bg-[#242427]/80 rounded-sm p-6 sm:p-8 text-center hover:border-white/15 transition-colors">
               <div className="text-4xl sm:text-5xl font-regular tracking-tight text-white mb-2">
-                4.7
+                <CounterNumber end={4.7} decimals={1} />
               </div>
               <div className="text-[11px] font-mono tracking-widest text-zinc-400 uppercase">
                 FASTWORK RATING
