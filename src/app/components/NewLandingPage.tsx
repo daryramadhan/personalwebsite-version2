@@ -12,7 +12,7 @@ interface CounterNumberProps {
 
 function CounterNumber({
   end,
-  duration = 1800,
+  duration = 1500,
   decimals = 0,
   suffix = "",
   prefix = "",
@@ -82,9 +82,175 @@ interface SkillChipProps {
 // Single central component for styling all Skill Chips
 function SkillChip({ children, icon, name, className = "" }: SkillChipProps) {
   return (
-    <div className={`px-4 py-2 rounded-md bg-white text-sm font-medium text-[#18181b] flex items-center gap-2.5 transition-all hover:shadow-md cursor-default ${className}`}>
+    <div className={`px-4 py-2 rounded-md bg-white text-sm font-medium text-[#18181b] flex items-center gap-2.5 transition-all duration-300 hover:shadow-md cursor-default ${className}`}>
       {icon && <img src={icon} alt={name || ""} className="w-4 h-4 object-contain shrink-0" />}
       {name ? <span>{name}</span> : children}
+    </div>
+  );
+}
+
+function CaseStudyCard({ project, index }: { project: any; index?: number }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const cardRef = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    const node = cardRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  const projectNum = index !== undefined ? String(index + 1).padStart(2, "0") : null;
+
+  return (
+    <a
+      ref={cardRef}
+      href={project.url || `/showcase`}
+      className={`block group space-y-4 cursor-pointer transition-all duration-[1500ms] ease-[cubic-bezier(0.16,1,0.3,1)] transform ${isVisible
+        ? "opacity-100 translate-y-0 scale-100 blur-0"
+        : "opacity-0 translate-y-14 scale-[0.98] blur-[4px]"
+        }`}
+    >
+      {/* Card Media Preview */}
+      <div className="relative w-full aspect-[16/10] bg-[#f4f4f6] rounded-sm overflow-hidden transition-all duration-300">
+        <ProjectCoverSlideshow
+          coverImages={project.coverImages}
+          src={project.src || "/uploads/uploaded_1785059197708.png"}
+          alt={project.title || "Project Case Study"}
+          className="w-full h-full relative overflow-hidden"
+          imgClassName="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
+        />
+      </div>
+
+      {/* Card Meta Info */}
+      <div className="space-y-1 mt-6">
+        <div className="flex items-center justify-between text-xs font-mono font-medium text-black/45 uppercase">
+          <span>
+            {project.client?.toUpperCase() || "ENTERPRISE"} / {project.category?.toUpperCase() || "PRODUCT DESIGN"}
+          </span>
+          {projectNum && (
+            <span className="text-black/40 font-mono font-semibold tracking-widest text-[11px]">
+              /{projectNum}
+            </span>
+          )}
+        </div>
+        <h3 className="text-xl font-medium text-black transition-colors flex items-center justify-between">
+          <span>{project.title}</span>
+          <svg className="w-5 h-5 text-black/30 opacity-0 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </h3>
+      </div>
+    </a>
+  );
+}
+
+function ShotCard({ shot, index }: { shot: any; index: number }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const node = cardRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -30px 0px" }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  const delay = (index % 8) * 100;
+
+  return (
+    <div
+      ref={cardRef}
+      className={`group relative bg-[#f8f8fa] rounded-sm overflow-hidden transition-all duration-[1500ms] ease-[cubic-bezier(0.16,1,0.3,1)] transform ${isVisible
+        ? "opacity-100 translate-y-0 scale-100 rotate-0 blur-0"
+        : "opacity-0 translate-y-10 scale-95 -rotate-1 blur-[2px]"
+        }`}
+      style={{
+        transitionDelay: isVisible ? `${delay}ms` : "0ms",
+      }}
+    >
+      <div className="p-2 w-full aspect-[4/3] bg-[#f2f2f5] flex items-center justify-center rounded-sm">
+        <div className="w-full h-full rounded-sm overflow-hidden relative">
+          <img
+            src={shot.src || "/uploads/uploaded_1785059197708.png"}
+            alt={shot.title || "Design Variation Shot"}
+            className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-500"
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ToolsCategorySection({
+  title,
+  children,
+  delayIndex = 0,
+}: {
+  title: string;
+  children: React.ReactNode;
+  delayIndex?: number;
+}) {
+  const [isVisible, setIsVisible] = useState(false);
+  const catRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const node = catRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -30px 0px" }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  const delay = delayIndex * 120;
+
+  return (
+    <div
+      ref={catRef}
+      className={`space-y-3 transition-all duration-[1500ms] ease-[cubic-bezier(0.16,1,0.3,1)] transform ${isVisible
+        ? "opacity-100 translate-y-0 scale-100 blur-0"
+        : "opacity-0 translate-y-8 scale-[0.98] blur-[2px]"
+        }`}
+      style={{
+        transitionDelay: isVisible ? `${delay}ms` : "0ms",
+      }}
+    >
+      <div className="text-[11px] font-mono font-semibold tracking-widest text-black/45 uppercase">
+        {title}
+      </div>
+      <div className="flex flex-wrap gap-3">{children}</div>
     </div>
   );
 }
@@ -131,8 +297,18 @@ export default function NewLandingPage() {
         <header className="sticky top-0 z-50 w-full bg-transparent py-4 transition-all duration-300">
           <div className="max-w-[1240px] mx-auto px-5 sm:px-8 lg:px-12 flex items-center justify-between">
             {/* Author Branding */}
-            <a href="#" className="flex items-center gap-2 group animate-reveal-up delay-100">
-              <span className="font-medium text-sm text-black/90 group-hover:text-[#f25c0c] transition-colors">
+            <a href="#" className="flex items-center gap-3 sm:gap-3.5 group animate-reveal-up delay-100">
+              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-sm overflow-hidden bg-[#edf2f7] shrink-0">
+                <img
+                  src="/avatar.png"
+                  alt={portfolioInfo.author}
+                  className="w-full h-full object-cover object-center"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = "/avatar.webp";
+                  }}
+                />
+              </div>
+              <span className="font-medium text-sm sm:text-md text-black/90 group-hover:text-[#f25c0c] transition-colors whitespace-nowrap">
                 {portfolioInfo.author} © {portfolioInfo.year}
               </span>
             </a>
@@ -299,38 +475,10 @@ export default function NewLandingPage() {
               </div>
             </div>
 
-            {/* Right Column (Projects Cards Grid) */}
-            <div className="lg:col-span-8 space-y-12">
-              {selectedProjects.map((project) => (
-                <a
-                  key={project.id}
-                  href={project.url || `/showcase`}
-                  className="block group space-y-4 cursor-pointer"
-                >
-                  {/* Card Media Preview */}
-                  <div className="relative w-full aspect-[16/10] bg-[#f4f4f6] rounded-sm overflow-hidden transition-all duration-300">
-                    <ProjectCoverSlideshow
-                      coverImages={project.coverImages}
-                      src={project.src || "/uploads/uploaded_1785059197708.png"}
-                      alt={project.title || "Project Case Study"}
-                      className="w-full h-full relative overflow-hidden"
-                      imgClassName="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
-                    />
-                  </div>
-
-                  {/* Card Meta Info */}
-                  <div className="space-y-1 mt-6">
-                    <div className="text-xs font-mono font-medium text-black/45 uppercase">
-                      {project.client?.toUpperCase() || "ENTERPRISE"} / {project.category?.toUpperCase() || "PRODUCT DESIGN"}
-                    </div>
-                    <h3 className="text-xl font-medium text-black transition-colors flex items-center justify-between">
-                      <span>{project.title}</span>
-                      <svg className="w-5 h-5 text-black/30 opacity-0 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                    </h3>
-                  </div>
-                </a>
+            {/* Right Column (Projects Cards Grid with Scroll Dissolve Motion) */}
+            <div className="lg:col-span-8 space-y-16">
+              {selectedProjects.map((project, idx) => (
+                <CaseStudyCard key={project.id} project={project} index={idx} />
               ))}
             </div>
           </div>
@@ -353,23 +501,10 @@ export default function NewLandingPage() {
                 A collection of UI screens, components, interactions, and design explorations from my projects.</p>
             </div>
 
-            {/* Right Column (2-Column Grid of Design Variations / Shots) */}
+            {/* Right Column (2-Column Grid of Design Variations / Shots with Card Placement Motion) */}
             <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-1 md:gap-1">
               {projects.filter((p) => !p.isEmpty).slice(0, 8).map((shot, idx) => (
-                <div
-                  key={shot.id || idx}
-                  className="group relative bg-[#f8f8fa] rounded-sm overflow-hidden transition-all duration-300"
-                >
-                  <div className="p-2 w-full aspect-[4/3] bg-[#f2f2f5] flex items-center justify-center rounded-sm">
-                    <div className="w-full h-full rounded-sm overflow-hidden relative">
-                      <img
-                        src={shot.src || "/uploads/uploaded_1785059197708.png"}
-                        alt={shot.title || "Design Variation Shot"}
-                        className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-500"
-                      />
-                    </div>
-                  </div>
-                </div>
+                <ShotCard key={shot.id || idx} shot={shot} index={idx} />
               ))}
             </div>
           </div>
@@ -462,61 +597,40 @@ export default function NewLandingPage() {
             {/* Right Column Skills Badges */}
             <div className="lg:col-span-8 space-y-10">
               {/* Category: DESIGN */}
-              <div className="space-y-3">
-                <div className="text-[11px] font-mono font-semibold tracking-widest text-black/45 uppercase">
-                  DESIGN
-                </div>
-                <div className="flex flex-wrap gap-3">
-                  <SkillChip icon="/icon-tools/icon-figma.svg" name="Figma" />
-                  <SkillChip icon="/icon-tools/icon-illustrator.svg" name="Adobe Illustrator" />
-                  <SkillChip icon="/icon-tools/icon-photoshop.svg" name="Adobe Photoshop" />
-                  <SkillChip icon="/icon-tools/icon-lottie.svg" name="Lottie" />
-                  <SkillChip icon="/icon-tools/icon-framer.svg" name="Framer" />
-                  <SkillChip icon="/icon-tools/icon-chatgpt.svg" name="ChatGPT" />
-                  <SkillChip icon="/icon-tools/icon-claude.svg" name="Claude" />
-                </div>
-              </div>
+              <ToolsCategorySection title="DESIGN" delayIndex={0}>
+                <SkillChip icon="/icon-tools/icon-figma.svg" name="Figma" />
+                <SkillChip icon="/icon-tools/icon-illustrator.svg" name="Adobe Illustrator" />
+                <SkillChip icon="/icon-tools/icon-photoshop.svg" name="Adobe Photoshop" />
+                <SkillChip icon="/icon-tools/icon-lottie.svg" name="Lottie" />
+                <SkillChip icon="/icon-tools/icon-framer.svg" name="Framer" />
+                <SkillChip icon="/icon-tools/icon-chatgpt.svg" name="ChatGPT" />
+                <SkillChip icon="/icon-tools/icon-claude.svg" name="Claude" />
+              </ToolsCategorySection>
 
               {/* Category: DEVELOPMENT */}
-              <div className="space-y-3">
-                <div className="text-[11px] font-mono font-semibold tracking-widest text-black/45 uppercase">
-                  DEVELOPMENT
-                </div>
-                <div className="flex flex-wrap gap-3">
-                  <SkillChip icon="/icon-tools/icon-react.svg" name="React" />
-                  <SkillChip icon="/icon-tools/icon-tailwind.svg" name="Tailwind" />
-                  <SkillChip icon="/icon-tools/icon-webflow.svg" name="Webflow" />
-                  <SkillChip icon="/icon-tools/icon-wordpress.svg" name="Wordpress" />
-                  <SkillChip icon="/icon-tools/icon-elementor.svg" name="Elementor" />
-                  <SkillChip icon="/icon-tools/icon-antigravity.svg" name="Antigravity" />
-                </div>
-              </div>
+              <ToolsCategorySection title="DEVELOPMENT" delayIndex={1}>
+                <SkillChip icon="/icon-tools/icon-react.svg" name="React" />
+                <SkillChip icon="/icon-tools/icon-tailwind.svg" name="Tailwind" />
+                <SkillChip icon="/icon-tools/icon-webflow.svg" name="Webflow" />
+                <SkillChip icon="/icon-tools/icon-wordpress.svg" name="Wordpress" />
+                <SkillChip icon="/icon-tools/icon-elementor.svg" name="Elementor" />
+                <SkillChip icon="/icon-tools/icon-antigravity.svg" name="Antigravity" />
+              </ToolsCategorySection>
 
               {/* Category: RESEARCH */}
-              <div className="space-y-3">
-                <div className="text-[11px] font-mono font-semibold tracking-widest text-black/45 uppercase">
-                  RESEARCH
-                </div>
-                <div className="flex flex-wrap gap-3">
-                  <SkillChip icon="/icon-tools/icon-userinterview.svg" name="User Interview" />
-                  <SkillChip icon="/icon-tools/icon-competitive.svg" name="Competitive Analysis" />
-                  <SkillChip icon="/icon-tools/icon-designthinking.svg" name="Design Thinking" />
-                </div>
-              </div>
+              <ToolsCategorySection title="RESEARCH" delayIndex={2}>
+                <SkillChip icon="/icon-tools/icon-userinterview.svg" name="User Interview" />
+                <SkillChip icon="/icon-tools/icon-competitive.svg" name="Competitive Analysis" />
+                <SkillChip icon="/icon-tools/icon-designthinking.svg" name="Design Thinking" />
+              </ToolsCategorySection>
 
               {/* Category: COLLABORATION */}
-              <div className="space-y-3">
-                <div className="text-[11px] font-mono font-semibold tracking-widest text-black/45 uppercase">
-                  COLLABORATION
-                </div>
-                <div className="flex flex-wrap gap-3">
-                  <SkillChip icon="/icon-tools/icon-slack.svg" name="Slack" />
-                  <SkillChip icon="/icon-tools/icon-meet.svg" name="Google Meet" />
-                  <SkillChip icon="/icon-tools/icon-notion.svg" name="Notion" />
-                  <SkillChip icon="/icon-tools/icon-figjam.svg" name="Figjam" />
-                </div>
-              </div>
-
+              <ToolsCategorySection title="COLLABORATION" delayIndex={3}>
+                <SkillChip icon="/icon-tools/icon-slack.svg" name="Slack" />
+                <SkillChip icon="/icon-tools/icon-meet.svg" name="Google Meet" />
+                <SkillChip icon="/icon-tools/icon-notion.svg" name="Notion" />
+                <SkillChip icon="/icon-tools/icon-figjam.svg" name="Figjam" />
+              </ToolsCategorySection>
             </div>
           </div>
         </div>
